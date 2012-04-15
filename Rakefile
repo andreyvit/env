@@ -38,15 +38,18 @@ end
 
 desc "Install Homebrew packages"
 task :brewpkg do
-    # sh 'brew install git'
     sh 'brew install node'
     sh 'brew install git-extras'
     sh 'brew install autojump'
     sh 'brew install ack'
     sh 'brew install cloc'
-    sh 'brew install platypus'
     sh 'brew install rlwrap'
     sh 'brew install watch'
+end
+
+desc "Install npm"
+task :npm do
+    sh 'curl http://npmjs.org/install.sh | sh'
 end
 
 desc "Install npm packages"
@@ -70,4 +73,4 @@ task :sublime do
 end
 
 desc "Install everything"
-task :all => [:config, :brew, :brewpkg, :npmpkg, :sublime]
+task :all => [:config, :brew, :brewpkg, :npm, :npmpkg, :sublime, :itunes]
