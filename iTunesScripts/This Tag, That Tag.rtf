@@ -1,0 +1,262 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf270
+\readonlydoc1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Verdana;\f2\fnil\fcharset0 Geneva;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red102\green102\blue102;\red0\green128\blue0;
+\red255\green0\blue0;\red36\green37\blue37;\red17\green17\blue17;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc2\leveljcn2\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\})}{\leveltext\leveltemplateid0\'02\'05.;}{\levelnumbers\'01;}}{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc2\leveljcn2\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\})}{\leveltext\leveltemplateid0\'02\'05.;}{\levelnumbers\'01;}}{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc2\leveljcn2\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\})}{\leveltext\leveltemplateid0\'02\'05.;}{\levelnumbers\'01;}}{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc2\leveljcn2\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\})}{\leveltext\leveltemplateid0\'02\'05.;}{\levelnumbers\'01;}}{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\vieww10760\viewh14780\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\f0\fs84 \cf0 This Tag, That Tag Scripts 
+\fs36  v2.0
+\fs84 \
+
+\fs36 AppleScript for iTunes
+\fs24 \
+Find more 
+\b free
+\b0  AppleScripts\
+and info on writing your own\
+at {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/"}}{\fldrslt Doug's AppleScripts for iTunes}}.\
+\
+
+\fs36 Four scripts to assist with swapping, copying, and appending data between two chosen tags in selected tracks:\
+\
+\'95 Swap This With That\
+\'95 Put This In That\
+\'95 Put This After That\
+\'95 Put This Before That\
+
+\fs24 \
+
+\b This script is {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/itinfo/donate.php"}}{\fldrslt Donationware}}. If you use it and like it 
+\i please
+\i0  consider making a donation to support my AppleScripting efforts. {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/itinfo/donate.php"}}{\fldrslt Click here}} for more info.
+\b0\fs36 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b\fs24 \cf2 Installation:
+\b0 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b \cf0 To manually install: 
+\b0 Put AppleScripts in your iTunes Scripts folder. This is located in 
+\i \cf3 [user name] > Library > iTunes
+\i0 \cf0 . If there is no folder named "Scripts" there, create one and put the script(s) in it. AppleScripts will then appear in iTunes' Script menu, and can be activated by selecting by name and clicking. Be sure to also save this Read Me document in a safe and convenient place.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b \cf2 How to use:
+\b0 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b \cf0 Swap This With That (Ex: ARTIST \cf4 <->\cf0  COMPOSER)
+\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\ql\qnatural
+\ls1\ilvl0\cf0 {\listtext	1)	}Select any number of tracks in iTunes and run the script from iTunes Scripts Menu.\
+{\listtext	2)	}Select the tag from which to swap info (Song Name, Artist, Album, Album Artist\cf5 *\cf0 , Composer, Comments, Genre, Show, or Grouping)\
+{\listtext	3)	}Select a second tag which to swap info with.\
+{\listtext	4)	}After a moment, the script will begin swapping the selected tag info in the selected tracks.
+\b \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b0 \cf0 \
+
+\b Put This In That (Ex: ARTIST \cf4 -->\cf0  COMPOSER)
+\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\ql\qnatural
+\ls2\ilvl0\cf0 {\listtext	1)	}Select any number of tracks in iTunes and run the script from iTunes Scripts Menu.\
+{\listtext	2)	}Select the tag from which to copy info from (Song Name, Artist, Album, Album Artist\cf5 *\cf0 , Composer, Comments, Genre, Show, or Grouping)\
+{\listtext	3)	}Select a second tag which to copy that info to (barring Genre).\
+{\listtext	4)	}You will then be asked if you wish to 
+\b delete
+\b0  the info in the first selected tag.\
+{\listtext	5)	}After a moment, the script will begin copying the data from the first tag to the second tag in the selected tracks.
+\b \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b0 \cf0 \
+
+\b Put This After That (Ex: ARTIST \cf4 -->\cf0  COMPOSER - 
+\i ARTIST
+\i0 )
+\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\ql\qnatural
+\ls3\ilvl0\cf0 {\listtext	1)	}Select any number of tracks in iTunes and run the script from iTunes Scripts Menu.\
+{\listtext	2)	}Select the tag from which to copy info from (Song Name, Artist, Album, Album Artist\cf5 *\cf0 , Composer, Comments, Genre, Show, or Grouping)\
+{\listtext	3)	}Select a second tag which to append that info to (barring Genre).\
+{\listtext	4)	}Enter text to use as a separator between the two text strings.\
+{\listtext	5)	}You will then be asked if you wish to 
+\b delete
+\b0  the info in the first selected tag. \
+{\listtext	6)	}After a moment, the script will begin copying the data from the first tag and appending it to the second tag in the selected tracks. (See 
+\b \cf2 note
+\b0 \cf0  below on editing the separator string, which by default is " - ".)
+\b \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b0 \cf0 \
+
+\b Put This Before That (Ex: ARTIST \cf4 -->\cf0  
+\i ARTIST
+\i0  - COMPOSER)
+\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\ql\qnatural
+\ls4\ilvl0\cf0 {\listtext	1)	}Select any number of tracks in iTunes and run the script from iTunes Scripts Menu.\
+{\listtext	2)	}Select the tag from which to copy info from (Song Name, Artist, Album, Album Artist\cf5 *\cf0 , Composer, Comments, Genre, Show, or Grouping)\
+{\listtext	3)	}Select a second tag which to prepend that info to (barring Genre).\
+{\listtext	4)	}Enter text to use as a separator between the two text strings.\
+{\listtext	5)	}You will then be asked if you wish to 
+\b delete
+\b0  the info in the first selected tag. After a moment, the script will begin copying the data from the first tag and prepending it to the second tag in the selected tracks. (See 
+\b \cf2 note
+\b0 \cf0  below on editing the separator string, which by default is " - ".)
+\b \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b0 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\fs20 \cf5 *\cf0 iTunes 7 or better only
+\fs24 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b \cf2 Editing the separator string
+\b0 \cf0 \
+\
+By default, the separator string used in 
+\b Put This Before That
+\b0  and 
+\b Put This After That
+\b0  is a dash with a space on either side, " - ". When either of these scripts is run, you have the opportunity to change the default separator string you want to use. However, if you find you are frequently changing the separator you can change the default separator string to what you like to use.\
+\
+Open the script in Script Editor by double-clicking it. Near the very top of the script you will see something like this (my Script Editor's text formatting is probably different from yours):\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural\pardirnatural
+
+\f1\b\fs18 \cf0 \CocoaLigature0 property
+\f0\b0\fs24  
+\f1\fs18 \cf2 separator
+\f0\fs24 \cf0  
+\f1\fs18 :
+\f0\fs24  
+\f1\fs18 " - "
+\f0\fs24  
+\f1\fs18 --
+\i \cf6  default
+\f2\i0 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 \
+Just change the text between the quotation marks to whatever you like. Then "Save" the script by pressing Command-S, or clicking on Save in the File menu. Done!\
+\
+
+\b (Remember
+\b0  that slash (/) and colon (:) can be seen as directory delimiters (especially if used in Song Name, Artist, and Album tags which are part of the track's file path) and 
+\i may
+\i0  cause problems in the Finder or with other applications.)\
+\
+Please let me know if you have any questions.\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b \cf2 Helpful Links:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\b0 \cf0 \
+Click on the underlined URL text:\
+\
+- {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/"}}{\fldrslt Doug's AppleScripts for iTunes}}\
+- {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/itinfo/shortcutkeys.php"}}{\fldrslt Assign Shortcut Keys to AppleScripts}}\
+- {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/itinfo/downloadfaq.php"}}{\fldrslt Download FAQ}} - 
+\b Info on downloading and installing AppleScripts
+\b0 \
+- {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/dougs.rss"}}{\fldrslt Doug's RSS Feed}} - 
+\b Recent site news, script additions and updates
+\b0  (add link to your news reader)\
+- {\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/dougsupdated.rss"}}{\fldrslt 30 Most Recent RSS Feed}} - 
+\b Most recent new and updated scripts
+\b0  (add link to your news reader)\
+\
+
+\b Information and download link for this script is located at:
+\b0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural\pardirnatural
+{\field{\*\fldinst{HYPERLINK "http://dougscripts.com/itunes/scripts/ss.php?sp=thistagthattag"}}{\fldrslt \cf0 http://dougscripts.com/itunes/scripts/ss.php?sp=thistagthattag}}\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\fs20 \cf0 Version History:\
+\
+v2.0 apr 22 2006\
+all scripts:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural\pardirnatural
+\cf7 \CocoaLigature0 - saved as universal binary\
+- add "Show" tag\
+- consolidated code\
+- saved as script bundle\CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+\cf7 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+\cf0 v1.7 oct 3 2006\
+- adds "Album Artist" tag to option, which will work in iTunes 7 and better\
+\
+v1.6 04.10.28\
+- works around iTunes 4.7 selection bug\
+\
+v1.5 04.01.07 \
+- accommodate "Grouping" tag for iTunes 4.2\
+\
+v1.0 03.06.18\
+- initial release\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+\cf7 \
+\
+this doc last updated April 22 08\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\fs24 \cf0 \
+
+\b If you have any trouble with this script, please email me.
+\b0 \
+My name is Doug Adams\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+{\field{\*\fldinst{HYPERLINK "mailto:dougscripts@mac.com"}}{\fldrslt \cf2 \ul \ulc2 dougscripts@mac.com}}\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\fs20 \cf0 This software is released "as-is". By using it or modifying it you agree that its author cannot be held responsible or liable for any tragedies resulting thereof.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural\pardirnatural
+\cf0 \CocoaLigature0 This program is free software; you can redistribute it and/or modify it under the terms of the 
+\b GNU General Public License
+\b0  as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\
+\
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\
+\
+Get a copy of the GNU General Public License by writing to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\
+\
+or visit {\field{\*\fldinst{HYPERLINK "http://www.gnu.org/copyleft/gpl.html"}}{\fldrslt http://www.gnu.org/copyleft/gpl.html}}
+\f1\i\fs18 \cf3 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\f0\i0\fs24 \cf0 \CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\fs20 \cf0 AppleScript, iTunes, and iPod are registered trademarks of {\field{\*\fldinst{HYPERLINK "http://www.apple.com"}}{\fldrslt Apple}} Inc.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li180\ql\qnatural
+
+\fs24 \cf0 \
+}

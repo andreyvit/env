@@ -1,0 +1,47 @@
+ServerAliveInterval 60
+
+Host newpm
+  HostName 178.63.10.144
+  User root
+
+Host oldpm
+  HostName projektmagazin.de
+  User ssh-214460-58462
+
+Host livepm
+  HostName 109.239.60.134
+  User root
+
+Host pmweb1
+  HostName 109.239.60.134
+  User root
+
+Host pmweb2
+  HostName 46.252.21.49
+  User root
+
+Host pmweb3
+  HostName 46.252.21.46
+  User root
+
+Host pmweb4
+  HostName 46.252.21.41
+  User root
+
+Host pmweb5
+  HostName 109.239.49.215
+  User root
+
+Host pmdb
+  HostName 46.252.21.42
+  User root
+
+Host wiki.key-tec.de
+  User git-user
+
+Host wiki
+  HostName wiki.key-tec.de
+  User git-user
+
+Host qbix.com
+  User andrey

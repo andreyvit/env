@@ -1,0 +1,744 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf430
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;\f2\fmodern\fcharset0 Courier;
+}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww15120\viewh13960\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f0\fs48 \cf0 Track Parser 1.3.1
+\fs24 \
+By Dan Vanderkam\
+June 29, 2009\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 What's it Good For?
+\b0 \
+Track Parser is a collection of AppleScripts which are designed to parse song names for information, greatly simplifying the process of tagging every song you import. In most cases, you've already got all the information that you'll be entering in some form or another, be it an info file that came with your download, or in the file names. Adding that information yourself is sheer drudgery. Track Parser lets you specify a format, and then hand over all the work to the computer.\
+\
+Say you've just imported some songs, and their names appear in "artist - album - track - name" format, as follows:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 My Bloody Valentine - Loveless - 1 - Only Shallow\
+My Bloody Valentine - Loveless - 2 - Loomer\
+.\
+.\
+.\
+My Bloody Valentine - Loveless - 12 - Soon
+\f0\fs24 \
+\
+You'd like to parse these track names into the four separate fields. Usually, this would be a real pain. Before writing this script, I would have:\
+\
+	1. Used the "Get Info" dialog to set the artist and album\
+	2. Run "Remove N Characters from Front" to get the track numbers in front\
+	3. Run "Put Track Prefix to Track Number"\
+	4. Run "Remove N Characters from Front" again to get rid of the remaining " - "\
+\
+That isn't too bad, but it's needlessly involved. To do the same thing with Track Parser, you'd simply run "Parser (Song Names)" and pick the appropriate pattern from the examples, in this case "
+\f1\fs18 The Beatles - Revolver - 01 - Taxman
+\f0\fs24 ", since this matches the format above.\
+\
+That's it. The script will do the rest of the work for you, setting all four fields. Most of the formats you'll run into are represented in the set of formats that comes with Track Parser. If your's isn't though, you can create your own. Just scroll down to the 
+\b Creating Your Own Patterns
+\b0  section.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Other Uses
+\b0 \
+Track Parser can do its work in a variety of settings. In particular, it can take its data from the clipboard rather than from the song names. I've found this most useful for live music that I've downloaded. The tracks are typically named something along the lines of "pixies2004-04-19d1t01", and there's an accompanying text file which contains the actual song names:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 01. Bone Machine\
+02. River Euphrates\
+...\
+11. Planet of Sound\
+12. Into the White
+\f0\fs24 \
+\
+To handle this common situation, I'd select all the songs, run "Parser (Song Names)", and choose the appropriate pattern, in this case "
+\f1\fs18 pixies2004-04-19[-]d1t01"
+\f0\fs24 . Yes, this might just be where that format got its name...\
+\
+This will fill in the artist (pixies), album (2004-04-19), year (2004), disc (1), and track (01) fields. But not the song name, which happens to be pretty important. So copy the set list to the clipboard, and sort the tracks in iTunes. In this case, you can just sort by song name. All that matters is that they appear in the same order in iTunes as they do on the clipboard. Then run "Parser (Clipboard)" and select the appropriate format, in this case "
+\f1\fs18 01. Airbag
+\f0\fs24 ". If you've done everything correctly, then all the song names should be set.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Substitutions
+\b0 \
+Track Parser can also clean up text within a single field. Specifically, you can do find/replace on a song name using regular expressions. See below for details on this.\
+\
+The one example that I've included is a Title Case converter. It takes nasty looking track names like "THE WIND IN THE WILLOWS" and changes them to "The Wind in the Willows". It does a fairly good job, though it's certainly not perfect. It's likely to mess up acronyms like "DJ", which will get converted to "Dj".\
+\
+This mode has some additional features which make it extremely powerful. See below for examples of its use.\
+\
+
+\b The Manager
+\b0 \
+If you'd like to change, modify, or remove any of the patterns that appear in the favorites list, then run the "\'85(Manager)" script. You'll be asked which favorites list you'd like to modify, and then presented with a menu of options. This also provides a means to see the patterns that the existing favorites are using.\
+\
+If there's a pattern that you find yourself using frequently, you can use the manager to spin it off into its own separate script. This way, it will appear directly under the Scripts menu in iTunes, saving you a step. Once it's in the Scripts menu, you can assign it a keyboard shortcut to be even more efficient.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b\fs28 \cf0 Creating Your Own Patterns
+\b0\fs24 \
+I've tried to include most common formats in the built-in list, but if I missed yours, then this section is for you.
+\b \
+\
+Simple (scanf-style) Patterns
+\b0 \
+For a simple pattern, you can use a format string reminiscent of C's 
+\i scanf
+\i0 /
+\i printf
+\i0  functions. All text is matched literally, unless it's a character proceeded by a %-sign. These metacharacters denote the individual fields. So, for example, "
+\f1\fs18 %t - %n
+\f0\fs24 " would match "01 - Airbag". The " - " is matched literally, while the 
+\f1\fs18 %t
+\f0\fs24  and 
+\f1\fs18 %n
+\f0\fs24  suck in everything else, and reroute whatever they take to the appropriate field. Here's the complete list of characters than can follow a %-sign.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Code	Field
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 a
+\f0\fs24 	Artist\
+
+\f1\fs18 A
+\f0\fs24 	Artist (no clobber)\
+
+\f1\fs18 b
+\f0\fs24 	BPM\
+
+\f1\fs18 c
+\f0\fs24 	Comments\
+
+\f1\fs18 C
+\f0\fs24 	Composer\
+
+\f1\fs18 d
+\f0\fs24 	Disc Number\
+
+\f1\fs18 D
+\f0\fs24 	Disc Count\
+
+\f1\fs18 e
+\f0\fs24 	Played Date\
+
+\f1\fs18 f
+\f0\fs24 	File Name (read-only)\
+
+\f1\fs18 g
+\f0\fs24 	Genre\
+
+\f1\fs18 G
+\f0\fs24 	Genre (no clobber)\
+
+\f1\fs18 l
+\f0\fs24 	Album\
+
+\f1\fs18 L
+\f0\fs24 	Album (no clobber)\
+
+\f1\fs18 n
+\f0\fs24 	Song Name\
+
+\f1\fs18 p
+\f0\fs24 	Played Count\
+
+\f1\fs18 r
+\f0\fs24 	Grouping\
+
+\f1\fs18 R
+\f0\fs24 	Grouping (no clobber)\
+
+\f1\fs18 t
+\f0\fs24 	Track Number\
+
+\f1\fs18 T
+\f0\fs24 	Track Count\
+
+\f1\fs18 y
+\f0\fs24 	Year\
+
+\f1\fs18 0
+\f0\fs24 	Nothing (skip the text)\
+
+\f1\fs18 #
+\f0\fs24 	Rating (Between 0 and 100)\
+\
+As I mentioned earlier, anything character not prefaced by a "%" sign is matched literally. This includes spaces and punctuation, since they're usually what delimits fields in song names. The "no clobber" entries will only change a field if it's blank -- they won't clobber any existing information.\
+\
+Here are some common formats and their corresponding patterns, to help you get the hang of this:\
+\
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Pattern
+\b0 	
+\b What it Matches
+\b0 \
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 (%t) %n
+\f0\fs24 	(01) Airbag\
+
+\f1\fs18 %a - %t - %n
+\f0\fs24 	U2 - 06 - Red Hill Mining Town\
+
+\f1\fs18 %a - %l - %t - %n
+\f0\fs24 	XTC - English Settlement - 15 - Snowman\
+
+\f1\fs18 %a - %l - CD%d - %t - %n (%y)
+\f0\fs24 	Bob Dylan - Live 1966 - CD1 - 01 - She Belongs to Me (1966)\
+
+\f1\fs18 %a2%0d%dt%t
+\f0\fs24 	pixies2004-04-19d1t01 (doesn't get the year part, see below)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+Note that text and tags are always appear one after the other. The parser won't know what to make of something like 
+\f1\fs18 %t%n
+\f0\fs24 . This situation doesn't come up very often, but as the last example shows, it certainly could. In that case, you'll need something a little more powerful. Namely, \'85\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Regular Expressions
+\b0 \
+Whenever the parser sees a pattern prefaced with '/' (a forward slash), it assumes that it's a regular expression, and hands it off to perl (which, therefore, you need installed for this feature). This gives you an incredible amount of power to match complicated patterns. It's essentially inconceivable that your song names would be so convoluted that a regular expression couldn't describe them. But regular expressions are usually overkill, and they're more error-prone than the simpler patterns which I've already discussed.\
+\
+The basic syntax of a regular expression in these scripts is:\
+	/pattern/fields\
+\
+The parser applies the pattern to each name/line, keeps track of all the captured subexpressions, and then uses the fields list to find out what each subexpression is. Maybe some examples will help. I'll assume you're familiar with regular expressions. There are countless websites and books devoted to them if you're not, and they're a lot of fun to use.\
+\
+Let's use the example from the beginning of the Read Me. The song is named:\
+	\
+	My Bloody Valentine - Loveless - 1 - Only Shallow\
+\
+To match it, you might enter the following:\
+\
+	
+\f1\fs18 /^(.*?) - (.*?) - (\\d+) - (.*)$/altn
+\f0\fs24 \
+\
+This isn't the only pattern that you could use, but it certainly works. Any regex features that perl supports will work, like the minimal matching modifier '*?'. Each relevant piece of information is individually captured with parentheses. The "altn" afterwards means that the captured subexpressions are, in the order that they were captured: 'a' (artist), 'l' (album), 't' (track number), and 'n' (song name).\
+\
+In Perl, expression modifiers like 'i' (case insensitive) usually appear after the final slash. So those are not supported by the parser. Patterns are, by default, run without case sensitivity. There are ways that you can toggle these modifiers from within a pattern in Perl. If you need to do that, check out 
+\i Programming Perl
+\i0 , by Larry Wall, or the various Perl websites that are online.\
+\
+But that's unlikely to ever come up. In most cases, the simpler 
+\i scanf
+\i0 -style patterns will more than suffice, and you're less likely to make mistakes writing them.\
+\
+Here are some more examples of regular expressions used to match songs:\
+\
+\pard\tx4680\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Pattern
+\b0 	
+\b What it Matches
+\b0 \
+\pard\tx4680\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 /\\((\\d+)\\) (.*)/tn
+\f0\fs24 	(01) Airbag\
+
+\f1\fs18 /^(.*?) - (\\d+) - (.*)/atn
+\f0\fs24 	U2 - 06 - Red Hill Mining Town\
+
+\f1\fs18 /^(.*?) - (.*?) - (\\d+) - (.*)/altn
+\f0\fs24 	XTC - English Settlement - 15 - Snowman\
+
+\f1\fs18 /^(.*?) - (.*?) - CD(\\d) - (\\d+) - (.*)/aldtn
+\f0\fs24 \
+	Bob Dylan - Live 1966 - CD1 - 01 - She Belongs to Me (1966)\
+
+\f1\fs18 /(\\d\\d)(.*)/tn
+\f0\fs24 	01Subterranean Homesick Blues\
+
+\f1\fs18 /(\\D+)((\\d+)-\\d+-\\d+)d(\\d)t(\\d+)/alydt
+\f0\fs24 	pixies2004-04-19d1t01 (gets the year part!)\
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+The last two examples are the most likely uses of regular expressions. The second to last example couldn't be matched with a 
+\i scanf
+\i0 -style pattern, since there's nothing to seperate its two fields. The last pattern is fairly involved. The '2004' portion of the song name is actually captured twice: once for the year, and again as part of the album ('2004-04-19'). \
+\
+
+\b Substitutions
+\b0 \
+If Track Parser supports Perl's 
+\f1\fs18 m/../
+\f0\fs24  syntax, then why not support its 
+\f1\fs18 s/../../
+\f0\fs24  syntax? If your pattern starts with 
+\f1\fs18 s/
+\f0\fs24 , then it will be passed to Perl essentially verbatim, as a substitution operator. Whatever results from the substitution will become the new track name. You can do find and replace this way, for example:\
+\
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 s/Radio Head/Radiohead/gi
+\f0\fs24 \
+\
+The 
+\f1\fs18 /g
+\f0\fs24  is necessary if you'd like to do a "Replace All", as opposed to just a "Replace". The 
+\f1\fs18 /i
+\f0\fs24  makes it case-insensitive. Again, check out a Perl book for details. This feature is used mainly by the Title Case pattern at the moment, which is a real monster of an expression. Check it out in the manager.\
+\
+With the /e modifier, you can execute Perl code in the replacement section, which gives you a lot of power, some of it useful, some of it not. For instance:\
+\
+
+\f1\fs18 s/(.*)/$1/ee
+\f0\fs24 \
+\
+evaluates each song title as a Perl expression, and replaces the title with the result. This is completely useless (except maybe for Radiohead's "2+2=5"), but it does illustrate the power of this feature.\
+\
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Fancy Substitutions
+\b0 \
+Unlike the other pattern styles, substitutions can take their input from any tag (not just the song title or a line on the clipboard), and they can get user input before they run.\
+\
+The full syntax for a substitution is:\
+\
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 s[
+\f0\i\fs24 Question 1
+\f1\i0\fs18 ;
+\f0\i\fs24  Question 2
+\f1\i0\fs18 ;
+\f0\i\fs24  \'85
+\f1\i0\fs18 ]\{
+\f0\i\fs24 altn\'85
+\f1\i0\fs18 \}/
+\f0\i\fs24 pattern
+\f1\i0\fs18 /
+\f0\i\fs24 replacement
+\f1\i0\fs18 /
+\f0\i\fs24 [msixeg]
+\i0 \
+\
+The brackets delimit a series of semicolon-separated questions. When the script is run, each of these will be asked in sequence before any matching is attempted. The results will be stored in 
+\f1\fs18 @ans
+\f0\fs24 , an array accessible in both parts of the pattern. If no questions are supplied, no questions will be asked. This is a purely optional part of the pattern.\
+\
+The tag identifiers inside the squiggly braces specify the tag(s) on which the pattern should be run. If none is supplied, a default of 
+\f1\fs18 n
+\f0\fs24  (song name) is used. If multiple tags are specified, they are both fed into the pattern, separated by a newline (matchable as 
+\f1\fs18 \\r
+\f0\fs24  in the pattern). For instance, if the song was "Airbag" by Radiohead, off of 
+\i OK Computer
+\i0 , and the pattern was:\
+\
+
+\f1\fs18 s\{al\}/\'85/\'85/
+\f0\fs24 \
+\
+Then the pattern would be matched against:\
+\
+
+\f1\fs18 "Radiohead\
+OK Computer"
+\f0\fs24 \
+\
+(the quotes aren't part of the string)\
+\
+By default, when the substitution is done, Track Parser will put the resulting value back into the first source tag (
+\f1\fs18 a
+\f0\fs24  for artist in the above example). To override this default, return a value of the form:\
+\
+
+\f1\fs18 "altn\'85\
+Value 1\
+Value 2\
+\'85"
+\f0\fs24 \
+\
+The first line provides a key for all the others. The first letter identifies where the data in the next line goes. The second identifies where the line after that will go, etc. So for instance, the following pattern will swap a song's artist and album:\
+\
+
+\f1\fs18 s\{al\}/^/la\\n/
+\f0\fs24 \
+\
+This is a cute trick. The pattern 
+\f1\fs18 /^/
+\f0\fs24  matches at the beginning of the string, and inserts 
+\f1\fs18 la
+\f0\fs24 , followed by a newline. So the output from the above Radiohead song is:\
+\
+
+\f1\fs18 "la\
+Radiohead\
+OK Computer"\
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f0\fs24 \cf0 \
+This says that the album (l) is Radiohead, and that the artist (a) is OK Computer. This is just what we wanted. You could use the same trick to achieve any permutation of tags. For instance, this pattern does a cyclic permutation of the song's name, artist, album, genre, grouping, and composer:\
+\
+s\{nalgrC\}/^/Cnalgr\\n/\
+\
+Run that six times, and you should be exactly where you started.\
+\
+As an example of how to use the questions, let's write a script that sets a song's artist and album. This might be useful if you insert a CD when you're not connected to the internet, or the CDDB database doesn't know about it. The script should ask for the artist, and then the album. Here it is:\
+\
+\pard\tx3600\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f1\fs18 \cf0 s[Enter Artist:;Enter Album:]/.*/al\\n$ans[0]\\n$ans[1]/
+\f0\fs24 \
+\
+The two questions are in square brackets, separated by a semicolon. The output consists of three lines. The first, 
+\f1\fs18 al
+\f0\fs24 , says what the next two lines are. The next line is 
+\f1\fs18 $ans[0]
+\f0\fs24 , the answer to the first question, and the last is 
+\f1\fs18 $ans[1]
+\f0\fs24 , the answer to the second question.\
+\
+Why is the pattern in this example 
+\f1\fs18 .*
+\f0\fs24 ? Because, by default, the text supplied to the substitution is the song name. That's totally useless to us, so we want to write over the entire string. Matching 
+\f1\fs18 .*
+\f0\fs24  takes the entire string and replaces it with whatever we supply. This is stretching the idea of a substitution, but that's the syntax, and I'm not ready to add an entirely new syntax just yet.\
+\
+For more examples of fancy substitutions, see the "Imitating Other Scripts" section, below.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Test Runs
+\b0 \
+With longer patterns, odds are you'll mess up at some point. That's what the "Test Run" button is for. If you click this, then instead of actually changing the track info, you'll just be informed of what would happen. This is especially important if your pattern changes the track's name, since you could potentially lose information if your pattern runs amok.\
+\
+The Test Run button opens up a new dialog for each field that matches. Since this could potentially mean several dialogs per song, I'd suggest just running it on one of the songs, to save yourself the pain of clicking "OK" 50 times. Or just click "Cancel" in one of the dialogs if you're convinced that the pattern is working.\
+\
+
+\b Spinning off Scripts
+\b0 \
+Using the "\'85 (Manager)" script, you can take a commonly-used pattern and convert it into a standalone script. This gives you quick access to it in the Scripts menu, and it also allows you to assign it a keyboard shortcut using the Keyboard control panel. (there's an article on http://www.malcolmadams.com/itunes/ explaining this) If you download a lot of live music, then the live music pattern (the "pixies2004\'85" pattern from above) would be a likely candidate for spinning off.\
+\
+Another way to think about this feature is as an alternative method to write scripts. Instead of writing your script using AppleScript, write it using Perl, regular expressions, and Track Parser. The patterns are flexible enough to encompass many existing scripts (see below), and if you know Perl, you'll save yourself a lot of time. The section "Imitating Other Scripts" details how about 40 of the scripts on Douglas Adams' site could have been written as one-liners using Track Parser.\
+\
+
+\b Tips and Troubleshooting
+\b0 \
+These scripts (and iTunes scripts in general) seem to run faster when you're viewing a playlist, as opposed to your library. I've got a "Recently Added" smart playlist which displays the 200 or so most recently added tracks. I do most of my editing from that screen. Things also tend to go faster if you're not changing information that would cause iTunes to resort the songs. So if your playlist is sorted by track name, then a matching a pattern with 
+\f1\fs18 %n
+\f0\fs24  in it might run slow. My "Recently Added" playlist is sorted by Date Added, which is read-only, so a script could never force it to resort.\
+\
+Track Parser will run almost instantaneously on some tracks, but very slowly on others. As far as I can tell, the slowdown happens when iTunes has to open up the MP3 file and rewrite it to make the modifications. After this has been done once, any additional changes to the track will occur quickly.\
+\
+Another use of the "\'85(Clipboard)" script that I've run into is when the file names of your MP3s contain all the right information, but the tags are wrong. In this case, you can select all the affected files in the Finder, and choose "Copy" from the "Edit" menu. This will copy a list of the files to the clipboard. You can then paste this into TextEdit to rearrange the lines in the correct order, before running the script.\
+\
+Also, if your songs have helpful names like "TRACK 01", but you know the album, you could copy the track names from Amazon, clean them up a bit, and run the "\'85(Clipboard)" script on them.\
+\
+The 
+\f1\fs18 %0
+\f0\fs24  or 
+\f1\fs18 /0
+\f0\fs24  field may look puzzling\'97why would you throw away information?\'97but it can actually be fairly useful. If you've already got information, like the album, track numbers, \'85 and it's also contained in the track name, then there's no reason to do more work than necessary. A situation where this often comes up is when the track names are in the "
+\f1\fs18 pixies2004-04-19d1t01
+\f0\fs24 " format, and you have a set list with lines in the "
+\f1\fs18 01. Bone Machine
+\f0\fs24 " format. You've got the track number twice, so there's no need to use it twice. Because of the way that iTunes handles changes in ID3 tags, this is unlikely to result in a speed bump, but if the alternative bothers your aesthetic sense, at least the option's available\'85\
+\
+
+\b Imitating Other Scripts\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b0 \cf0 Track Parser is extremely flexible, and as such, it can perform the exact same functionality as plenty of other existing scripts. For example, looking through the scripts on Doug Adam's site, I noticed the following scripts. Take these as "real world examples":\
+\
+\pard\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 Script	Track Parser Pattern\
+\pard\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b0 \cf0 Remove n Characters from Front	
+\f1\fs18 s[Remove how many characters?]/^.\{$ans[0]\}//
+\f0\fs24 \
+Artist - Name Corrector	
+\f1\fs18 %a - %n
+\f0\fs24 \
+Remove Extension from Song Name	
+\f1\fs18 s/\\.(mp3|m4a|aiff?|wav|ogg|aac)$//
+\f0\fs24 \
+'First Item - ' to Tag	
+\f1\fs18 %[alt\'85] - %n
+\f0\fs24 \
+Proper English Title Capitalization	(It's ugly, but included in the default list)
+\f1\fs18 \
+
+\f0\fs24 Track Name to Sentence Caps	(similar to the above pattern)\
+Put Track Prefix to Track Number	
+\f1\fs18 /(\\d\{2\})(.*)/tn
+\f0\fs24 \
+Track Names to Word Caps	
+\f1\fs18 s/\\b(.*?)\\b/\\u\\L$1/g
+\f0\fs24 \
+Track Names to Sentence Caps	
+\f1\fs18 s/(^.)|(.)/"\\u$1" || "\\L$2"/ge
+\f0\fs24 \
+Zero-Pad Initial Digits	
+\f1\fs18 s/^(\\d+)/sprintf "%02d", $1/e
+\f0\fs24 \
+\
+Append to Selected Tag	
+\f1\fs18 s[Text to append:]\{
+\f0\i\fs24 tag
+\f1\i0\fs18 \}/$/$ans[0]/
+\f0\fs24 \
+Number Prefix to Track Number	
+\f1\fs18 /^((\\d+).*)/tn
+\f0\fs24 \
+Replace Text	
+\f1\fs18 s[Text to find:;Replace with:]/\\Q$ans[0]\\E/$ans[1]/g
+\f0\fs24 \
+Make 'Track' My String	
+\f1\fs18 s[String to replace 'Track' with:]/Track/$ans[0]/
+\f0\fs24 \
+Add Text at end (of Track Name)	
+\f1\fs18 s[Text to add:]/$/$ans[0]/
+\f0\fs24 \
+Strip Stuff From Tracks	
+\f1\fs18 s/
+\f0\i\fs24 thing one
+\f1\i0\fs18 |
+\f0\i\fs24 thing two
+\f1\i0\fs18 |\'85//g
+\f0\fs24 \
+Remember These Tags For A Sec'	(theoretically possible\'97it would use a substitution that read from/wrote to a file)\
+Append to Selected Tag	
+\f1\fs18 s[Text to append:]\{
+\f0\i\fs24 tag
+\f1\i0\fs18 \}/(.*)/$1$ans[0]/
+\f0\fs24 \
+Append to Comments	(see above)\
+This Tag, That Tag Scripts:\
+\pard\tx720\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 	- Swap This with That	
+\f1\fs18 s\{
+\f0\i\fs24 ab
+\f1\i0\fs18 \}/^/
+\f0\i\fs24 ba
+\f1\i0\fs18 /
+\f0\fs24  where 
+\i a
+\i0 , 
+\i b
+\i0  are the two tags\
+	- Put This in That	
+\f1\fs18 s\{
+\f0\i\fs24 a
+\f1\i0\fs18 \}/^/
+\f0\i\fs24 b
+\f1\i0\fs18 /
+\f0\fs24  puts the content of 
+\i a
+\i0  into 
+\i b
+\i0 \
+	- Put This after That	
+\f1\fs18 s\{
+\f0\i\fs24 ab
+\f1\i0\fs18 \}/(.*)\\r(.*)/
+\f0\i\fs24 b
+\f1\i0\fs18 \\n$2$1/
+\f0\fs24  puts the content of 
+\i a
+\i0  at the end of 
+\i b
+\i0 \
+	- Put This Before That	
+\f1\fs18 s\{
+\f0\i\fs24 ab
+\f1\i0\fs18 \}/(.*)\\r(.*)/
+\f0\i\fs24 b
+\f1\i0\fs18 \\n$1$2/
+\f0\fs24  puts the content of 
+\i a
+\i0  at the beginning of 
+\i b
+\i0 \
+\pard\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+Add/Remove Groups\
+\pard\tx720\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 	- Add	
+\f1\fs18 s[Group:]\{r\}/(.*)/$d=$1; $d=~m!$ans[0]! ? $d : "$d, $ans[0]"/e
+\f0\fs24 \
+	- Remove	
+\f1\fs18 s[Group:]\{r\}/(, )?$ans[0](, )?/$1 && $2 ? $1 : ""/eg
+\f0\fs24 \
+\pard\tx720\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li5040\fi-5040\ql\qnatural
+\cf0 New Last Played Date	
+\f1\fs18 s[How many days ago?]\{e\}/.*/use POSIX; POSIX::strftime("%A, %B %e, %Y %l:%M:%S %p", localtime(time()-86400*$ans[0]))/e
+\f0\fs24 \
+\pard\tx720\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 New Play Count	
+\f1\fs18 s[New Play Count:]\{p\}/.*/$ans[0]/
+\f0\i\fs24 \
+
+\i0 Append to Selected Artists Names	
+\f1\fs18 s[Text to prepend:]\{a\}/^/a\\n$ans[0]/
+\f0\fs24 \
+\pard\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 Increase Play Count	
+\f1\fs18 s\{p\}/(\\d+)/"p\\n" . (1+$1)/e
+\f0\fs24 \
+Composer to 'Last, Rest-of-Name'	
+\f1\fs18 s\{C\}/^(.*) (\\S*)/C\\r$2, $1/
+\f0\fs24 \
+Artist to 'Last, First'	(see above)\
+Swap Album with Genre	
+\f1\fs18 s\{lg\}/^/gl/
+\f0\fs24 \
+Swap Song Name and Artist	
+\f1\fs18 s\{na\}^/an/
+\f0\fs24 \
+\
+Composer-ize/Genre-ize	
+\f1\fs18 s[Composer:]/.*/C\\n$ans[0]/ or s[Genre:]/.*/g\\n$ans[0]/
+\f0\fs24 \
+Rugged Good Looks	
+\f1\fs18 s\{aln\}/(.*)/ ($d=$1) =~ s![\}\{,'"?&*()#\\/\\<> ]!!g; "aln\\n$d" /e
+\f0\fs24 \
+Replace Text	
+\f1\fs18 s[Text to find:;Replace with:]\{
+\f0\i\fs24 tags
+\f1\i0\fs18 \}/(.*)/ ($d=$1) =~ s!\\Q$ans[0]]\\E!$ans[1]!gi; "
+\f0\i\fs24 tags
+\f1\i0\fs18 \\n$d"
+\f0\fs24 \
+Track Info Assist	
+\f1\fs18 %a - %n
+\f0\fs24 , 
+\f1\fs18 %a | %n
+\f0\fs24 , 
+\f1\fs18 %C - %n
+\f0\fs24 , etc.\
+Artist to Composer	
+\f1\fs18 s\{a\}/^/C\\n/
+\f0\fs24 \
+Set Track Count	
+\f1\fs18 s[Track Count:]/.*/T\\n$ans[0]/
+\f0\fs24 \
+Clean ID3 Tags	(covered by the other patterns. I wouldn't want to write this, but it's possible)\
+De-Genre	
+\f1\fs18 s[Genre to eliminate:;Replacement Genre:]\{g\}/^$ans[0]$/$ans[1]/
+\f0\fs24 \
+Filenames to Track Names	
+\f1\fs18 s\{f\}/^/n\\n/
+\f0\fs24 \
+Filename to Comment Tag	
+\f1\fs18 s\{f\}/^/c\\n/
+\f0\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+That's 40 scripts! At the time of this writing, there are 58 scripts in the "Managing Track Info" section, so 70% of those scripts could have been spun off as one-liners with Track Parser.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b \cf0 The Parser
+\b0 \
+I've attempted to write the parser in a fairly generalized fashion, so it may be useful in other contexts as well. If you'd like to try it out, the source for the parser is contained in the "Parser (Song Names)" script. The important routines are 
+\f1\fs18 match
+\f0\fs24 , 
+\f1\fs18 subst
+\f0\fs24 , 
+\f1\fs18 split
+\f0\fs24 , and 
+\f1\fs18 applyPattern
+\f0\fs24 .\
+\
+If you use my parser in any other script, please let me know, and be sure to give me credit somewhere.\
+\
+
+\b Feedback
+\b0 \
+If you run into any problems that you couldn't have avoided by just doing a test run, or if you have any comments/suggestions, feel free to email me at danvk@rice.edu. Any ideas about what to call these scripts (yes, their names are pretty lame) definitely count as suggestions. If you come up with a new pattern that you find useful and think should be included by default, email it on over to me. The simplest way to copy a pattern is by examining it in the "\'85(Manager)" script. When the pattern appears, copy it to the clipboard.\
+\
+
+\b Version History\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b0 \cf0 1.3.1\
+	Fixed pesky 
+\f2 Can't get every item of "" 
+\f0 bug introduced in iTunes 8.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 	Created a new home for Track Parser: {\field{\*\fldinst{HYPERLINK "http://code.google.com/p/trackparser/"}}{\fldrslt http://code.google.com/p/trackparser/}} where bugs/feature requests can be filed and commented on.\
+	
+\i 6/29/2009
+\i0\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\b0 \cf0 1.3
+\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 	
+\b0 Added the "no clobber" variants on several fields\
+	Fixed all the uppercase fields, like "T" and "D". AppleScript really amazes me sometimes, the case in point here being the 
+\f1\fs18 consider case ... end considering
+\f0\fs24  construct. "=" shouldn't return true when the two things aren't really equal!\
+	Substitutions can now set more than just the name. This is an extremely powerful feature, as it lets you introduce new information into a match.\
+	Substitutions can also take input from multiple sources. This allows you to do essentially anything that involves only specific track information (as opposed to "number of tracks selected," say).\
+	Substitutions can now ask the user questions and use the response in the substitution. Mostly for use in spin-offs and saved patterns.\
+	New fields: Played Count, BPM, Composer, Played Date, File Name (r/o), and Rating.\
+	I really hope that the core pattern engine is feature-complete. Future changes are likely to be confined to improved error messages/handling.\
+	Added the somewhat self-serving, self-gratifying "Imitating Other Scripts" section.\
+	Added the ability to spin off patterns into standalone scripts.\
+	Added the ability to save patterns in the "\'85 (Clipboard)" script\
+	Added a workaround for the iTunes 4.7 selection bug.\
+	
+\i 1/13/2005
+\i0 \
+
+\b \
+
+\b0 1.2.1	\
+	Fixed those mysterious, annoying "Error -4690" messages that prevented people from using earlier versions.\
+	The "\'85(Clipboard)" script now skips blank lines, or anything that it interprets as blank lines. This means that it runs as expected on text that you've copied out of a document in TextEdit with windows line endings.\
+	
+\i 7/27/2004
+\i0 \
+1.2\
+	Added the "Favorites Patterns" screen, which appears by default when you run either script. This is a major shift in my approach to parsing, but I think it makes the scripts much easier to use.\
+	Added the "Parser (Manager)" script to deal with favorites.\
+	Changed the Read Me to reflect the above changes, focusing less on how to write expressions.\
+	Added substitutions, mostly to allow the "Titlecase" pattern.\
+	Fixed some quoting issues which prevented songs with apostrophes in them from being matched by regular expressions.\
+	The "\'85(Clipboard)" script now gives you a sample line in the dialog.\
+	The scripts (other than "\'85(Song Names)") now ask you where the song names script is if it's been renamed or moved.\
+	
+\i 7/11/2004
+\i0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 1.1 	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 	Added Regular Expression support via Perl\
+	Added the "Test Run" functionality to the dialog box, which reduced the number of scripts to two.\
+	The "\'85 (Clipboard)" script now loads most of its code from the "\'85(Song Names)" script, which makes these nearly-identical scripts much easier to manage.\
+	The Test Run now tells you which song it would be changing, instead of just the change.\
+	You're now given the option to abort or continue if a line/song fails to match.\
+	The Clipboard and Song Names scripts now remember the last patterns they successfully used.\
+	
+\i 6/14/2004
+\i0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+\cf0 1.0 	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\ql\qnatural
+\cf0 	Initial Release\
+	
+\i 6/11/2004}

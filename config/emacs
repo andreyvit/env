@@ -1,0 +1,177 @@
+;; load path
+(add-to-list 'load-path (expand-file-name "~/env/emacs"))
+
+;; vital stuff
+(setq-default indent-tabs-mode nil)     ; indent using spaces
+(setq require-final-newline 't)         ; always newline at end of file
+(setq frame-title-format "%b")          ; window title
+(desktop-save-mode t)                   ; restore windows after restart
+(transient-mark-mode 0)
+
+;; non-annoying visual bell
+(setq visible-bell 1)
+(setq ring-bell-function
+      (lambda ()
+	(unless (memq this-command
+		      '(isearch-abort abort-recursive-edit exit-minibuffer keyboard-quit))
+	  (ding))))
+
+;; color theme
+(require 'color-theme)
+(setq color-theme-is-global t)
+(color-theme-initialize)
+(color-theme-clarity)
+
+;; speedbar
+(speedbar 1)
+
+;; Objective-c
+(setq auto-mode-alist (cons '("\\.m$" . objc-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.h$" . objc-mode) auto-mode-alist))
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(confirm-kill-emacs (quote yes-or-no-p))
+ '(global-auto-revert-mode t)
+ '(ido-case-fold t)
+ '(ido-everywhere t)
+ '(ido-mode (quote both) nil (ido))
+ '(imenu-auto-rescan t)
+ '(indent-tabs-mode nil)
+ '(save-interprogram-paste-before-kill t)
+ '(show-paren-mode t)
+ '(speedbar-show-unknown-files t)
+ '(speedbar-track-mouse-flag t)
+ '(speedbar-use-images t)
+ '(which-func-modes (quote (emacs-lisp-mode c-mode c++-mode perl-mode cperl-mode python-mode makefile-mode sh-mode fortran-mode f90-mode ada-mode diff-mode objc-mode php-mode)))
+ '(which-function-mode t))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+
+(setq cc-other-file-alist
+      '(("\\.mm?$" (".h"))
+        ("\\.cc$"  (".hh" ".h"))
+        ("\\.hh$"  (".cc" ".C"))
+
+        ("\\.c$"   (".h"))
+	("\\.m$"   (".h"))
+        ("\\.h$"   (".c" ".cc" ".C" ".CC" ".cxx" ".cpp" ".m" ".mm"))
+
+        ("\\.C$"   (".H"  ".hh" ".h"))
+        ("\\.H$"   (".C"  ".CC"))
+
+        ("\\.CC$"  (".HH" ".H"  ".hh" ".h"))
+        ("\\.HH$"  (".CC"))
+
+        ("\\.cxx$" (".hh" ".h"))
+        ("\\.cpp$" (".hpp" ".hh" ".h"))
+
+        ("\\.hpp$" (".cpp" ".c"))))
+
+;(define-key objc-mode-map (kbd "C-c o") 'ff-find-other-file)
+;(define-key objc-mode-map (kbd "C-c C-r") 'xcode:buildandrun)
+;(define-key objc-mode-map (kbd "C-c w") 'xcdoc:ask-search) ;; C-c w で確認してからドキュメントの検索
+
+;; flymake
+(require 'flymake)
+(defvar xcode:gccver "4.2.1")
+(defvar xcode:sdkver "4.2")
+(defvar xcode:sdkpath "/Developer/Platforms/iPhoneSimulator.platform/Developer")
+(defvar xcode:sdk (concat xcode:sdkpath "/SDKs/iPhoneSimulator" xcode:sdkver ".sdk"))
+(defvar flymake-objc-compiler (concat xcode:sdkpath "/usr/bin/gcc-" xcode:gccver))
+(defvar flymake-objc-compile-default-options (list "-Wall" "-Wextra" "-fsyntax-only" "-ObjC" "-std=c99" "-isysroot" xcode:sdk))
+(defvar flymake-last-position nil)
+(defvar flymake-objc-compile-options '("-I."))
+(defun flymake-objc-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list flymake-objc-compiler (append flymake-objc-compile-default-options flymake-objc-compile-options (list local-file)))))
+;; (add-to-list 'ac-modes 'objc-mode)
+
+(defun xcode:buildandrun ()
+  (interactive)
+  (do-applescript
+   (format
+    (concat
+     "tell application \"Xcode\" to activate \r"
+     "tell application \"System Events\" \r"
+     "     tell process \"Xcode\" \r"
+     "          key code 15 using {command down} \r"
+     "    end tell \r"
+     "end tell \r"
+     ))))
+
+
+;; key bindings
+
+(require 'textmate)
+(textmate-mode)
+
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+
+;; YAML mode
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+(add-hook 'yaml-mode-hook
+	  '(lambda ()
+	     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+;; LessCSS
+(require 'less-mode)
+(add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
+(setq less-css-indent-level 4)
+
+;; CoffeeScript
+(require 'coffee-mode)
+
+(defun coffee-custom ()
+  "coffee-mode-hook"
+
+  ;; CoffeeScript uses two spaces.
+  (set (make-local-variable 'tab-width) 2))
+
+(add-hook 'coffee-mode-hook '(lambda () (coffee-custom)))
+
+
+;; PHP
+(require 'php-mode)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+
+
+;; save macro
+ (defun save-macro (name)
+    "save a macro. Take a name as argument
+     and save the last defined macro under
+     this name at the end of your .emacs"
+     (interactive "SName of the macro :")  ; ask for the name of the macro
+     (kmacro-name-last-macro name)         ; use this name for the macro
+     (find-file (user-init-file))                   ; open ~/.emacs or other user init file
+     (goto-char (point-max))               ; go to the end of the .emacs
+     (newline)                             ; insert a newline
+     (insert-kbd-macro name)               ; copy the macro
+     (newline)                             ; insert a newline
+     (switch-to-buffer nil))               ; return to the initial buffer
+
+
+;; useful hotkeys
+
+(global-set-key (kbd "C-c r") 'query-replace-regexp)
+(global-set-key (kbd "s-r") 'xcode:buildandrun)
+(global-set-key (kbd "s-/") 'comment-or-uncomment-region)
+; (global-set-key (kbd "s-/") 'comment-or-uncomment-region-or-line)
+(put 'narrow-to-region 'disabled nil)
