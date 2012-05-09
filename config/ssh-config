@@ -43,5 +43,6 @@ Host wiki
   HostName wiki.key-tec.de
   User git-user
 
-Host qbix.com
-  User andrey
+Host ascendo
+  User u41356466
+  HostName lingidy.com
