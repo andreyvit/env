@@ -46,3 +46,7 @@ Host wiki
 Host ascendo
   User u41356466
   HostName lingidy.com
+
+Host vs
+  User andreyvit
+  HostName 95.169.190.206
