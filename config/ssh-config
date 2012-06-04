@@ -50,3 +50,7 @@ Host ascendo
 Host vs
   User andreyvit
   HostName 95.169.190.206
+  LocalForward 12000 localhost:12000
+  LocalForward 12001 localhost:12001
+  LocalForward 12100 localhost:12100
+  LocalForward 12200 localhost:12200
