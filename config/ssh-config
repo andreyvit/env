@@ -54,3 +54,7 @@ Host vs
   LocalForward 12001 localhost:12001
   LocalForward 12100 localhost:12100
   LocalForward 12200 localhost:12200
+
+Host h1
+  User andreyvit
+  HostName 5.9.21.148
