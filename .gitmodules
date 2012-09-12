@@ -1,3 +1,6 @@
 [submodule "vimfiles"]
 	path = vimfiles
 	url = git@github.com:andreyvit/vimfiles.git
+[submodule "config/fish"]
+	path = config/fish
+	url = git@github.com:andreyvit/fish-nuggets.git
