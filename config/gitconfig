@@ -1,6 +1,6 @@
 [user]
 	name = Andrey Tarantsov
-	email = andreyvit@gmail.com
+	email = andrey@tarantsov.com
 	signingkey = EE3B88A1
 [github]
 	user = andreyvit
@@ -14,6 +14,14 @@
 	wrec = ! sh -c 'white && git rec $@ ' --
 	c = commit -v
 	camm = commit --amend -v
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	patch = add --patch
+	ci = commit --inter -v
+	ai = add -i
+	ap = add --patch
+	ammend = commit --amend -v
+	cp = commit --patch -v
+	ca = commit -a -v
 [color]
 	branch = auto
 	diff = auto
