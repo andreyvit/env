@@ -1,0 +1,2 @@
+#!/bin/bash
+pngcheck "$1" | perl -ne 'print "$1x$2\n" if /\((\d\d+)x(\d\d+)/'

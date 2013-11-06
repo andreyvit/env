@@ -1,0 +1,52 @@
+#!/bin/bash
+
+app_dir=/Users/andreyvit/dev/ascendo/vidalingua/android
+res_dir=$app_dir/VidaLinguaDictionary/src/main/res
+CocoaDialog=/Applications/CocoaDialog.app/Contents/MacOS/CocoaDialog
+
+save() {
+    dpi="$1"
+
+    target_dir=$res_dir/drawable-$dpi
+    echo
+    echo "# ${w}x${h} => $dpi"
+    echo cp "$file" "$target_dir/$new_name.png"
+}
+
+{ read button; read new_name; } < <($CocoaDialog inputbox --title "Move Android Icons" --no-newline --informative-text "Enter new icon name:" --button1 'Copy & Rename' --button2 Cancel --text "$(basename "$1" .png)")
+test "$button" -eq 1 || {
+    echo Cancelled.
+    exit 1
+}
+test -n "$new_name" || {
+    echo Cancelled.
+    exit 1
+}
+
+for file in "$@"; do
+    (/usr/local/bin/pngcheck "$file" | perl -ne 'print "$1 $2 " if /\((\d\d+)x(\d\d+)/'; echo "$file")
+done | sort -n | {
+    echo mkdir -p $res_dir/drawable-mdpi
+    echo mkdir -p $res_dir/drawable-hdpi
+    echo mkdir -p $res_dir/drawable-xhdpi
+    echo
+
+    if read w h file; then
+        save mdpi
+        if read w h file; then
+            save hdpi
+            if read w h file; then
+                save xhdpi
+            fi
+        fi
+    fi
+} >/tmp/android-icon-copy-script.sh
+
+read button < <($CocoaDialog msgbox --text "Move Android Icons" --no-newline --informative-text "Please confirm the following script:\n\n$(cat /tmp/android-icon-copy-script.sh)" --button1 'Proceed' --button2 Cancel)
+test "$button" -eq 1 || {
+    echo Cancelled.
+    exit 1
+}
+
+cat /tmp/android-icon-copy-script.sh
+sh /tmp/android-icon-copy-script.sh

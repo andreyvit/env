@@ -1,0 +1,31 @@
+#!/bin/bash
+
+DESTDIR=~/Workcast/Shots
+
+PERIOD=60
+DATEFMT=%Y-%m-%d_%a_%H_%M
+
+if test "$1" = "-d"; then
+    PERIOD=5
+    DATEFMT=%Y-%m-%d_%a_%H_%M_%S_debug
+fi
+
+idle_time() {
+    ioreg -c IOHIDSystem | grep HIDIdleTime | head -1 | sed 's/[^0-9]//g; s,$,/1000000000,' | bc
+}
+
+capture() {
+    mkdir -p $DESTDIR
+    file=$DESTDIR/$(date "+$DATEFMT").png
+    screencapture -C -x $file 2>/dev/null
+    echo $file
+}
+
+while true; do
+    if test $(idle_time) -ge $PERIOD; then
+        echo "# $(date "+$DATEFMT") idle"
+    else
+        capture
+    fi
+    sleep $PERIOD
+done
