@@ -7,6 +7,7 @@
 [core]
 	excludesfile = ~/env/config/gitignore
 	quotepath = false
+	safecrlf = warn
 [branch]
   autosetuprebase = always
 [alias]
@@ -14,12 +15,15 @@
 	wrec = ! sh -c 'white && git rec $@ ' --
 	c = commit -v
 	camm = commit --amend -v
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	l = log --graph --pretty=fancy-oneline --abbrev-commit --date=short --decorate
+	lf = log --graph --pretty=fancy-full --abbrev-commit --date=iso --decorate
+	lff = log --graph --pretty=fuller --abbrev-commit --date=iso --stat --decorate
+	ls = log --graph --pretty=fancy-oneline --abbrev-commit --date=short --simplify-by-decoration --decorate
 	patch = add --patch
 	ci = commit --inter -v
 	ai = add -i
 	ap = add --patch
-	ammend = commit --amend -v
+	amend = commit --amend -v
 	cp = commit --patch -v
 	ca = commit -a -v
 [color]
@@ -30,17 +34,16 @@
 	showbranch = auto
 	status = auto
 	ui = auto
-[difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
-[difftool]
-	prompt = false
-[diff]
-	tool = Kaleidoscope
-[mergetool]
-	keepBackup = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[pretty]
+	fancy-oneline = %C(red)%h%C(reset) %C(green)%ad%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue)<%ae>%Creset
+	fancy-full = %C(red)%h%C(reset) %C(green)%ad%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue)<%ae>%Creset%n%n%-b
+[push]
+	default = current
+[status]
+	submodulesummary = 1
