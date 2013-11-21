@@ -44,12 +44,29 @@ if address :domain "from" "imac.private" {
 
 ## SUPPORT ##
 
-if address ["from", "to", "cc", "resent-to", "x-delivered-to"] "alpha@livereload.com" {
+if address "x-delivered-to" "alpha@livereload.com" {
   fileinto "INBOX.Support.AlphaSupport";
   stop;
 }
-if address "from" "support@livereload.com" {
-  fileinto "INBOX.Support.NewTickets";
+if address "x-delivered-to" ["support@livereload.com", "help@livereload.com", "feedback@livereload.com"] {
+  if anyof(header :contains "subject" "URGENT", body :contains "URGENT") {
+    fileinto "INBOX.Support.Urgent";
+  } else {
+    fileinto "INBOX.Support.NewTickets";
+  }
+  stop;
+}
+if address "x-delivered-to" "urgent@livereload.com" {
+  fileinto "INBOX.Support.Urgent";
+  stop;
+}
+if allof(address "from" "support@livereload.com", header :matches "Message-Id" "<*@uservoice.com>") {
+  if body :contains "URGENT EMERGENCY" {
+    fileinto "INBOX.Support.Urgent";
+  } else {
+    fileinto "INBOX.Support.NewTickets";
+  }
+  stop;
 }
 
 
@@ -163,8 +180,7 @@ if anyof (
 
     "onemedstore.com",
     "codeweavers.com",
-    "ohlife.com",
-    "nozbe.com"
+    "ohlife.com"
   ]
 ) {
   fileinto "INBOX.NewsDaily";
@@ -353,6 +369,7 @@ if anyof (
     "neatberry.com",
     "lingualeo.com",
     "uservoice.uservoice.com",
+    "nozbe.com",
 
     # marketing geniuses
     "instantcustomer.com",
