@@ -87,3 +87,8 @@ Host heroku.ascendo
 Host nfsn-lr
   HostName ssh.phx.nearlyfreespeech.net
   User andreyvit_livereload
+
+Host ceres
+  IdentityFile ~/.ssh/ceres.key
+  IdentitiesOnly yes
+  HostName andreyvit-ceres.cloudapp.net
