@@ -36,6 +36,15 @@ task :brew do
     sh '/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"'
 end
 
+desc "Install Xcode user data"
+task :xcode_user_data do
+    sh 'mkdir -p ~/Library/Developer/Xcode/UserData/'
+    for subfolder in %w(CodeSnippets FontAndColorThemes KeyBindings)
+        sh "rm -rf ~/Library/Developer/Xcode/UserData/#{subfolder}"
+        sh "ln -s ~/env/XcodeUserData/#{subfolder} ~/Library/Developer/Xcode/UserData/"
+    end
+end
+
 desc "Install Homebrew packages"
 task :brewpkg do
     sh 'brew install node'
@@ -73,4 +82,4 @@ task :sublime do
 end
 
 desc "Install everything"
-task :all => [:config, :brew, :brewpkg, :npm, :npmpkg, :sublime, :itunes]
+task :all => [:config, :brew, :brewpkg, :npm, :npmpkg, :sublime, :itunes, :xcode_user_data]
