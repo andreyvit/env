@@ -88,7 +88,7 @@ if anyof (
 
 if header :contains "list-id" "socketstream.googlegroups.com" { fileinto "INBOX.Junk.SocketStream"; stop; }
 
-if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from"]) { fileinto "INBOX.Junk.TwitterJunk"; stop; }
+if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from", "is now following"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
 
 if address :domain "from" ["projektmagazin.de", "pm.projektmagazin.de"] { fileinto "INBOX.Junk.ProjektMagazin"; stop; }
 
@@ -112,7 +112,12 @@ if address :domain "from" [
 ] { fileinto "INBOX.Fanfiction"; stop; }
 
 if anyof(
-  address :domain "from" ["hackermonthly.com"],
+  address :domain "from" [
+    "hackermonthly.com",
+    "objc.io",
+    "ewebdesign.com",
+    "cloudability.com"
+  ],
   address "from" "dave.verwer@shinydevelopment.com"
 ) { fileinto "INBOX.Tech Reading"; stop; }
 
@@ -175,8 +180,11 @@ if anyof (
     "postmaster.twitter.com",
     "couchsurfing.org",
     "github.com",
+    "dnevnik.ru",
+    "chronopay.com",
 
     "chartbeat.com",
+    "bitofnews.com",
 
     "onemedstore.com",
     "codeweavers.com",
@@ -196,7 +204,6 @@ if anyof (
     "team@evernote.com",
     "contact@codeschool.com",
     "faculty@codeschool.com",
-    "lj_notify@livejournal.com",
     "emailmarketing@rackspace.com",
     "newsletter@wallwiz.com",
     "newsletter@dotcloud.com",
@@ -205,7 +212,6 @@ if anyof (
     "notifications@livestream.com",
     "dolce-gusto@dvs-emarket.ru",
     "no-reply@livereload.uservoice.com",
-    "notification@browserstack.com",
     "kollaborate@assemblagehq.com",
     "CharterforCompassion@",
     "beta@heroku.com",
@@ -224,9 +230,11 @@ if anyof (
     "replies@e.logmein.com",
     "rsihelp+doitnow@gmail.com",
     "MacHeist_Directorate@mail.vresp.com",
-    "marketing@joyent.com"
+    "marketing@joyent.com",
+    "friends@olark.com"
   ],
   address :domain "from" [
+    "livejournal.com",
     "apigee.com",
     "photoguides.net",
     "cocoacontrols.com",
@@ -241,6 +249,7 @@ if anyof (
     "everpix.com",
     "macphun.com",
     "ikeafamilynews.com",
+    "ru.ikeafamilynews.com",
     "shinydevelopment.com",
     "xarakiri.ru",
     "hootsuite.com",
@@ -316,7 +325,10 @@ if anyof (
     "mail.adobesystems.com",
     "uservoice.com",
     "audible.com",
-    "flexibits.com"
+    "flexibits.com",
+    "brace.io",
+    "apparentsoft.com",
+    "browserstack.com"
   ],
   address :domain :matches "from" "*.intercom.io",
   header :matches "subject" "[feedback.livereload.com] Daily summary*",
@@ -370,6 +382,7 @@ if anyof (
     "lingualeo.com",
     "uservoice.uservoice.com",
     "nozbe.com",
+    "news.oktogo.ru",
 
     # marketing geniuses
     "instantcustomer.com",
@@ -379,7 +392,11 @@ if anyof (
     "moikrug.ru",
     "professionali.ru"
   ],
-  address :domain :matches "from" ["*.blurb.com", "*.moo.com"],
+  address :domain :matches "from" [
+    "*.blurb.com",
+    "*.moo.com",
+    "*.hannaandersson.com"
+  ],
   address :localpart "from" "iTunes-GiftCards.com@",
   header "list-id" [
     "<google-appengine-downtime-notify.googlegroups.com>",
