@@ -88,7 +88,7 @@ if anyof (
 
 if header :contains "list-id" "socketstream.googlegroups.com" { fileinto "INBOX.Junk.SocketStream"; stop; }
 
-if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from", "is now following"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
+if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from", "is now following", "favorited a Tweet", "retweeted a Tweet", "Do you know"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
 
 if address :domain "from" ["projektmagazin.de", "pm.projektmagazin.de"] { fileinto "INBOX.Junk.ProjektMagazin"; stop; }
 
