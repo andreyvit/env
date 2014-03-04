@@ -1,0 +1,72 @@
+#!/bin/bash
+HOST=h1
+DESTINATION='~/backups/air'
+
+FOLDERS=(
+    'Library/Application Support/Sublime Text 2/Packages/'
+    'Library/Application Support/Sublime Text 2/Settings/'
+    dev/
+)
+
+EXCLUDE=(
+    .DS_Store
+    .fseventsd
+    .Spotlight-V100
+    .TemporaryItems
+    .Trashes
+    dev/ascendo/vidalingua/database/build/
+    dev/ascendo/vidalingua/android/*/build/
+    dev/ascendo/vidalingua/android/.gradle
+)
+
+KEEP_DAILY=60
+KEEP_HOURLY=168  # 24*7
+
+###
+
+DESTINATION_LATEST=$DESTINATION/latest
+DESTINATION_ONGOING=$DESTINATION/ongoing
+SNAPSHOT="$(date +%Y-%m-%d-T%H%M)"
+
+EXCLUDE_OPTIONS=()
+for name in "${EXCLUDE[@]}"; do EXCLUDE_OPTIONS+=(--exclude "$name"); done
+
+echo "Inspecting the existing backups on the server..."
+output="$(ssh "$HOST" bash -c "true; mkdir -p $DESTINATION; cd $DESTINATION; if test -d $SNAPSHOT; then echo already-exists; else test -L latest && snap=\"\$(readlink latest)\" && test -d \"\$snap\" && echo latest-ok \"\$snap\" || echo latest-missing; fi")"
+case "$output" in
+    latest-ok*)
+        LATEST_SNAPSHOT="${output#latest-ok }"
+        START_MESSAGE="Performing an incremental backup..."
+        INCREMENTAL=(--link-dest "$DESTINATION/$LATEST_SNAPSHOT");;
+    latest-missing)
+        START_MESSAGE="Performing a full backup..."
+        INCREMENTAL=();;
+    already-exists)
+        echo "Snapshot $SNAPSHOT already exists. Please retry later."
+        exit 1;;
+    *)
+        echo "Unknown output from SSH:"
+        echo "$output"
+        exit 5;;
+esac
+
+echo
+echo "Destination:"
+echo "  $HOST:$DESTINATION"
+if test -n "$LATEST_SNAPSHOT"; then
+    echo "Latest snapshot:"
+    echo "  $LATEST_SNAPSHOT"
+fi
+echo "New snapshot:"
+echo "  $SNAPSHOT"
+echo "Folders:"
+for name in "${FOLDERS[@]}"; do echo "  $name"; done
+echo
+
+echo "$START_MESSAGE"
+rsync -azR --delete --info=progress2 "${INCREMENTAL[@]}" "${EXCLUDE_OPTIONS[@]}" "${FOLDERS[@]}" "$HOST:$DESTINATION_ONGOING/" || { echo "rsync failed, backup cancelled."; exit 1; }
+
+echo "Finalizing snapshot $SNAPSHOT..."
+ssh "$HOST" bash -c "true; cd $DESTINATION; mv ongoing $SNAPSHOT; rm latest; ln -s $SNAPSHOT latest"
+
+echo "Done."
