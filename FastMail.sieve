@@ -92,6 +92,9 @@ if allof (address :domain "from" "twitter.com", header :contains "subject" ["Sug
 
 if address :domain "from" ["projektmagazin.de", "pm.projektmagazin.de"] { fileinto "INBOX.Junk.ProjektMagazin"; stop; }
 
+if address "from" ["gregor@buildtracks.com"] { fileinto "INBOX.SoloIM"; stop; }
+if allof (address :domain "from" "plus.google.com", header :contains "subject" "solo.im") { fileinto "INBOX.SoloIM"; stop; }
+
 if anyof(
   address "from" [
     "brian@casjam.com",
@@ -231,7 +234,8 @@ if anyof (
     "rsihelp+doitnow@gmail.com",
     "MacHeist_Directorate@mail.vresp.com",
     "marketing@joyent.com",
-    "friends@olark.com"
+    "friends@olark.com",
+    "noreply@medium.com"
   ],
   address :domain "from" [
     "livejournal.com",
@@ -328,7 +332,8 @@ if anyof (
     "flexibits.com",
     "brace.io",
     "apparentsoft.com",
-    "browserstack.com"
+    "browserstack.com",
+    "getpocket.com"
   ],
   address :domain :matches "from" "*.intercom.io",
   header :matches "subject" "[feedback.livereload.com] Daily summary*",
