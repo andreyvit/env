@@ -24,6 +24,8 @@ KEEP_HOURLY=168  # 24*7
 
 ###
 
+cd ~
+
 DESTINATION_LATEST=$DESTINATION/latest
 DESTINATION_ONGOING=$DESTINATION/ongoing
 SNAPSHOT="$(date +%Y-%m-%d-T%H%M)"
@@ -64,9 +66,9 @@ for name in "${FOLDERS[@]}"; do echo "  $name"; done
 echo
 
 echo "$START_MESSAGE"
-rsync -azR --delete --info=progress2 "${INCREMENTAL[@]}" "${EXCLUDE_OPTIONS[@]}" "${FOLDERS[@]}" "$HOST:$DESTINATION_ONGOING/" || { echo "rsync failed, backup cancelled."; exit 1; }
+rsync -azR --delete --delete-excluded --info=progress2 "${INCREMENTAL[@]}" "${EXCLUDE_OPTIONS[@]}" "${FOLDERS[@]}" "$HOST:$DESTINATION_ONGOING/" || { echo "rsync failed, backup cancelled."; exit 1; }
 
 echo "Finalizing snapshot $SNAPSHOT..."
-ssh "$HOST" bash -c "true; cd $DESTINATION; mv ongoing $SNAPSHOT; rm latest; ln -s $SNAPSHOT latest"
+ssh "$HOST" bash -c "true; cd $DESTINATION; mv ongoing $SNAPSHOT; ln -s $SNAPSHOT latest.new; mv --no-target-directory latest.new latest"
 
 echo "Done."
