@@ -1,0 +1,47 @@
+{
+  "options": [
+    {
+      "name": "package-name",
+      "placeholder": "my-package",
+      "title": "Package Name",
+      "example": "my-new-package"
+    },
+    {
+      "name": "package-description",
+      "placeholder": "Package description",
+      "title": "Package Description"
+    },
+    {
+      "name": "package-version",
+      "title": "Package Version",
+      "placeholder": "0.0.0",
+      "default": "0.0.0"
+    },
+    {
+      "save": true,
+      "name": "github-user",
+      "example": "some-user"
+    },
+    {
+      "name": "github-repo-name",
+      "default": "$(package-name)"
+    },
+    {
+      "save": true,
+      "name": "user-name",
+      "placeholder": "User Name",
+      "example": "John Doe"
+    },
+    {
+      "save": true,
+      "name": "user-email",
+      "placeholder": "user@email",
+      "example": "john.doe@example.com"
+    },
+    {
+      "name": "copyright-year",
+      "placeholder": "2014",
+      "default": "2014"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "author": "User Name <user@email>",
+  "name": "my-package",
+  "description": "Package description",
+  "version": "0.0.0",
+  "homepage": "https://github.com/github-user/github-repo-name",
+  "repository": {
+    "url": "git://github.com/github-user/github-repo-name"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha -R ${REPORTER-spec}",
+    "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
+  },
+  "dependencies": {
+    "debug": "~0.7.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.0",
+    "coffee-script": "~1.7.0"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
