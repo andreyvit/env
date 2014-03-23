@@ -6,6 +6,7 @@ FOLDERS=(
     'Library/Application Support/Sublime Text 2/Packages/'
     'Library/Application Support/Sublime Text 2/Settings/'
     dev/
+    env/
 )
 
 EXCLUDE=(
