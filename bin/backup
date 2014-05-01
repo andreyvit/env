@@ -1,7 +1,7 @@
 #!/bin/bash
 do_backup=true
 do_gc=true
-config_file=~/.backup2.conf
+config_file=~/.backup.conf
 ###############################################################################
 TOOLNAME="$(basename "$0")"
 VERSION="1.1"
@@ -40,12 +40,11 @@ HOST=my.ssh.server
 DESTINATION='~/backups/air'
 
 FOLDERS=(
-    'Library/Application Support/Sublime Text 2/Packages/'
-    'Library/Application Support/Sublime Text 2/Settings/'
-    'Library/Preferences/'
-    'Library/Fonts/'
-    dev/
-    Permanent/
+    # 'Library/Application Support/Sublime Text 2/Packages/'
+    # 'Library/Application Support/Sublime Text 2/Settings/'
+    # 'Library/Preferences/'
+    # 'Library/Fonts/'
+    # dev/
 )
 
 EXCLUDE=(
@@ -63,11 +62,16 @@ KEEP_HOURLY=$(expr 24*7)
 KEEP_DAILY=$(expr 7*4*4)
 KEEP_WEEKLY=$(expr 4*12)
 EOF
-    echo "Please customize sample configuration in $config_file"
-    exit 1
+    echo "Created sample configuration in $config_file, please customize."
+    exit 10
 fi
 
 source $config_file
+
+if test ${#FOLDERS[*]} -eq 0; then
+    echo "Please customize the folder list in $config_file"
+    exit 10
+fi
 
 ###############################################################################
 
@@ -82,6 +86,7 @@ for name in "${EXCLUDE[@]}"; do EXCLUDE_OPTIONS+=(--exclude "$name"); done
 
 if $do_backup; then
     echo "Looking for a base snapshot for incremental backup..."
+    echo ssh "$HOST" bash -c "true; mkdir -p $DESTINATION; cd $DESTINATION; if test -d $SNAPSHOT; then echo already-exists; else test -L latest && snap=\"\$(readlink latest)\" && test -d \"\$snap\" && echo latest-ok \"\$snap\" || echo latest-missing; fi"
     output="$(ssh "$HOST" bash -c "true; mkdir -p $DESTINATION; cd $DESTINATION; if test -d $SNAPSHOT; then echo already-exists; else test -L latest && snap=\"\$(readlink latest)\" && test -d \"\$snap\" && echo latest-ok \"\$snap\" || echo latest-missing; fi")"
     case "$output" in
         latest-ok*)
@@ -126,7 +131,7 @@ snapshots_hourly=()
 snapshots_daily=()
 snapshots_weekly=()
 snapshots_remove=()
-while read action snapshot; do
+while read snapshot action; do
     case $action in
         latest) snapshots_latest+=("$snapshot");;
         hourly) snapshots_hourly+=("$snapshot");;
@@ -148,6 +153,7 @@ done < <(ssh "$HOST" bash -c "true; cd $DESTINATION; ls -1" | sort -r | perl -e 
     %weekly_all = ();
 
     while(<STDIN>) {
+      chop;
       if (/^(((\d{4}-\d{2})-(\d{2}))-T\d{2})/) {
         my($hour, $date, $month, $day) = ($1, $2, $3, $4);
         $weeknr = 1 + int(($day - 1) / 7);
@@ -171,13 +177,13 @@ done < <(ssh "$HOST" bash -c "true; cd $DESTINATION; ls -1" | sort -r | perl -e 
 
         if ($keep) {
           $hourly_all{$hour} = $daily_all{$date} = $weekly_all{$week} = $_;
-          print $keep, " ", $_;
+          print "$_ $keep\n";
         } else {
-          print "remove ", $_;
+          print "$_ remove\n";
         }
       }
     }
-')
+' | sort -r)
 echo
 echo "Summary of snapshots:"
 echo "    Latest: ${#snapshots_latest[@]}"
