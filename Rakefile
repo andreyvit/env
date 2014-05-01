@@ -81,5 +81,11 @@ task :sublime do
     sh 'cd ~/"Library/Application Support/Sublime Text 2" && git clone --recursive git@github.com:andreyvit/SublimePackages.git Packages'
 end
 
+desc "Link backup.conf"
+task :backup do
+    sh 'rm -f ~/.backup.conf'
+    sh 'ln -s ~/env/config/backup.conf ~/.backup.conf'
+end
+
 desc "Install everything"
-task :all => [:config, :brew, :brewpkg, :npm, :npmpkg, :sublime, :itunes, :xcode_user_data]
+task :all => [:config, :brew, :brewpkg, :npm, :npmpkg, :sublime, :itunes, :xcode_user_data, :backup]

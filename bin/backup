@@ -1,12 +1,51 @@
 #!/bin/bash
-HOST=h1
+do_backup=true
+do_gc=true
+config_file=~/.backup2.conf
+###############################################################################
+TOOLNAME="$(basename "$0")"
+VERSION="1.1"
+BANNER="$TOOLNAME $VERSION: Time Machine-style incremental hard-linked backups using rsync"
+USAGE="Usage: $TOOLNAME [options]"
+# parse command-line options
+while test -n "$1" && $cont_optparse true; do
+    case $1 in
+        --info) # Load and display a summary of existing snapshots without performing any changes
+            do_backup=false; do_gc=false; shift;;
+        --gc) # Garbage-collect extra snapshots without performing a backup
+            do_backup=false; do_gc=true; shift;;
+        --version) # Display the version number
+            echo "$VERSION"; exit;;
+        --help) # Display this help message
+            echo "$BANNER"; echo
+            echo "$USAGE"; echo
+            echo "Available options:"
+            perl -ne 'printf "  %-15s %s\n", $1, $2 if / {8}(--\S*)\) # (.*)$/' $0
+            exit;;
+        --)
+            cont_optparse=false; shift;;
+        -*)
+            echo "** Invalid option $1. Run $TOOLNAME --help for a list of available options." >&2; exit 1;;
+        *)
+            cont_optparse=false;;
+    esac
+done
+###############################################################################
+
+if ! test -f $config_file; then
+    cat <<'EOF' >$config_file
+# this is a configuration Bash script sourced by the backup script
+
+HOST=my.ssh.server
 DESTINATION='~/backups/air'
 
 FOLDERS=(
     'Library/Application Support/Sublime Text 2/Packages/'
     'Library/Application Support/Sublime Text 2/Settings/'
+    'Library/Preferences/'
+    'Library/Fonts/'
     dev/
-    env/
+    Permanent/
 )
 
 EXCLUDE=(
@@ -15,15 +54,22 @@ EXCLUDE=(
     .Spotlight-V100
     .TemporaryItems
     .Trashes
-    dev/ascendo/vidalingua/database/build/
-    dev/ascendo/vidalingua/android/*/build/
-    dev/ascendo/vidalingua/android/.gradle
+    dev/foo/android/*/build/
+    dev/foo/android/.gradle
 )
 
-KEEP_DAILY=60
-KEEP_HOURLY=168  # 24*7
+KEEP_LATEST=10
+KEEP_HOURLY=$(expr 24*7)
+KEEP_DAILY=$(expr 7*4*4)
+KEEP_WEEKLY=$(expr 4*12)
+EOF
+    echo "Please customize sample configuration in $config_file"
+    exit 1
+fi
 
-###
+source $config_file
+
+###############################################################################
 
 cd ~
 
@@ -34,42 +80,117 @@ SNAPSHOT="$(date +%Y-%m-%d-T%H%M)"
 EXCLUDE_OPTIONS=()
 for name in "${EXCLUDE[@]}"; do EXCLUDE_OPTIONS+=(--exclude "$name"); done
 
-echo "Inspecting the existing backups on the server..."
-output="$(ssh "$HOST" bash -c "true; mkdir -p $DESTINATION; cd $DESTINATION; if test -d $SNAPSHOT; then echo already-exists; else test -L latest && snap=\"\$(readlink latest)\" && test -d \"\$snap\" && echo latest-ok \"\$snap\" || echo latest-missing; fi")"
-case "$output" in
-    latest-ok*)
-        LATEST_SNAPSHOT="${output#latest-ok }"
-        START_MESSAGE="Performing an incremental backup..."
-        INCREMENTAL=(--link-dest "$DESTINATION/$LATEST_SNAPSHOT");;
-    latest-missing)
-        START_MESSAGE="Performing a full backup..."
-        INCREMENTAL=();;
-    already-exists)
-        echo "Snapshot $SNAPSHOT already exists. Please retry later."
-        exit 1;;
-    *)
-        echo "Unknown output from SSH:"
-        echo "$output"
-        exit 5;;
-esac
+if $do_backup; then
+    echo "Looking for a base snapshot for incremental backup..."
+    output="$(ssh "$HOST" bash -c "true; mkdir -p $DESTINATION; cd $DESTINATION; if test -d $SNAPSHOT; then echo already-exists; else test -L latest && snap=\"\$(readlink latest)\" && test -d \"\$snap\" && echo latest-ok \"\$snap\" || echo latest-missing; fi")"
+    case "$output" in
+        latest-ok*)
+            LATEST_SNAPSHOT="${output#latest-ok }"
+            START_MESSAGE="Performing an incremental backup..."
+            INCREMENTAL=(--link-dest "$DESTINATION/$LATEST_SNAPSHOT");;
+        latest-missing)
+            START_MESSAGE="Performing a full backup..."
+            INCREMENTAL=();;
+        already-exists)
+            echo "Snapshot $SNAPSHOT already exists. Please retry later."
+            exit 1;;
+        *)
+            echo "Unknown output from SSH:"
+            echo "$output"
+            exit 5;;
+    esac
 
-echo
-echo "Destination:"
-echo "  $HOST:$DESTINATION"
-if test -n "$LATEST_SNAPSHOT"; then
-    echo "Latest snapshot:"
-    echo "  $LATEST_SNAPSHOT"
+    echo
+    echo "Destination:"
+    echo "  $HOST:$DESTINATION"
+    if test -n "$LATEST_SNAPSHOT"; then
+        echo "Latest snapshot:"
+        echo "  $LATEST_SNAPSHOT"
+    fi
+    echo "New snapshot:"
+    echo "  $SNAPSHOT"
+    echo "Folders:"
+    for name in "${FOLDERS[@]}"; do echo "  $name"; done
+    echo
+
+    echo "$START_MESSAGE"
+    rsync -azR --delete --delete-excluded --info=progress2 "${INCREMENTAL[@]}" "${EXCLUDE_OPTIONS[@]}" "${FOLDERS[@]}" "$HOST:$DESTINATION_ONGOING/" || { echo "rsync failed, backup cancelled."; exit 1; }
+
+    echo "Finalizing snapshot $SNAPSHOT..."
+    ssh "$HOST" bash -c "true; cd $DESTINATION; mv ongoing $SNAPSHOT; ln -s $SNAPSHOT latest.new; mv --no-target-directory latest.new latest"
 fi
-echo "New snapshot:"
-echo "  $SNAPSHOT"
-echo "Folders:"
-for name in "${FOLDERS[@]}"; do echo "  $name"; done
+
+echo "Loading a list of snapshots..."
+snapshots_latest=()
+snapshots_hourly=()
+snapshots_daily=()
+snapshots_weekly=()
+snapshots_remove=()
+while read action snapshot; do
+    case $action in
+        latest) snapshots_latest+=("$snapshot");;
+        hourly) snapshots_hourly+=("$snapshot");;
+        daily) snapshots_daily+=("$snapshot");;
+        weekly) snapshots_weekly+=("$snapshot");;
+        remove) snapshots_remove+=("$snapshot");;
+    esac
+done < <(ssh "$HOST" bash -c "true; cd $DESTINATION; ls -1" | sort -r | perl -e '
+    use constant LATEST => '$KEEP_LATEST';
+    use constant HOURLY => '$KEEP_HOURLY';
+    use constant DAILY  => '$KEEP_DAILY';
+    use constant WEEKLY => '$KEEP_WEEKLY';
+    @all = ();
+    %hourly = ();
+    %hourly_all = ();
+    %daily = ();
+    %daily_all = ();
+    %weekly = ();
+    %weekly_all = ();
+
+    while(<STDIN>) {
+      if (/^(((\d{4}-\d{2})-(\d{2}))-T\d{2})/) {
+        my($hour, $date, $month, $day) = ($1, $2, $3, $4);
+        $weeknr = 1 + int(($day - 1) / 7);
+        $week = "$month-W$weeknr";
+
+        $keep = 0;
+
+        if (@all < LATEST) {
+          push(@all, $_);
+          $keep = "latest";
+        } elsif (not exists $hourly{$hour} and not exists $hourly_all{$hour} and keys %hourly < HOURLY) {
+          $hourly{$hour} = $_;
+          $keep = "hourly";
+        } elsif (not exists $daily{$date} and not exists $daily_all{$date} and keys %daily < DAILY) {
+          $daily{$date} = $_;
+          $keep = "daily";
+        } elsif (not exists $weekly{$week} and not exists $weekly_all{$week} and keys %weekly < WEEKLY) {
+          $weekly{$week} = $_;
+          $keep = "weekly";
+        }
+
+        if ($keep) {
+          $hourly_all{$hour} = $daily_all{$date} = $weekly_all{$week} = $_;
+          print $keep, " ", $_;
+        } else {
+          print "remove ", $_;
+        }
+      }
+    }
+')
 echo
-
-echo "$START_MESSAGE"
-rsync -azR --delete --delete-excluded --info=progress2 "${INCREMENTAL[@]}" "${EXCLUDE_OPTIONS[@]}" "${FOLDERS[@]}" "$HOST:$DESTINATION_ONGOING/" || { echo "rsync failed, backup cancelled."; exit 1; }
-
-echo "Finalizing snapshot $SNAPSHOT..."
-ssh "$HOST" bash -c "true; cd $DESTINATION; mv ongoing $SNAPSHOT; ln -s $SNAPSHOT latest.new; mv --no-target-directory latest.new latest"
-
-echo "Done."
+echo "Summary of snapshots:"
+echo "    Latest: ${#snapshots_latest[@]}"
+echo "    Hourly: ${#snapshots_hourly[@]}"
+echo "    Daily:  ${#snapshots_daily[@]}"
+echo "    Weekly: ${#snapshots_weekly[@]}"
+echo "    Extra:  ${#snapshots_remove[@]}"
+if $do_gc && test ${#snapshots_remove[@]} -gt 0; then
+    echo
+    echo "Removing ${#snapshots_remove[@]} snapshots:"
+    ssh "$HOST" bash -c "true; cd $DESTINATION; for snapshot in ${snapshots_remove[*]}; do echo '  '\$snapshot; rm -rf \$snapshot; done"
+fi
+if $do_backup || $do_gc; then
+    echo
+    echo "Done."
+fi
