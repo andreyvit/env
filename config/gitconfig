@@ -42,6 +42,7 @@
 	trustExitCode = true
 [pretty]
 	fancy-oneline = %C(red)%h%C(reset) %C(green)%ad%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue)<%ae>%Creset
+	daily = %ad -%d %s <%ae>
 	fancy-full = %C(red)%h%C(reset) %C(green)%ad%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue)<%ae>%Creset%n%n%-b
 [push]
 	default = current
