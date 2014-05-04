@@ -1,6 +1,7 @@
 #!/bin/bash
 do_backup=true
 do_gc=true
+gc_limit=3
 config_file=~/.backup.conf
 ###############################################################################
 TOOLNAME="$(basename "$0")"
@@ -14,6 +15,10 @@ while test -n "$1" && $cont_optparse true; do
             do_backup=false; do_gc=false; shift;;
         --gc) # Garbage-collect extra snapshots without performing a backup
             do_backup=false; do_gc=true; shift;;
+        --gc-limit) # Limit the number of snapshots to be garbage collected in a single invocation (defaults to 3)
+            test -n "$2" && gc_limit="$2"; shift; shift;;
+        --no-gc-limit) # Don't limit the number of snapshots to be garbage collected in a single invocation
+            gc_limit=-1; shift;;
         --version) # Display the version number
             echo "$VERSION"; exit;;
         --help) # Display this help message
@@ -183,6 +188,8 @@ done < <(ssh "$HOST" bash -c "true; cd $DESTINATION; ls -1" | sort -r | perl -e 
       }
     }
 ' | sort -r)
+
+snapshots_remove_count=${#snapshots_remove[@]}
 echo
 echo "Summary of snapshots:"
 echo "    Latest: ${#snapshots_latest[@]}"
@@ -190,10 +197,16 @@ echo "    Hourly: ${#snapshots_hourly[@]}"
 echo "    Daily:  ${#snapshots_daily[@]}"
 echo "    Weekly: ${#snapshots_weekly[@]}"
 echo "    Extra:  ${#snapshots_remove[@]}"
+if test $gc_limit -ge 0; then
+    snapshots_remove=("${snapshots_remove[@]:0:$gc_limit}")
+fi
 if $do_gc && test ${#snapshots_remove[@]} -gt 0; then
     echo
     echo "Removing ${#snapshots_remove[@]} snapshots:"
-    ssh "$HOST" bash -c "true; cd $DESTINATION; for snapshot in ${snapshots_remove[*]}; do echo '  '\$snapshot; rm -rf \$snapshot; done"
+    if test $snapshots_remove_count -gt ${#snapshots_remove[@]}; then
+        echo "    (to remove more, use --gc-limit N or --no-gc-limit options)"
+    fi
+    ssh "$HOST" bash -c "true; cd $DESTINATION; for snapshot in ${snapshots_remove[*]}; do echo '    '\$snapshot; rm -rf \$snapshot; done"
 fi
 if $do_backup || $do_gc; then
     echo
