@@ -2,6 +2,7 @@
 do_backup=true
 do_gc=true
 gc_limit=3
+repeat_interval=""
 config_file=~/.backup.conf
 ###############################################################################
 TOOLNAME="$(basename "$0")"
@@ -16,9 +17,13 @@ while test -n "$1" && $cont_optparse true; do
         --gc) # Garbage-collect extra snapshots without performing a backup
             do_backup=false; do_gc=true; shift;;
         --gc-limit) # Limit the number of snapshots to be garbage collected in a single invocation (defaults to 3)
-            test -n "$2" && gc_limit="$2"; shift; shift;;
+            test -n "$2" || { echo "** Missing argument for --gc-limit; use e.g. --gc-limit 10"; exit 10; }
+            gc_limit="$2"; shift; shift;;
         --no-gc-limit) # Don't limit the number of snapshots to be garbage collected in a single invocation
             gc_limit=-1; shift;;
+        --repeat) # Repeat backup every X seconds (use e.g. 1d for days, 1h for hours, 1m for minutes)
+            test -n "$2" || { echo "** Missing argument for --repeat; use e.g. --repeat 1h"; exit 10; }
+            repeat_interval="$2"; shift; shift;;
         --version) # Display the version number
             echo "$VERSION"; exit;;
         --help) # Display this help message
@@ -76,6 +81,30 @@ source $config_file
 if test ${#FOLDERS[*]} -eq 0; then
     echo "Please customize the folder list in $config_file"
     exit 10
+fi
+
+###############################################################################
+
+if test -n "$repeat_interval"; then
+    if test "${repeat_interval%d}" != "$repeat_interval"; then repeat_interval=$(expr ${repeat_interval%d} '*' 60 '*' 60 '*' 24); fi
+    if test "${repeat_interval%h}" != "$repeat_interval"; then repeat_interval=$(expr ${repeat_interval%h} '*' 60 '*' 60); fi
+    if test "${repeat_interval%m}" != "$repeat_interval"; then repeat_interval=$(expr ${repeat_interval%m} '*' 60); fi
+
+    BACKUP=("$0" --gc-limit "$gc_limit")
+    run_backup() {
+        echo
+        date "+%Y-%m-%d %H:%M:%S"
+        echo "$(basename "${BACKUP[0]}") ${BACKUP[@]:1}"
+        ${BACKUP[@]}
+    }
+
+    echo "Repeating backup every $repeat_interval seconds."
+    while true; do
+        run_backup
+        echo
+        echo "Will repeat backup every $repeat_interval seconds..."
+        sleep $repeat_interval
+    done
 fi
 
 ###############################################################################
