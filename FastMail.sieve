@@ -88,7 +88,12 @@ if anyof (
 
 if header :contains "list-id" "socketstream.googlegroups.com" { fileinto "INBOX.Junk.SocketStream"; stop; }
 
-if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from", "is now following", "favorited a Tweet", "retweeted a Tweet", "Do you know"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
+if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from", "is now following", "favorited a Tweet", "favorited one of your Tweets", "retweeted a Tweet", "Do you know"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
+if allof (address :domain "from" "twitter.com", body :contains "what's trending on Twitter", address "to" ["andreyvit+livereload@gmail.com", "andreyvit+mockko@gmail.com", "andreyvit+xdry@gmail.com"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
+if allof (address :domain "from" "twitter.com", address "to" ["andreyvit+mockko@gmail.com", "andreyvit+xdry@gmail.com"]) { fileinto "INBOX.NewsWeekly"; stop; }
+if allof (address :domain "from" "twitter.com", body :contains ["what's trending on Twitter", "See your week in review"]) { fileinto "INBOX.NewsWeekly"; stop; }
+
+if allof (address "from" "support@papertrailapp.com", header :contains "subject" ["logging stopped", "log data transfer notification"]) { fileinto "INBOX.NewsMonthly"; stop; }
 
 if address :domain "from" ["projektmagazin.de", "pm.projektmagazin.de"] { fileinto "INBOX.Junk.ProjektMagazin"; stop; }
 
@@ -104,7 +109,8 @@ if anyof(
     "nathan@thinklegend.com",
     "support@affiliatetrafficmachine.com",
     "brennan@planscope.io",
-    "team@sweetprocess.com"
+    "team@sweetprocess.com",
+    "patrick@kalzumeus.com"
   ],
   address :domain "from" ["ebenpagan.com", "okdork.com"]
 ) { fileinto "INBOX.Business Reading"; stop; }
@@ -119,7 +125,8 @@ if anyof(
     "hackermonthly.com",
     "objc.io",
     "ewebdesign.com",
-    "cloudability.com"
+    "cloudability.com",
+    "politepersistence.com"
   ],
   address "from" "dave.verwer@shinydevelopment.com"
 ) { fileinto "INBOX.Tech Reading"; stop; }
@@ -135,6 +142,7 @@ if anyof (
 ## NEWS DAILY / WEEKLY / MONTLY ##
 
 if anyof (
+  header :matches "subject" "solo.im weekly*",
   address "from" [
     # financial
     "service@intl.paypal.com",
@@ -172,7 +180,10 @@ if anyof (
     # daily reporting
     "bitofnews.com",
     "reports@appfigures.com",
-    "info@campaignmonitor.com"
+    "info@campaignmonitor.com",
+
+    # potentially personal emails
+    "team@madebysource.com"
   ],
   address :domain "from" [
     # replies / comments / feedback
@@ -218,13 +229,16 @@ if anyof (
     "kollaborate@assemblagehq.com",
     "CharterforCompassion@",
     "beta@heroku.com",
+    "newsletter@heroku.com",
+    "communications@heroku.com",
     "community@blurb.com",
     "googleplay-noreply@google.com",
+    "codesite-noreply@google.com",
+    "admob-noreply@google.com",
     "news@spark59.com",
     "b-news@kontur.ru",
     "noreply@angel.co",
     "noreply@google.com",
-    "newsletter@heroku.com",
     "no-reply@wunderlist.com",
     "inf@alfabank.ru",
     "seti@37signals.com",
@@ -235,7 +249,10 @@ if anyof (
     "MacHeist_Directorate@mail.vresp.com",
     "marketing@joyent.com",
     "friends@olark.com",
-    "noreply@medium.com"
+    "noreply@medium.com",
+    "fsafety@live.com",
+    "aws-marketing-email-replies@amazon.com",
+    "support-alert@code42.com"
   ],
   address :domain "from" [
     "livejournal.com",
@@ -327,13 +344,44 @@ if anyof (
     "koingosw.com",
     "stairways.com.au",
     "mail.adobesystems.com",
+    "info.adobesystems.com",
     "uservoice.com",
     "audible.com",
     "flexibits.com",
     "brace.io",
     "apparentsoft.com",
     "browserstack.com",
-    "getpocket.com"
+    "getpocket.com",
+    "kissmetrics.com",
+    "paddle.com",
+    "guides.co",
+    "macupdate.com",
+    "gopivotal.com",
+    "parallels-universe.com",
+    "e-mail.microsoft.com",
+    "microsoft.microsoft.com",
+    "redislabs.com",
+    "connect.asana.com",
+    "irradiatedsoftware.com",
+    "droplr.com",
+    "atlassian.com",
+    "postmarkapp.com",
+    "signnow.com",
+    "e.airbnb.com",
+    "e.join.me",
+    "glip.com",
+    "digidna.net",
+    "privacyinternational.org",
+    "designmodo.com",
+    "secret.ly",
+    "sqwiggle.com",
+    "getbase.com",
+    "techsmith.messages4.com",
+    "cloudinary.com",
+    "playteam.ru",
+    "playfamily.ru",
+    "telemetryapp.com",
+    "icons8.com"
   ],
   address :domain :matches "from" "*.intercom.io",
   header :matches "subject" "[feedback.livereload.com] Daily summary*",
@@ -388,6 +436,7 @@ if anyof (
     "uservoice.uservoice.com",
     "nozbe.com",
     "news.oktogo.ru",
+    "lift.do",
 
     # marketing geniuses
     "instantcustomer.com",
