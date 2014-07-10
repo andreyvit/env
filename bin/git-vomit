@@ -1,0 +1,2 @@
+#!/bin/bash
+git commit -m "$(curl -s http://whatthecommit.com/ | grep '<p>' | cut -c 4-)"

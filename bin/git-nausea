@@ -1,0 +1,6 @@
+#!/bin/bash
+while true; do
+    git add -A
+    git vomit
+    sleep 300
+done
