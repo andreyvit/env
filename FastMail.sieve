@@ -84,6 +84,16 @@ if anyof (
 }
 
 
+## GTD INBOX ##
+
+if address :detail ["to", "cc", "resent-to", "x-delivered-to"] ["inbox"] {
+  redirect "andreyvit.b76cc@m.evernote.com";
+  addflag "\\Seen";
+  fileinto "Inbox";
+  stop;
+}
+
+
 ## SPECIAL LISTS AND GROUPS ##
 
 if header :contains "list-id" "socketstream.googlegroups.com" { fileinto "INBOX.Junk.SocketStream"; stop; }
@@ -137,6 +147,8 @@ if anyof (
   address "from" "notifications@notifications.intercom.io",
   allof(address "from" "andreyvit@gmail.com", header :contains "subject" "[Mockko] new user signed up")
 ) { fileinto "INBOX.Junk.Mockko"; stop; }
+
+if allof(address :domain "from" "github.com", header :contains "subject" "GitHub explore the week") { fileinto "INBOX.NewsWeekly"; stop; }
 
 
 ## NEWS DAILY / WEEKLY / MONTLY ##
