@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+use File::Basename;
+use File::Spec::Functions;
+my ($root_file) = @ARGV;
+my %done = ();
+my @queue = ($root_file, basename($root_file));
+
+sub process {
+    my ($file, $rel_file) = @_;
+    print "\n";
+    print "//" x 40 . "\n";
+    print "// $rel_file\n";
+    open(my $fh, "<", $file);
+    for (<$fh>) {
+        if (/\@import "(.*?)";/) {
+            my $imp_name = $1;
+            my $imp_file = catfile(dirname($file), $imp_name);
+            my $imp_rel_file = catfile(dirname($rel_file), $imp_name);
+            $imp_rel_file =~ s|^\./||;
+            if (!$done{$imp_file}) {
+                push(@queue, $imp_file);
+                push(@queue, $imp_rel_file);
+                $done{$imp_file} = true;
+            }
+        } else {
+            print;
+        }
+    }
+    close($fh);
+}
+
+while (@queue > 0) {
+    my $file = shift(@queue);
+    my $rel_file = shift(@queue);
+    process($file, $rel_file);
+}
