@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>singleinit</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>static &lt;#class#&gt; *shared&lt;#class#&gt;;
+
++ (void)initialize&lt;#class#&gt; {
+    shared&lt;#class#&gt; = [&lt;#class#&gt; new];
+    // to avoid unpleasant surprises we want shared&lt;#class#&gt; to be set before performing initialization
+    [shared&lt;#class#&gt; _initialize&lt;#class#&gt;];
+}
+
++ (instancetype)shared&lt;#class#&gt; {
+    NSAssert(shared&lt;#class#&gt; != nil, @"shared&lt;#class#&gt; called before initialize&lt;#class#&gt;");
+    return shared&lt;#class#&gt;;
+}
+
+- (void)_initialize&lt;#class#&gt; {
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6B988827-FF3C-4A8D-9C41-B756316DB6F9</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Singleton with +initialize</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
