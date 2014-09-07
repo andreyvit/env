@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# To install:
+#
+#     cd /Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+#     mv swift-stdlib-tool swift-stdlib-tool.orig
+#     which better-swift-stdlib-tool && ln -s $(which better-swift-stdlib-tool) swift-stdlib-tool
+#
+CHECK_FILE="libswiftCore.dylib"
+CHECK_PATH_1="$CONFIGURATION_BUILD_DIR/$CHECK_FILE"
+CHECK_PATH_2="$CONFIGURATION_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH/$CHECK_FILE"
+
+if test -f "$CHECK_PATH_1" && test -f "$CHECK_PATH_2"; then
+    echo "Skipping Swift stdlib tool because $CHECK_FILE already exists. (better-swift-stdlib-tool)"
+else
+    echo "Running Swift stdlib tool because $CHECK_FILE doesn't exist. (better-swift-stdlib-tool)"
+    "$0.orig" "$@"
+fi
+
+# possibly relevant settings exported by Xcode as env vars:
+#
+# CODESIGNING_FOLDER_PATH=/Users/andreyvit/Library/Developer/Xcode/DerivedData/LiveReload-aescojcekgepxkhacevekzcghboe/Build/Products/Debug/SwiftyFoundation.framework/Versions/A
+# CONFIGURATION_BUILD_DIR=/Users/andreyvit/Library/Developer/Xcode/DerivedData/LiveReload-aescojcekgepxkhacevekzcghboe/Build/Products/Debug
+# FRAMEWORKS_FOLDER_PATH=SwiftyFoundation.framework/Versions/A/Frameworks
