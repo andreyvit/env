@@ -1,0 +1,7 @@
+#!/bin/bash
+while true; do
+    rm ~/.ssh/master-git@github.com:22
+    ssh -MNv git@github.com
+    echo Disconnected
+    sleep 1
+done
