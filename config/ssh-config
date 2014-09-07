@@ -58,21 +58,21 @@ Host vs
 Host h1
   User andreyvit
   HostName 5.9.21.148
-  ControlPath ~/.ssh/master-%l-%r@%h:%p
+  ControlPath ~/.ssh/master-%r@%h:%p
 
 Host nxp
   User dev
   Port 12222
   HostName next.qask.ru
-  ControlPath ~/.ssh/master-%l-%r@%h:%p
+  ControlPath ~/.ssh/master-%r@%h:%p
 
 Host w8
   User andreyvit
   HostName 10.211.55.6
-  ControlPath ~/.ssh/master-%l-%r@%h:%p
+  ControlPath ~/.ssh/master-%r@%h:%p
 
 Host github.com
-  ControlPath ~/.ssh/master-%l-%r@%h:%p
+  ControlPath ~/.ssh/master-%r@%h:%p
 
 Host heroku.personal
   HostName heroku.com
