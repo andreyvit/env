@@ -1,4 +1,4 @@
-desc "Install zsh config"
+
 task :zshconfig do
     sh 'chsh -s /bin/zsh'
     sh 'rm -f ~/.zshrc ~/.zshenv'
@@ -31,6 +31,9 @@ task :emacsconfig do
     sh 'ln -s ~/env/config/emacs ~/.emacs'
 end
 
+desc "Install all configs"
+task :config => [:zshconfig, :sshconfig, :gitconfig, :gemconfig, :emacsconfig]
+
 desc "Install Homebrew"
 task :brew do
     sh '/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"'
@@ -54,7 +57,6 @@ task :brewpkg do
     sh 'brew install cloc'
     sh 'brew install rlwrap'
     sh 'brew install watch'
-    sh 'brew install brew-cask'
 end
 
 desc "Install npm"
@@ -118,11 +120,9 @@ end
 desc "Install iTunes Scripts"
 task :itunes do
     sh 'rm -f ~/Library/iTunes/Scripts'
+    sh 'mkdir -p ~/Library/iTunes'
     sh 'ln -s ~/env/iTunesScripts ~/Library/iTunes/Scripts'
 end
-
-desc "Install all configs"
-task :config => [:zshconfig, :sshconfig, :gitconfig, :gemconfig, :emacsconfig]
 
 desc "Clone SublimePackages.git"
 task :sublime do
@@ -137,4 +137,4 @@ task :backup do
 end
 
 desc "Install everything"
-task :all => [:config, :brew, :brewpkg, :npm, :npmpkg, :sublime, :itunes, :xcode_user_data, :backup]
+task :all => [:config, :brewpkg, :npmpkg, :sublime, :itunes, :xcode_user_data, :backup]
