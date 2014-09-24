@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+require 'date'
+
+class Item
+    attr_reader :name, :hours
+
+    def initialize name
+        @name = name
+        @hours = 0
+    end
+
+    def add hours
+        @hours += hours
+    end
+end
+
+class Period
+    def initialize
+        @dates = []
+        @items = {}
+        @total_hours = 0.0
+    end
+
+    def add date, name, hours
+        @dates << date  unless @dates.include?(date)
+        item = (@items[name] ||= Item.new(name))
+        item.add hours
+        @total_hours += hours
+    end
+
+    def print!
+        if @items.count > 0
+            puts "----------------------- ∑ #{sprintf '%4.1fh', @total_hours} (#{@dates.last} to #{@dates.first})"
+            @items.values.each do |item|
+                puts sprintf('  %-12s %4.1fh', item.name.gsub(' ', '.'), item.hours)
+            end
+            puts
+        end
+    end
+end
+
+class Analyzer
+
+    def initialize
+        @current_week = nil
+        @weeks = []
+        reset!
+    end
+
+    def reset!
+        @current_date = nil
+    end
+
+    def add_line line
+        if line =~ /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}) \((Mon|Tue|Wed|Thu|Fri|Sat|Sun)\)$/
+            date = Date.parse("#{$1} #{$2}", '%B %d')
+            # puts "Date: #{date}"
+            if @current_date.nil? || date.wday >= @current_date.wday
+                @weeks << @current_week unless @current_week.nil?
+
+                @current_week = Period.new()
+            end
+            @current_date = date
+        elsif line =~ /🍅/u
+            total_hours = 0.0
+            initial_name = nil
+            line.split('+').each do |component|
+                if component =~ /([0-9.]+)(?:\/\d+)?🍅/u
+                    pomo_string = $&
+                    hours = $1.to_f / 2
+                    component = component.gsub(/\([^()]+\)/, '')
+                    name = component.split(pomo_string).map(&:strip).select { |c| c.length > 0 }.first || ''
+                    name = name.split(' - ').first || ''
+                    name = name.gsub('▣', '').gsub('[x]', '').strip
+
+                    total_hours += hours
+                    initial_name ||= name
+                    # puts "[#{desc}] = #{hours}"
+                end
+            end
+            @current_week.add @current_date, initial_name, total_hours
+        end
+    end
+
+    def print!
+        @weeks.each do |week|
+            week.print!
+        end
+    end
+
+end
+
+analyzer = Analyzer.new
+open(File.expand_path('~/Dropbox/GTD/TODAY.txt')).each_line { |line| analyzer.add_line(line) }
+open(File.expand_path('~/Dropbox/GTD/Done.txt')).each_line { |line| analyzer.add_line(line) }
+analyzer.print!
