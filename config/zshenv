@@ -1,7 +1,7 @@
 # .zshenv
 # executed both for interactive shells and for shell scripts
 
-PATH=~/bin:~/Dropbox/bin:~/Dropbox/Env/zsh/:$PATH
+PATH=~/Dropbox/env/bin:$PATH
 
 export OLD_PM_ROOT=~/Documents/PM/projekt-magazin.de_www
 
