@@ -57,6 +57,7 @@ task :brewpkg do
     sh 'brew install cloc'
     sh 'brew install rlwrap'
     sh 'brew install watch'
+    sh 'brew install wget'
 end
 
 desc "Install npm"
