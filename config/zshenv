@@ -1,9 +1,7 @@
 # .zshenv
 # executed both for interactive shells and for shell scripts
 
-PATH=~/Dropbox/env/bin:$PATH
-
-export OLD_PM_ROOT=~/Documents/PM/projekt-magazin.de_www
+PATH=~/Dropbox/env/bin:/usr/local/heroku/bin:$PATH
 
 test -d /sw/bin && source /sw/bin/init.sh
 
@@ -15,7 +13,7 @@ EVENT_NOKQUEUE=1
 VISUAL="subl_wait"
 EDITOR="subl_wait"
 MANSECT=1:3tcl:n:l:8:3:2:3posix:3pm:3perl:5:4:9:6:7
-EMAIL="Andrey Tarantsov <andreyvit@gmail.com>"
+EMAIL="Andrey Tarantsov <andrey@tarantsov.com>"
 
 HISTFILE=$HOME/.zhist
 HISTSIZE=1000000
