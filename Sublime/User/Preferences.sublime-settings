@@ -1,4 +1,39 @@
 {
 	"color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
-	"font_size": 15
+    "font_size": 15,
+
+    "line_numbers": true,
+    "gutter": true,
+    // Spacing between the gutter and the text
+    "margin": 4,
+    "rulers": [100, 120],
+
+    "spell_check": false,
+
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "word_wrap": true,
+    "indent_guide_options": ["draw_normal", "draw_active"],
+    "trim_trailing_white_space_on_save": true,
+    "ensure_newline_at_eof_on_save": true,
+
+    "save_on_focus_lost": true,
+    "fallback_encoding": "Cyrillic (Windows 1251)",
+
+   // Controls what scopes auto complete will be triggered in
+    "auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
+
+    // Additional situations to trigger auto complete
+    "auto_complete_triggers": [ {"selector": "text.html", "characters": "<"} ],
+
+	"auto_complete_commit_on_tab": true,
+	"auto_complete_with_fields": true,
+    "shift_tab_unindent": true,
+
+    "highlight_modified_tabs": true,
+    "show_tab_close_buttons": false,
+
+    "remember_full_screen": true,
+
+    "ignored_packages": ["Vintage"]
 }

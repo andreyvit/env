@@ -1,0 +1,30 @@
+[
+    { "keys": ["alt+p"], "command": "swap_line_up" },
+    { "keys": ["alt+n"], "command": "swap_line_down" },
+
+    { "keys": ["ctrl+s"], "command": "toggle_side_bar" },
+    { "keys": ["super+alt+w"], "command": "close_all" },
+    { "keys": ["super+b"], "command": "goto_definition" },
+    { "keys": ["f2"], "command": "next_bookmark" },
+    { "keys": ["shift+f2"], "command": "prev_bookmark" },
+    { "keys": ["super+f2"], "command": "toggle_bookmark" },
+    { "keys": ["super+shift+f2"], "command": "clear_bookmarks" },
+    { "keys": ["alt+f2"], "command": "select_all_bookmarks" },
+
+    { "keys": ["super+alt+]"], "command": "reindent", "args": {"single_line": true} },
+
+    { "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false} },
+    { "keys": ["tab"], "command": "replace_completion_with_next_completion", "context": [{ "key": "last_command", "operator": "equal", "operand": "insert_best_completion" }] },
+    { "keys": ["tab"], "command": "commit_completion", "context": [{ "key": "auto_complete_visible" }] },
+    { "keys": ["alt+tab"], "command": "reindent" },
+    { "keys": ["ctrl+/"], "command": "next_field" },
+    { "keys": ["ctrl+shift+/"], "command": "prev_field" },
+
+    { "keys": ["ctrl+shift+space"], "command": "expand_selection", "args": {"to": "scope"} },
+
+    { "keys": ["super+ctrl+r"], "command": "side_bar_rename" },
+
+    { "keys": ["super+shift+,"], "command": "open_file", "args": {"file": "${packages}/Default/Preferences.sublime-settings"} },
+    { "keys": ["super+alt+,"], "command": "open_file", "args": {"file": "${packages}/User/Default (OSX).sublime-keymap"} },
+    { "keys": ["super+alt+shift+,"], "command": "open_file", "args": {"file": "${packages}/Default/Default (OSX).sublime-keymap"} }
+]

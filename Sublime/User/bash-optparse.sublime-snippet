@@ -1,0 +1,37 @@
+<snippet>
+    <content><![CDATA[
+
+###############################################################################
+TOOLNAME="\$(basename "\$0")"
+VERSION="1.0"
+BANNER="\$TOOLNAME \$VERSION: ${1:short description of the tool}"
+USAGE="Usage: \$TOOLNAME ${2:[options] arg1 arg2...}"
+# parse command-line options
+while test -n "\$1" && \$cont_optparse true; do
+    case \$1 in
+        --${3:myoption}) # ${4:Description of what --myoption does}
+            ${5:do something}; shift;;
+        --version) # Display the version number
+            echo "\$VERSION"; exit;;
+        --help) # Display this help message
+            echo "\$BANNER"; echo
+            echo "\$USAGE"; echo
+            echo "Available options:"
+            perl -ne 'printf "  %-15s %s\n", \$1, \$2 if / {8}(--\S*)\) # (.*)\$/' \$0
+            exit;;
+        --)
+            cont_optparse=false; shift;;
+        -*)
+            echo "** Invalid option \$1. Run \$TOOLNAME --help for a list of available options." >&2; exit 1;;
+        *)
+            cont_optparse=false;;
+    esac
+done
+###############################################################################
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>args</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>
