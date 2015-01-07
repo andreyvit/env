@@ -14,12 +14,12 @@
 ### Most important
 
 - iA Writer
-  - after installation, copy this guide into iA Writer for easy updating
+	- after installation, copy this guide into iA Writer for easy updating
 - 1Password
-  - install browser extensions in Safari and Chrome
+	- install browser extensions in Safari and Chrome
 - Things
-  - log in via 1Password
-	- enable Quick Entry with Autofill shortcut
+	- log in via 1Password
+	- enable “Quick Entry with Autofill” shortcut
 - Evernote
 	- Preferences
 		- General → “Show note counts in sidebar”
@@ -35,7 +35,7 @@
 - Tictoc
 	- Preferences:
 		- Launch at Login
-		- Shortcut: ⌘§
+		- Shortcut: F18 (need to configure Seil before you can do this)
 - Soulver
 - Stampnote
 - Firehose Chat
@@ -486,7 +486,7 @@ Reorder dock icons:
 - Xcode
 - iPhone Simulator
 
-Configure apps using instructions above while waiting for the items below to complete.
+Configure apps using instructions above while waiting for the items below to complete. Start with Keyboard Maestro, Seil and Karabiner.
 
 
 ## Step 7. Install & Configure Command-Line Tools
