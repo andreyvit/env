@@ -1,6 +1,17 @@
 #!/usr/bin/env ruby
 require 'date'
 
+class Date
+    def wday_starting_on_monday
+        w = wday
+        if w == 0
+            7
+        else
+            w
+        end
+    end
+end
+
 class Item
     attr_reader :name, :hours
 
@@ -55,7 +66,7 @@ class Analyzer
         if line =~ /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}) \((Mon|Tue|Wed|Thu|Fri|Sat|Sun)\)$/
             date = Date.parse("#{$1} #{$2}", '%B %d')
             # puts "Date: #{date}"
-            if @current_date.nil? || date.wday >= @current_date.wday
+            if @current_date.nil? || date.wday_starting_on_monday >= @current_date.wday_starting_on_monday
                 @weeks << @current_week unless @current_week.nil?
 
                 @current_week = Period.new()
@@ -70,8 +81,8 @@ class Analyzer
                     hours = $1.to_f / 2
                     component = component.gsub(/\([^()]+\)/, '')
                     name = component.split(pomo_string).map(&:strip).select { |c| c.length > 0 }.first || ''
-                    name = name.split(' - ').first || ''
-                    name = name.gsub('▣', '').gsub('[x]', '').strip
+                    name = name.split(/ [-—] /).first || ''
+                    name = name.gsub(/[▣✓]/, '').gsub('[x]', '').strip
 
                     total_hours += hours
                     initial_name ||= name
@@ -83,7 +94,7 @@ class Analyzer
     end
 
     def print!
-        @weeks.each do |week|
+        @weeks.reverse.each do |week|
             week.print!
         end
     end
