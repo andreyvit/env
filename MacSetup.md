@@ -1,9 +1,11 @@
 # Setting Up A New Mac
 
+
 ## Step 1. Get Started
 
 - Install Dropbox, log in, start downloading
 - Open System Preferences → Keyboard → Modifier Keys, remap Caps Lock to Control
+
 
 ## Step 2. Install Mac App Store apps
 
@@ -486,11 +488,12 @@ Reorder dock icons:
 
 Configure apps using instructions above while waiting for the items below to complete.
 
-## Step X. Install & Configure Command-Line Tools
+
+## Step 7. Install & Configure Command-Line Tools
 
 Wait for Dropbox to finish syncing Dropbox/env, then:
 
-		ln -s ~/Dropbox/env ~/env
+	ln -s ~/Dropbox/env ~/env
     cd ~/Dropbox/env
     rake config
     rake xcode_user_data
@@ -513,12 +516,12 @@ After command-line tools and Homebrew installation finishes, install Homebrew pa
 After Node installation is finished, add npm packages:
 
     sudo npm install -g coffee-script
-		sudo npm install -g iced-coffee-script
-		sudo npm install -g express
-		sudo npm install -g jade
-		sudo npm install -g less
-		sudo npm install -g stylus
-		sudo npm install -g supervisor
+	sudo npm install -g iced-coffee-script
+	sudo npm install -g express
+	sudo npm install -g jade
+	sudo npm install -g less
+	sudo npm install -g stylus
+	sudo npm install -g supervisor
 
 After Homebrew Cask is installed, use it to install some small infrequently used tools:
 
@@ -529,11 +532,9 @@ After Homebrew Cask is installed, use it to install some small infrequently used
     brew cask install platypus
 
 
-## Final Configuration
+## Step 8. Final Configuration
 
-May need to be performed after certain events happen.
-
-System Preferences → Notifications:
+Tweak notification settings (System Preferences → Notifications) — may need to wait until the first notification comes:
 
 - FaceTime: disable “Play sound”
 - Mail: disable “Badge app icon”
@@ -541,4 +542,4 @@ System Preferences → Notifications:
 - Telegram: alert style “None”, disable “Show in notification server”, disable “Play sound”
 - HazelHelper: alert style “None”, disable all checkboxes
 
-System Preferences → Security: enable FileVault.
+Enable FileVault.
