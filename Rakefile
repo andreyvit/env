@@ -48,6 +48,12 @@ task :xcode_user_data do
     end
 end
 
+desc "Install Xcode user data"
+task :karabiner do
+    # rm -rf ~/'Library/Application Support/Karabiner/'
+    sh "ln -s ~/env/Karabiner ~/Library/Application\\ Support/Karabiner"
+end
+
 desc "Install Homebrew packages"
 task :brewpkg do
     sh 'brew install node'

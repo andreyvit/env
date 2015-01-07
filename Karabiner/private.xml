@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+      <name>F17 to Control + Shift + Option</name>
+      <appendix>Change F17 (remapped Control_L via Seil) to Control + Shift + Option.</appendix>
+ 
+      <identifier>com.tarantsov.f17_to_front</identifier>
+ 
+      <autogen>
+          --KeyToKey--
+          KeyCode::F17,
+ 
+          KeyCode::CONTROL_L,
+          ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L
+      </autogen>
+  </item>
+</root>
