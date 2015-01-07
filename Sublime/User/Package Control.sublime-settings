@@ -1,0 +1,31 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_dependencies":
+	[
+		"0_package_control_loader",
+		"bz2"
+	],
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"ChangeQuotes",
+		"DashDoc",
+		"Emmet",
+		"External Command",
+		"Filter Lines",
+		"IcedCoffeeScript",
+		"Jade",
+		"Jekyll",
+		"JSONLint",
+		"Open URL",
+		"Package Control",
+		"PgSQL",
+		"SFTP",
+		"Shell Command",
+		"SideBarEnhancements",
+		"Stylus",
+		"Surround"
+	]
+}
