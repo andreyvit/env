@@ -12,7 +12,7 @@
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
-				<string>0DA2BBF2-7297-4925-8053-9C224524BC57-18902-000045ADA35B40D7</string>
+				<string>C56AED62-C324-4DB1-B361-AB996D55EF2C-9409-00001C826B74526D</string>
 				<key>Group</key>
 				<string>Xcode Menu</string>
 				<key>GroupID</key>
@@ -26,7 +26,7 @@
 				<key>Parent Title</key>
 				<string>Behaviors</string>
 				<key>Title</key>
-				<string>Coding</string>
+				<string>Normal</string>
 			</dict>
 			<dict>
 				<key>Action</key>
@@ -34,7 +34,7 @@
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
-				<string>DE82620B-050D-4BE7-94C4-80FE88800A47-18902-00004A887FA2D44D</string>
+				<string>11D686F4-9349-4036-BB27-A3D93F65EBAC-9409-00001CA95CDF2658</string>
 				<key>Group</key>
 				<string>Xcode Menu</string>
 				<key>GroupID</key>
@@ -56,7 +56,7 @@
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
-				<string>AB62B6FC-46D6-408C-B9B6-3D13179D1F0E-18902-00004A9525F26FF3</string>
+				<string>CDD5F9F1-DA97-4BFF-8C1B-9210BC59C0A6-9409-00001CB37FFF5E41</string>
 				<key>Group</key>
 				<string>Xcode Menu</string>
 				<key>GroupID</key>
@@ -70,7 +70,7 @@
 				<key>Parent Title</key>
 				<string>Behaviors</string>
 				<key>Title</key>
-				<string>Design + Tools</string>
+				<string>Design Full Screen</string>
 			</dict>
 			<dict>
 				<key>Action</key>
@@ -78,7 +78,7 @@
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
-				<string>2C223F01-D351-41CC-9B86-0652CA51193B-18902-00004A9EF878EA7D</string>
+				<string>59C18FEE-F88B-4915-AD17-1FBD3A371B31-9409-00001CC2D4894735</string>
 				<key>Group</key>
 				<string>Xcode Menu</string>
 				<key>GroupID</key>
@@ -92,6 +92,28 @@
 				<key>Parent Title</key>
 				<string>Behaviors</string>
 				<key>Title</key>
+				<string>Assistant</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>performAlertEvent:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>CD412EBD-17F4-499C-9159-F13B0F70DB8D-9409-00001CD664D84A78</string>
+				<key>Group</key>
+				<string>Xcode Menu</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEKit.MenuDefinition.Xcode</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>@</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Behaviors</string>
+				<key>Title</key>
 				<string>Debugging</string>
 			</dict>
 			<dict>
@@ -100,7 +122,29 @@
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
-				<string>35BC9C5D-04C3-40F0-96BE-9BF724760E13-18902-00004AA97C29EE52</string>
+				<string>F41FD1A6-FE3B-4CE8-953F-D6EF327E296C-9409-00001CF231048A00</string>
+				<key>Group</key>
+				<string>Xcode Menu</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEKit.MenuDefinition.Xcode</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>~@</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Behaviors</string>
+				<key>Title</key>
+				<string>Console</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>performAlertEvent:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>2B1AE042-901F-4A74-8B6C-AD7EF3816499-9409-00001CF94E9C44F5</string>
 				<key>Group</key>
 				<string>Xcode Menu</string>
 				<key>GroupID</key>
@@ -114,7 +158,7 @@
 				<key>Parent Title</key>
 				<string>Behaviors</string>
 				<key>Title</key>
-				<string>Compilation</string>
+				<string>Issues</string>
 			</dict>
 			<dict>
 				<key>Action</key>
@@ -122,7 +166,7 @@
 				<key>Alternate</key>
 				<string>NO</string>
 				<key>CommandID</key>
-				<string>C3D08AAD-4E11-4500-A807-8311971432BC-18902-00004AC0EF41D81E</string>
+				<string>BCF86291-C099-40EF-9FED-5255B906A33E-9409-00001D0BA3595BEA</string>
 				<key>Group</key>
 				<string>Xcode Menu</string>
 				<key>GroupID</key>
@@ -137,24 +181,6 @@
 				<string>Behaviors</string>
 				<key>Title</key>
 				<string>Testing</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>openDocument:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandID</key>
-				<string>Xcode.IDEKit.CmdDefinition.Open</string>
-				<key>Group</key>
-				<string>File Menu</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEKit.MenuDefinition.Main</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Title</key>
-				<string>Open…</string>
 			</dict>
 			<dict>
 				<key>Action</key>
@@ -553,21 +579,7 @@
 	<key>Text Key Bindings</key>
 	<dict>
 		<key>Key Bindings</key>
-		<dict>
-			<key></key>
-			<array>
-				<string>deleteToMark:</string>
-				<string>centerSelectionInVisibleArea:</string>
-				<array>
-					<string>insertNewlineIgnoringFieldEditor:</string>
-					<string>moveBackward:</string>
-				</array>
-			</array>
-			<key>^l</key>
-			<string>selectLine:</string>
-			<key>^w</key>
-			<string>selectWord:</string>
-		</dict>
+		<dict/>
 		<key>Version</key>
 		<integer>3</integer>
 	</dict>
