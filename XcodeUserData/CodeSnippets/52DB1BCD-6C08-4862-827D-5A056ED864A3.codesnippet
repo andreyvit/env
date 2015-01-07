@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>notification</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extern NSString *const &lt;#SomethingDidWhatever#&gt;Notification;
+NSString *const &lt;#SomethingDidWhatever#&gt;Notification = @"&lt;#SomethingDidWhatever#&gt;";</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>52DB1BCD-6C08-4862-827D-5A056ED864A3</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>extern NSString *const SomethingDidSomethingNotification;</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Notification Constant</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
