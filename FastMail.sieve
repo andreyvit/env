@@ -1,5 +1,12 @@
 require ["envelope", "imapflags", "fileinto", "reject", "notify", "vacation", "regex", "relational", "comparator-i;ascii-numeric", "body", "copy", "subaddress"];
 
+
+## PERSONALITIES ##
+
+
+
+## SPAM FILTERING ##
+
 if not anyof(
   header :contains ["X-Spam-known-sender"] "yes"
 ) {
@@ -98,7 +105,7 @@ if address :detail ["to", "cc", "resent-to", "x-delivered-to"] ["inbox"] {
 
 if header :contains "list-id" "socketstream.googlegroups.com" { fileinto "INBOX.Junk.SocketStream"; stop; }
 
-if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from", "is now following", "favorited a Tweet", "favorited one of your Tweets", "retweeted a Tweet", "Do you know"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
+if allof (address :domain "from" "twitter.com", header :contains "subject" ["Suggestions", "have Tweets for you", "new follower", "Tweets from", "is now following", "favorited a Tweet", "favorited one of your Tweets", "retweeted a Tweet", "Do you know", "tweeted:"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
 if allof (address :domain "from" "twitter.com", body :contains "what's trending on Twitter", address "to" ["andreyvit+livereload@gmail.com", "andreyvit+mockko@gmail.com", "andreyvit+xdry@gmail.com"]) { fileinto "INBOX.Junk.Twitter Junk"; stop; }
 if allof (address :domain "from" "twitter.com", address "to" ["andreyvit+mockko@gmail.com", "andreyvit+xdry@gmail.com"]) { fileinto "INBOX.NewsWeekly"; stop; }
 if allof (address :domain "from" "twitter.com", body :contains ["what's trending on Twitter", "See your week in review"]) { fileinto "INBOX.NewsWeekly"; stop; }
@@ -120,9 +127,19 @@ if anyof(
     "support@affiliatetrafficmachine.com",
     "brennan@planscope.io",
     "team@sweetprocess.com",
-    "patrick@kalzumeus.com"
+    "patrick@kalzumeus.com",
+    "info@founderdating.com"
   ],
-  address :domain "from" ["ebenpagan.com", "okdork.com"]
+  address :domain "from" [
+    "ebenpagan.com",
+    "okdork.com",
+    "socialentrepreneurempowerment.com",
+    "neilpatel.com",
+    "dancounsell.com"
+  ],
+  address :domain :matches "from" [
+    "*.warriorforum.com"
+  ]
 ) { fileinto "INBOX.Business Reading"; stop; }
 
 if address :domain "from" [
@@ -138,10 +155,12 @@ if anyof(
     "cloudability.com",
     "politepersistence.com"
   ],
-  address "from" "dave.verwer@shinydevelopment.com"
+  address "from" "dave.verwer@shinydevelopment.com",
+  allof(address "from" "editor@toptal.com", header :matches "subject" "New Blog Post:*"),
+  allof(address "from" "noreply-appledev@apple.com", header :matches "subject" "ADF:*")
 ) { fileinto "INBOX.Tech Reading"; stop; }
 
-if allof(address :domain "from" "plus.google.com", header :contains "subject" "Shared a post") { fileinto "INBOX.Google+"; stop; }
+if allof(address :domain "from" "plus.google.com", header :contains "subject" "Shared a post") { fileinto "INBOX.Junk.Google+"; stop; }
 
 if anyof (
   address "from" "notifications@notifications.intercom.io",
@@ -153,73 +172,73 @@ if allof(address :domain "from" "github.com", header :contains "subject" "GitHub
 
 ## NEWS DAILY / WEEKLY / MONTLY ##
 
-if anyof (
-  header :matches "subject" "solo.im weekly*",
-  address "from" [
-    # financial
-    "service@intl.paypal.com",
-
-    # billing (want to know of any issues ASAP)
-    "billing@tenderapp.com",
-    "sales@2checkout.com",
-    "noreply@wallet.google.com",
-    "no-reply@2co.com",
-    "billing@hetzner.com",
-    "billing@appfigures.com",
-    "noreply@jaconda.im",
-    "info@payonline.ru",
-    "billing@sublimevideo.net",
-
-    # critical services
-    "no-reply-aws@amazon.com",
-    "support@academ.org",
-    "do_not_reply@apple.com",
-    "do_not_reply@itunes.com",
-    "developer@insideapple.apple.com",
-    "support@campaignmonitor.com",
-
-    # replies / comments / feedback
-    "chromewebstore-noreply@google.com",
-    "notifications@fetchapp.com",
-    "googleappengine@googlecode.com",
-    "do-not-reply@stackexchange.com",
-
-    # expiring deals
-    "appsumo@email.appsumo.com",
-    "marketing@marinersoftware.com",
-    "bundle@maclegion.com",
-
-    # daily reporting
-    "bitofnews.com",
-    "reports@appfigures.com",
-    "info@campaignmonitor.com",
-
-    # potentially personal emails
-    "team@madebysource.com"
-  ],
-  address :domain "from" [
-    # replies / comments / feedback
-    "facebookmail.com",
-    "n.testflightapp.com",
-    "plus.google.com",
-    "wufoo.com",
-    "postmaster.twitter.com",
-    "couchsurfing.org",
-    "github.com",
-    "dnevnik.ru",
-    "chronopay.com",
-
-    "chartbeat.com",
-    "bitofnews.com",
-
-    "onemedstore.com",
-    "codeweavers.com",
-    "ohlife.com"
-  ]
-) {
-  fileinto "INBOX.NewsDaily";
-  stop;
-}
+# if anyof (
+#   header :matches "subject" "solo.im weekly*",
+#   address "from" [
+#     # financial
+#     "service@intl.paypal.com",
+# 
+#     # billing (want to know of any issues ASAP)
+#     "billing@tenderapp.com",
+#     "sales@2checkout.com",
+#     "noreply@wallet.google.com",
+#     "no-reply@2co.com",
+#     "billing@hetzner.com",
+#     "billing@appfigures.com",
+#     "noreply@jaconda.im",
+#     "info@payonline.ru",
+#     "billing@sublimevideo.net",
+# 
+#     # critical services
+#     "no-reply-aws@amazon.com",
+#     "support@academ.org",
+#     "do_not_reply@apple.com",
+#     "do_not_reply@itunes.com",
+#     "developer@insideapple.apple.com",
+#     "support@campaignmonitor.com",
+# 
+#     # replies / comments / feedback
+#     "chromewebstore-noreply@google.com",
+#     "notifications@fetchapp.com",
+#     "googleappengine@googlecode.com",
+#     "do-not-reply@stackexchange.com",
+# 
+#     # expiring deals
+#     "appsumo@email.appsumo.com",
+#     "marketing@marinersoftware.com",
+#     "bundle@maclegion.com",
+# 
+#     # daily reporting
+#     "bitofnews.com",
+#     "reports@appfigures.com",
+#     "info@campaignmonitor.com",
+# 
+#     # potentially personal emails
+#     "team@madebysource.com"
+#   ],
+#   address :domain "from" [
+#     # replies / comments / feedback
+#     "facebookmail.com",
+#     "n.testflightapp.com",
+#     "plus.google.com",
+#     "wufoo.com",
+#     "postmaster.twitter.com",
+#     "couchsurfing.org",
+#     "github.com",
+#     "dnevnik.ru",
+#     "chronopay.com",
+# 
+#     "chartbeat.com",
+#     "bitofnews.com",
+# 
+#     "onemedstore.com",
+#     "codeweavers.com",
+#     "ohlife.com"
+#   ]
+# ) {
+#   fileinto "INBOX.NewsDaily";
+#   stop;
+# }
 
 if anyof (
   address "from" [
@@ -264,7 +283,10 @@ if anyof (
     "noreply@medium.com",
     "fsafety@live.com",
     "aws-marketing-email-replies@amazon.com",
-    "support-alert@code42.com"
+    "support-alert@code42.com",
+    "noreply@sumome.com",
+    "newsletter@basecamp.com",
+    "feedback@highrisehq.com"
   ],
   address :domain "from" [
     "livejournal.com",
@@ -393,7 +415,8 @@ if anyof (
     "playteam.ru",
     "playfamily.ru",
     "telemetryapp.com",
-    "icons8.com"
+    "icons8.com",
+    "telestream.net"
   ],
   address :domain :matches "from" "*.intercom.io",
   header :matches "subject" "[feedback.livereload.com] Daily summary*",
