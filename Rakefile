@@ -133,8 +133,8 @@ end
 
 desc "Clone SublimePackages.git"
 task :sublime do
-    sh 'mkdir -p ~/"Library/Application Support/Sublime Text 2"'
-    sh 'cd ~/"Library/Application Support/Sublime Text 2" && git clone --recursive git@github.com:andreyvit/SublimePackages.git Packages'
+    sh 'mkdir -p ~/"Library/Application Support/Sublime Text 3/Packages"'
+    sh 'ln -s ~/Dropbox/env/Sublime/User ~/"Library/Application Support/Sublime Text 3/Packages/User"'
 end
 
 desc "Link backup.conf"
