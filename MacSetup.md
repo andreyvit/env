@@ -39,7 +39,10 @@
 - Soulver
 - Stampnote
 - Firehose Chat
+	- Preferences: disable “Play sound when visitor arrives on your site”
 - Coffitivity
+- CloudApp
+	- log in
 
 ### System Utilities
 
@@ -135,6 +138,7 @@
 		- XcodeBoost
 	- General → Uncheck “Show live issues”
 	- Text Editing → Check “Show: Line numbers”
+	- Text Editing → Fonts & Colors → select “Magnificient” color scheme
 	- Text Editing → Indentation → Tab key: “Indents always”
 	- Accounts: set up all accounts
 	- Downloads:
@@ -453,6 +457,7 @@ Finder:
 Messages:
 
 - Add Jabber account
+- disable “Play sound effects”
 
 Safari:
 
@@ -543,3 +548,11 @@ Tweak notification settings (System Preferences → Notifications) — may need 
 - HazelHelper: alert style “None”, disable all checkboxes
 
 Enable FileVault.
+
+Enable Time Machine.
+
+
+## TODO
+
+- BitTorrent Sync
+- Adobe Creative Cloud
