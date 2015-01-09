@@ -102,6 +102,8 @@
         }
     },
 
+    // Command-Control-P is unexplainably broken on my Mac
+    { "keys": ["ctrl+["], "command": "prompt_select_workspace" },
 
     // quick access to Sublime Text preferences
     { "keys": ["super+shift+,"], "command": "open_file", "args": {"file": "${packages}/Default/Preferences.sublime-settings"} },
