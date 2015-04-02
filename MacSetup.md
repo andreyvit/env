@@ -109,6 +109,7 @@
 - Textual 5
 - Telegram
 	- log in
+	- turn off “Notification icon”
 
 ### Development Tools
 
@@ -136,10 +137,13 @@
 		- FuzzyAutocomplete
 		- Peckham
 		- XcodeBoost
+		- XcodeWay
 	- General → Uncheck “Show live issues”
 	- Text Editing → Check “Show: Line numbers”
+	- Text Editing → Uncheck “Code folding ribbon”
 	- Text Editing → Fonts & Colors → select “Magnificient” color scheme
 	- Text Editing → Indentation → Tab key: “Indents always”
+	- Text Editing → Indentation → Indent wrapped lines by: 8
 	- Accounts: set up all accounts
 	- Downloads:
 		- download iOS simulators
@@ -207,6 +211,7 @@
 	- triggers installation of Apple command-line tools
 - [Sublime Text 3](http://www.sublimetext.com/3)
 	- use “Help → Enter License” to add a license from 1Password
+	- `ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin`
 	- wait until you run `rake sublime` from env
 	- install [Package Control](https://packagecontrol.io/installation)
 
@@ -265,6 +270,10 @@ Productivity:
 - [Transmit](http://panic.com/transmit/)
 	- enter a licence code from 1Password
 	- enable favorites sync via Dropbox (see pw in 1Password)
+	- Files
+		- Double click: Edit in External Editor
+		- Custom Editors
+			- Add Sublime Text for *
 - [Clarify](http://www.clarify-it.com/download)
 - [You Need A Budget](http://www.youneedabudget.com/download)
 	- open the Family Budget
@@ -275,6 +284,7 @@ Utilities:
 - [AirServer](http://www.airserver.com/Download)
 - [iStat Menus](http://bjango.com/mac/istatmenus/)
 - [Arq](http://www.haystacksoftware.com/arq/)
+	- disable “Show notification after each successful backup”
 	- configure backups to h1
 		- dev
 		- Documents
@@ -406,10 +416,19 @@ Keyboard:
 		- Xcode
 			- “Copy Method and Function Declarations”: ⌃C
 			- “Duplicate Lines”: ⌘D
+		- Things
+			- “File...”: ⌘S
 
 Trackpad:
 
--	enable “Tap to click”
+- enable “Tap to click”
+
+Mouse:
+
+- enable secondary click
+- enable smart zoom
+- enable swipe between pages
+- disable mission control
 
 Sound:
 
@@ -448,6 +467,7 @@ Dictation & Speech:
 Finder:
 
 - View → Show Status Bar
+- New Finder windows show: home folder
 - Preferences → Sidebar
 	- uncheck All My Files
 	- check the home folder (andreyvit)
@@ -464,6 +484,10 @@ Safari:
 - Preferences → Advanced:
 	- Show full website address
 	- Show Develop menu
+
+iTunes:
+
+- disable “Notifications: When song changes”
 
 
 ### Step 6. Configure Third-Party Apps
@@ -516,6 +540,9 @@ After command-line tools and Homebrew installation finishes, install Homebrew pa
     brew install node
     brew install icdiff
     brew install youtube-dl
+    brew install s3cmd
+    brew install tree
+    brew install --HEAD hub
     brew install caskroom/cask/brew-cask
 
 After Node installation is finished, add npm packages:
@@ -527,6 +554,9 @@ After Node installation is finished, add npm packages:
 	sudo npm install -g less
 	sudo npm install -g stylus
 	sudo npm install -g supervisor
+	sudo npm install -g json
+	sudo npm install -g bower
+	sudo npm install -g grunt-cli
 
 After Homebrew Cask is installed, use it to install some small infrequently used tools:
 
@@ -556,3 +586,29 @@ Enable Time Machine.
 
 - BitTorrent Sync
 - Adobe Creative Cloud
+- ScreenHero
+
+
+SELECT COUNT(*) AS `count`, SUM(LENGTH(`srctext`) + LENGTH(`dsttext`)) AS `length` FROM `translations` WHERE `hits` = 1 AND `last` < DATE('2014-10-1') AND LENGTH(`srctext`) >= 20
+
+DELETE FROM `translations` WHERE `hits` = 1 AND `last` < DATE('2014-10-1') AND LENGTH(`srctext`) >= 20
+
+
+SELECT
+	MIN(hits),
+    MAX(hits),
+    COUNT(*) AS `count`,
+    AVG(LENGTH(`srctext`)) AS `avg_characters`,
+    MIN(LENGTH(`srctext`)) AS `min_characters`,
+    MAX(LENGTH(`srctext`)) AS `max_characters`,
+    SUM(LENGTH(`srctext`)) AS `sum_characters`,
+    SUM(LENGTH(`srctext`) * (hits - 1)) AS `savings_characters`,
+    SUM(LENGTH(`srctext`) + LENGTH(`dsttext`)) AS `storage_size`
+FROM
+	`translations`
+WHERE
+	`first` BETWEEN DATE('2014-12-1')
+    AND DATE('2015-01-01')
+GROUP BY
+	FLOOR(LOG2(hits))
+
