@@ -1,5 +1,16 @@
 #!/usr/bin/env ruby
 require 'date'
+require 'optparse'
+
+options = { :project => nil, :from_date => nil, :to_date => nil, :summary => false }
+OptionParser.new do |opts|
+  opts.banner = "Usage: gtd-stats [options]"
+
+  opts.on('-p', '--project NAME', 'Filter by project name') { |v| options[:project] = v }
+  opts.on('-f', '--from DATE', 'Ignore entries before the given date') { |v| options[:from_date] = v }
+  opts.on('-t', '--to DATE', 'Ignore entries on or after the given date') { |v| options[:to_date] = v }
+  opts.on('-s', '--summary', 'Show summary') { |v| options[:summary] = v }
+end.parse!
 
 class Date
     def wday_starting_on_monday
@@ -25,46 +36,117 @@ class Item
     end
 end
 
+class NilFilter
+    def matches? item
+        true
+    end
+
+    def trivial?
+        true
+    end
+end
+
+class ProjectNameFilter
+    def initialize name
+        @name = name
+    end
+
+    def matches? item
+        (item.name == @name) || (item.name[0..@name.length] == "#{@name}.")
+    end
+
+    def trivial?
+        false
+    end
+end
+
 class Period
+    ITEM_FORMAT = '  %-15s %6.2fh'
     def initialize
         @dates = []
         @items = {}
-        @total_hours = 0.0
     end
 
     def add date, name, hours
         @dates << date  unless @dates.include?(date)
         item = (@items[name] ||= Item.new(name))
         item.add hours
-        @total_hours += hours
     end
 
-    def print!
-        if @items.count > 0
-            puts "----------------------- ∑ #{sprintf '%4.1fh', @total_hours} (#{@dates.last} to #{@dates.first})"
-            @items.values.each do |item|
-                puts sprintf('  %-12s %4.1fh', item.name.gsub(' ', '.'), item.hours)
+    def print! filter
+        matching_items = @items.values.select { |item| filter.matches?(item) }
+        if matching_items.count > 0
+            total_hours = matching_items.reduce(0) { |total, item| total + item.hours }
+            matching_items.sort! { |a, b| a.name <=> b.name }
+
+            print_header date_range_description
+            matching_items.each do |item|
+                puts sprintf(ITEM_FORMAT, item.name, item.hours)
             end
+            puts sprintf(ITEM_FORMAT, '∑', total_hours) if matching_items.count > 1 || filter.trivial?
             puts
         end
+    end
+
+    def date_range_description
+        "#{@dates.last} to #{@dates.first}"
+    end
+
+    def print_header text
+        puts text
+        puts '-' * text.length
+    end
+end
+
+class OverallPeriod < Period
+    def date_range_description
+        "Overall (#{super})"
+    end
+end
+
+class YearPeriod < Period
+    attr_reader :year
+
+    def initialize year
+        super()
+        @year = year
+    end
+
+    def date_range_description
+        "Year #{@year}"
     end
 end
 
 class Analyzer
 
-    def initialize
+    def initialize options
+        @options = options
         @current_week = nil
         @weeks = []
+        @year_periods = []
+
+        @from_date = Date.parse(@options[:from_date]) unless @options[:from_date].nil?
+        @to_date   = Date.parse(@options[:to_date])   unless @options[:to_date].nil?
+
         reset!
     end
 
     def reset!
         @current_date = nil
+        start_year 2015
+        @overall = OverallPeriod.new()
+    end
+
+    def start_year year
+        @year_period = YearPeriod.new(year)
+        @year_periods << @year_period
     end
 
     def add_line line
-        if line =~ /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}) \((Mon|Tue|Wed|Thu|Fri|Sat|Sun)\)$/
-            date = Date.parse("#{$1} #{$2}", '%B %d')
+        if line =~ /^YEAR (\d{4})$/
+            start_year $1.to_i
+        elsif line =~ /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}) \((Mon|Tue|Wed|Thu|Fri|Sat|Sun)\)$/
+            date = Date.parse("#{$1} #{$2}, #{@year_period.year}", '%B %d, %Y')
             # puts "Date: #{date}"
             if @current_date.nil? || date.wday_starting_on_monday >= @current_date.wday_starting_on_monday
                 @weeks << @current_week unless @current_week.nil?
@@ -73,6 +155,9 @@ class Analyzer
             end
             @current_date = date
         elsif line =~ /🍅/u
+            return if !@from_date.nil? && @current_date < @from_date
+            return if !@to_date.nil?   && @current_date >= @to_date
+
             total_hours = 0.0
             initial_name = nil
             line.split('+').each do |component|
@@ -85,23 +170,42 @@ class Analyzer
                     name = name.gsub(/[▣✓]/, '').gsub('[x]', '').strip
 
                     total_hours += hours
-                    initial_name ||= name
+                    initial_name ||= name.gsub(' ', '.')
                     # puts "[#{desc}] = #{hours}"
                 end
             end
             @current_week.add @current_date, initial_name, total_hours
+            @year_period.add  @current_date, initial_name, total_hours
+            @overall.add      @current_date, initial_name, total_hours
         end
     end
 
     def print!
+        if @options[:project]
+            filter = ProjectNameFilter.new(@options[:project])
+        else
+            filter = NilFilter.new
+        end
+
         @weeks.reverse.each do |week|
-            week.print!
+            week.print!(filter)
+        end
+
+        # only print annual stats if no date range specified
+        if @from_date.nil? && @to_date.nil? && @options[:summary]
+            @year_periods.reverse.each do |year|
+                year.print!(filter)
+            end
+        end
+
+        if @options[:summary]
+            @overall.print!(filter)
         end
     end
 
 end
 
-analyzer = Analyzer.new
+analyzer = Analyzer.new(options)
 open(File.expand_path('~/Dropbox/GTD/TODAY.txt')).each_line { |line| analyzer.add_line(line) }
 open(File.expand_path('~/Dropbox/GTD/Done.txt')).each_line { |line| analyzer.add_line(line) }
 analyzer.print!
