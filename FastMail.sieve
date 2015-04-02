@@ -387,7 +387,6 @@ if anyof (
     "browserstack.com",
     "getpocket.com",
     "kissmetrics.com",
-    "paddle.com",
     "guides.co",
     "macupdate.com",
     "gopivotal.com",
