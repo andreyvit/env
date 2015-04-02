@@ -2,11 +2,6 @@
 	"in_process_packages":
 	[
 	],
-	"installed_dependencies":
-	[
-		"0_package_control_loader",
-		"bz2"
-	],
 	"installed_packages":
 	[
 		"All Autocomplete",
@@ -19,11 +14,12 @@
 		"Jade",
 		"Jekyll",
 		"JSONLint",
+		"Marked App Menu",
 		"Open URL",
 		"Package Control",
 		"PgSQL",
 		"SFTP",
-		"Shell Command",
+		"ShellCommand",
 		"SideBarEnhancements",
 		"Stylus",
 		"Surround"
