@@ -62,6 +62,7 @@
     // 'Sidebar Enhancements' plugin, C-x C-something  (or C-x C-M-something to copy data)
     { "keys": ["ctrl+x", "ctrl+r"], "command": "side_bar_rename" },
     { "keys": ["ctrl+x", "ctrl+n"], "command": "side_bar_new_file" },
+    { "keys": ["ctrl+x", "ctrl+shift+n"], "command": "side_bar_new_directory" },
     { "keys": ["ctrl+x", "ctrl+d"], "command": "side_bar_duplicate" },
     { "keys": ["ctrl+x", "ctrl+f"], "command": "side_bar_reveal" },
     { "keys": ["ctrl+x", "ctrl+m"], "command": "side_bar_move" },
