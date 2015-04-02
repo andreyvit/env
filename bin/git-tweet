@@ -1,2 +1,2 @@
 #!/bin/bash
-git commit --allow-empty -m "📣 $*"
+git commit --allow-empty -m "🐤 $*"
