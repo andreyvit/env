@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>log_error</string>
+	<string>sbool</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeBlock</string>
+		<string>CodeExpression</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>NSLog(@"&lt;#message#&gt;: %@ - %@ - %@", error.domain, @(error.code), error.localizedDescription);</string>
+	<string>(&lt;#value#&gt; ? @"YES" : @"NO")</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>3F9D739D-4288-435A-B45E-F1F9EC2A56E7</string>
+	<string>11614EF3-CCE7-40AE-9CB3-30968AAB96DF</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Log NSError (logerr)</string>
+	<string>value ? @"YES" : @"NO"</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>log_error</string>
+	<string>Bool To String</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

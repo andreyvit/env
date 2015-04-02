@@ -3,22 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>mas_update</string>
+	<string>notification_addObserver</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>[&lt;#view#&gt; mas_updateConstraints:^(MASConstraintMaker *make){
-    &lt;#code#&gt;
-}];
-</string>
+	<string>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(&lt;#selector#&gt;) name:&lt;#(NSString *)#&gt; object:&lt;#(id)#&gt;];</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>CF088737-121D-4166-97B0-D8AB63696B08</string>
+	<string>8367EE48-2286-4F43-95F8-84A2B3E50BD4</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Call -[NSNotificationCenter addObserver:...]</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Masonry Constraint Update</string>
+	<string>notification_addObserver</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

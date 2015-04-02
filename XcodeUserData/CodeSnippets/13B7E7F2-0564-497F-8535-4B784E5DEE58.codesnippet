@@ -3,21 +3,26 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>log_error</string>
+	<string>error</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeBlock</string>
+		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>NSLog(@"&lt;#message#&gt;: %@ - %@ - %@", error.domain, @(error.code), error.localizedDescription);</string>
+	<string>extern NSString *const &lt;#Something#&gt;ErrorDomain;
+NSString *const &lt;#Something#&gt;ErrorDomain = @"&lt;#Something#&gt;";
+
+typedef NS_ENUM(NSInteger, &lt;#Something#&gt;ErrorCode) {
+    &lt;#Something#&gt;ErrorCode&lt;#Name#&gt; = 1,
+};</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>3F9D739D-4288-435A-B45E-F1F9EC2A56E7</string>
+	<string>13B7E7F2-0564-497F-8535-4B784E5DEE58</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<string>Xcode.SourceCodeLanguage.Objective-C-Plus-Plus</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Log NSError (logerr)</string>
+	<string>Define XxxErrorDomain constant and XxxErrorCode enum</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>log_error</string>
+	<string>error</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

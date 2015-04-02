@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>notification</string>
+	<string>notification_define</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>TopLevel</string>
@@ -18,7 +18,7 @@ NSString *const &lt;#SomethingDidWhatever#&gt;Notification = @"&lt;#SomethingDid
 	<key>IDECodeSnippetSummary</key>
 	<string>extern NSString *const SomethingDidSomethingNotification;</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Notification Constant</string>
+	<string>notification_define</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
