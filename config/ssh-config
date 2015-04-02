@@ -55,9 +55,9 @@ Host vs
   LocalForward 12100 localhost:12100
   LocalForward 12200 localhost:12200
 
-Host h1
+Host h2
   User andreyvit
-  HostName 5.9.21.148
+  HostName h2.tarantsov.com
   ControlPath ~/.ssh/master-%r@%h:%p
 
 Host nxp
