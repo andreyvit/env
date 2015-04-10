@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# https://gist.github.com/marcoarment/88da1a8c403fa103c6d0
+
+# brew install lame mp3info
+ 
+# Encode a WAV to a finalized podcast MP3 with metadata, in the current directory
+# Requires lame
+# With Homebrew on Mac OS X: brew install lame
+
+cd ~/Documents/IT-posidelki
+ 
+SHOW_AUTHOR="Айти-посиделки"
+SHOW_PREFIX="IT-posidelki-"
+ 
+EPISODE_NUMBER=03
+EPISODE_TITLE="iPhone Galaxy S6"
+EPISODE_SUMMARY="Тактильные интерфейсы устройств, а также кто и почему может хотеть новый MacBook."
+
+EPISODE_NUMBER=04
+EPISODE_TITLE="Бесконечный медитативный цикл"
+EPISODE_SUMMARY="Тима закончил конверсию проекта из Subversion в Git, а Андрей портирует LiveReload на Swift 1.2 и размышляет о бесцельно потраченных на JavaScript годах."
+ 
+INPUT_WAV_FILE="${SHOW_PREFIX}0${EPISODE_NUMBER}.wav"
+OUTPUT_MP3_FILE="${INPUT_WAV_FILE%%.wav}.mp3"
+
+S3_BUCKET="files.tarantsov.com"
+S3_PREFIX=""
+
+# Artwork: ideally 1400x1400, but less than 128 KB to maximize compatibility
+ARTWORK_JPG_FILENAME="${HOME}/Dropbox/IT-посиделки/posidelki-logo.png"
+ 
+if true; then
+    # Output quality (kbps): 96 or 64 recommended
+    MP3_KBPS=96
+     
+    lame --noreplaygain --cbr -h -b $MP3_KBPS --resample 44.1 --tt "$EPISODE_NUMBER: $EPISODE_TITLE" --tc "$EPISODE_SUMMARY" --ta "$SHOW_AUTHOR" --ty `date '+%Y'` --ti "$ARTWORK_JPG_FILENAME" --add-id3v2 "$INPUT_WAV_FILE" "$OUTPUT_MP3_FILE"
+fi
+
+DURATION="$(mp3info -p "%m:%02s" "${OUTPUT_MP3_FILE}")"
+URL="http://${S3_BUCKET}/${S3_PREFIX}/${OUTPUT_MP3_FILE}"
+SIZE="$(stat -f '%z' "${OUTPUT_MP3_FILE}")"
+
+cat <<END
+
+---
+number: "${EPISODE_NUMBER}"
+title: "${EPISODE_TITLE}"
+layout: episode
+duration: "${DURATION}"
+summary: "${EPISODE_SUMMARY}"
+audio:
+  name: ${OUTPUT_MP3_FILE}
+  size: $SIZE
+---
+
+END
+
+if true; then
+    s3cmd put -P "$OUTPUT_MP3_FILE" "s3://${S3_BUCKET}/${S3_PREFIX}"
+fi
