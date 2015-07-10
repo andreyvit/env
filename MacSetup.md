@@ -74,11 +74,28 @@
 		- Auto-dismiss after: “Move & Zoom”, “Other actions”
 	- Preferences → Custom:
 		- Define window sizes using: 16 x 8 cells
-		- Header: “Primary + Secondary”
-		- Move & Zoom, hotkey 1: 10x8 block on the left
-		- Move & Zoom, hotkey 2: 6x8 block on the right
+		- Header: "Primary + Secondary"
+			- Move & Zoom, hotkey 1: left  side of 10:6 split (10x8)
+			- Move & Zoom, hotkey 2: right side of 10:6 split (6x8)
+		- Header: "Secondary + Primary"
+			- Move & Zoom, hotkey 3: left  side of 6:10 split (6x8)
+			- Move & Zoom, hotkey 4: right side of 6:10 split (10x8)
+			- Move & Zoom, hotkey R: top-right (10x6) - above terminal
+			- Move & Zoom, hotkey F: bottom-right (10x2) - for terminal
+		- Header: "4 Up"
+			- Move & Zoom, hotkey Q: top-left quarter (8x4)
+			- Move & Zoom, hotkey A: bottom-left quarter (8x4)
+			- Move & Zoom, hotkey W: top-right quarter (8x4)
+			- Move & Zoom, hotkey S: bottom-right quarter (8x4)
+		- Header: "3x2"
+			- Move & Zoom, hotkey P: top-left (6x4)
+			- Move & Zoom, hotkey ;: bottom-left (6x4)
+			- Move & Zoom, hotkey [: top-middle (6x4)
+			- Move & Zoom, hotkey ': bottom-middle (6x4)
+			- Move & Zoom, hotkey ]: top-right (6x4)
+			- Move & Zoom, hotkey \: bottom-right (6x4)
 		- Header: “Special”
-		- Move & Zoom, hotkey M: 12x8 block, centered (for messaging apps)
+			- Move & Zoom, hotkey M: 12x8 centered (for messaging apps)
 - DaisyDisk
 - The Unarchiver
 - WiFi Explorer
