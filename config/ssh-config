@@ -72,6 +72,7 @@ Host w8
   ControlPath ~/.ssh/master-%r@%h:%p
 
 Host github.com
+  User git
   ControlPath ~/.ssh/master-%r@%h:%p
 
 Host heroku.personal
