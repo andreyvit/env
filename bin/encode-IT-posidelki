@@ -16,11 +16,18 @@ SHOW_PREFIX="IT-posidelki-"
 EPISODE_NUMBER=03
 EPISODE_TITLE="iPhone Galaxy S6"
 EPISODE_SUMMARY="Тактильные интерфейсы устройств, а также кто и почему может хотеть новый MacBook."
+EPISODE_SAMPLE_RATE=44.1
 
 EPISODE_NUMBER=04
 EPISODE_TITLE="Бесконечный медитативный цикл"
 EPISODE_SUMMARY="Тима закончил конверсию проекта из Subversion в Git, а Андрей портирует LiveReload на Swift 1.2 и размышляет о бесцельно потраченных на JavaScript годах."
- 
+EPISODE_SAMPLE_RATE=44.1
+
+EPISODE_NUMBER=02
+EPISODE_TITLE="Самый Air'ный Air изо всех Air'ов"
+EPISODE_SUMMARY="Стратегия Microsoft одной ОС на всех платформах, почему покупателям нового MacBook не хватает просто iPad'а, изменения в Windows 10, а также разные API для написания интерфейсов пользователя."
+EPISODE_SAMPLE_RATE=48
+
 INPUT_WAV_FILE="${SHOW_PREFIX}0${EPISODE_NUMBER}.wav"
 OUTPUT_MP3_FILE="${INPUT_WAV_FILE%%.wav}.mp3"
 
@@ -34,7 +41,7 @@ if true; then
     # Output quality (kbps): 96 or 64 recommended
     MP3_KBPS=96
      
-    lame --noreplaygain --cbr -h -b $MP3_KBPS --resample 44.1 --tt "$EPISODE_NUMBER: $EPISODE_TITLE" --tc "$EPISODE_SUMMARY" --ta "$SHOW_AUTHOR" --ty `date '+%Y'` --ti "$ARTWORK_JPG_FILENAME" --add-id3v2 "$INPUT_WAV_FILE" "$OUTPUT_MP3_FILE"
+    lame --noreplaygain -a --cbr -h -b $MP3_KBPS --resample $EPISODE_SAMPLE_RATE --tt "$EPISODE_NUMBER: $EPISODE_TITLE" --tc "$EPISODE_SUMMARY" --ta "$SHOW_AUTHOR" --ty `date '+%Y'` --ti "$ARTWORK_JPG_FILENAME" --add-id3v2 "$INPUT_WAV_FILE" "$OUTPUT_MP3_FILE"
 fi
 
 DURATION="$(mp3info -p "%m:%02s" "${OUTPUT_MP3_FILE}")"
