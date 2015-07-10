@@ -4,7 +4,10 @@
 	],
 	"installed_packages":
 	[
+		"1337 Color Scheme",
+		"AAAPackageDev",
 		"All Autocomplete",
+		"Babel",
 		"ChangeQuotes",
 		"DashDoc",
 		"Emmet",
@@ -22,6 +25,7 @@
 		"ShellCommand",
 		"SideBarEnhancements",
 		"Stylus",
-		"Surround"
+		"Surround",
+		"Swift for F*ing Sublime"
 	]
 }
