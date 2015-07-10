@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>atlayout</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)layoutSubviews {
+    [super layoutSubviews];
+    ATLayoutBox box = ATLayoutStartLayout(self.bounds);
+    [self layoutInBox:&amp;box];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    ATLayoutBox box = ATLayoutStartHeightMeasurement(size.width);
+    [self layoutInBox:&amp;box];
+    return ATLayoutGetSize(box);
+}
+
+- (void)layoutInBox:(ATLayoutBox *)box {
+    ATLayoutAddInsets(box, UIEdgeInsetsZero);
+    
+    // ATLayoutAddViewWithMeasurementBlock...
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>19DBF793-A59F-4A3B-8D38-8936B7F78A50</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>layoutSubviews and sizeThatFits: using ATLayout</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>ATManualLayout implementation</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
