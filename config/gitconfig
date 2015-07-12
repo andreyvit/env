@@ -8,6 +8,7 @@
 	excludesfile = ~/env/config/gitignore
 	quotepath = false
 	safecrlf = warn
+	pager = less --raw-control-chars
 [branch]
   autosetuprebase = always
 [alias]
