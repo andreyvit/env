@@ -9,6 +9,7 @@
 		}
 	],
 	"auto_complete_with_fields": true,
+	"caret_style": "solid",
 	"color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
@@ -24,6 +25,7 @@
 		"draw_normal",
 		"draw_active"
 	],
+	"index_files": false,
 	"line_numbers": true,
 	"margin": 4,
 	"remember_full_screen": true,
