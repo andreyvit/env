@@ -251,11 +251,16 @@ System automation:
 		- change Caps Lock to F19 (keycode 80)
 		- Other Keys → change Escape to F18 (keycode 79)
 		- Other Keys → change Control_L to F17 (keycode 64)
+		- Other Keys → change Control_R to F17 (keycode 64)
+		- Keys on non-Apple keyboards --> Enable Application Key
 	- Karabiner:
 		- F17 to Control + Shift + Option
+		- PC Insert to §
+		- PC Num Lock to Fn
 		- Custom Shortcuts → Change F19 to Escape and Control
 		- Change Fn Key → Fn+{letter,number,symbol} to Hyper (⇧⌃⌥⌘)
 		- For Russian: Command_L for English; Command_R for Russian
+		- For PC Users → Change Application Key to Option_R
 - [Shortcat](https://shortcatapp.com/download)
 - [Hazel](http://www.noodlesoft.com/hazel.php)
 	- enter a licence from 1Password

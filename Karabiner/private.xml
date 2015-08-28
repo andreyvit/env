@@ -14,4 +14,30 @@
           ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L
       </autogen>
   </item>
+  <item>
+      <name>PC Insert to §</name>
+      <appendix>Change PC Keyboard Insert key to §.</appendix>
+ 
+      <identifier>com.tarantsov.pc_insert_to_danish_dollar</identifier>
+ 
+      <autogen>
+          --KeyToKey--
+          KeyCode::HELP,
+ 
+          KeyCode::DANISH_DOLLAR
+      </autogen>
+  </item>
+  <item>
+      <name>PC Num Lock to Fn</name>
+      <appendix>Change PC Num Lock key to Fn.</appendix>
+ 
+      <identifier>com.tarantsov.numlock_to_fn</identifier>
+ 
+      <autogen>
+          --KeyToKey--
+          KeyCode::KEYPAD_CLEAR,
+ 
+          KeyCode::FN
+      </autogen>
+  </item>
 </root>
