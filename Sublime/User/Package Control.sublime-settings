@@ -13,10 +13,12 @@
 		"Emmet",
 		"External Command",
 		"Filter Lines",
+		"GoOracle",
+		"GoSublime",
 		"IcedCoffeeScript",
 		"Jade",
 		"Jekyll",
-		"JSONLint",
+		"LESS",
 		"Marked App Menu",
 		"Open URL",
 		"Package Control",
@@ -26,6 +28,7 @@
 		"SideBarEnhancements",
 		"Stylus",
 		"Surround",
-		"Swift for F*ing Sublime"
+		"Swift for F*ing Sublime",
+		"UnitJS"
 	]
 }
