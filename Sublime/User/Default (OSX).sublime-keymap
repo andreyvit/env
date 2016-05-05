@@ -12,11 +12,13 @@
     { "keys": ["ctrl+t", "e"], "command": "expand_abbreviation" },
     // ChangeQuotes plugin
     { "keys": ["ctrl+t", "q"], "command": "change_quotes" },
+    // StringUtilities
+    { "keys": ["ctrl+t", "c"], "command": "convert_camel_underscores" },
 
     // C-p, C-n move up/down; S- extends selection
     { "keys": ["ctrl+p"], "command": "move", "args": {"by": "lines", "forward": false} },
     { "keys": ["ctrl+n"], "command": "move", "args": {"by": "lines", "forward": true} },
-    { "keys": ["ctrl+shift+p"], "command": "move", "args": {"by": "lines", "forward": false, "extend": true} },
+    // { "keys": ["ctrl+shift+p"], "command": "move", "args": {"by": "lines", "forward": false, "extend": true} },
     { "keys": ["ctrl+shift+n"], "command": "move", "args": {"by": "lines", "forward": true, "extend": true} },
 
     // M-p, M-n swap line up/down
@@ -70,6 +72,18 @@
     { "keys": ["ctrl+x", "ctrl+alt+n"], "command": "side_bar_copy_name" },
     { "keys": ["ctrl+x", "ctrl+alt+p"], "command": "side_bar_copy_path_absolute_from_project" },
     { "keys": ["ctrl+x", "ctrl+alt+shift+p"], "command": "side_bar_copy_path" },
+
+    // Emmet
+    { "keys": ["ctrl+e"], "command": "run_emmet_action", "args": {"action": "expand_abbreviation"}, "context": [{"key": "emmet_action_enabled.expand_abbreviation"}] },
+
+    { "keys": ["super+alt+n"], "command": "new_snippet_for_scope" },
+
+    // Emacs-style help keys
+    // { "keys": ["ctrl+h", "k"], "command": "describe_key" },
+    // duplicate to be forgiving about mistakes
+    // { "keys": ["ctrl+h", "ctrl+k"], "command": "describe_key" },
+    { "keys": ["ctrl+h"], "command": "dash_doc"},
+    { "keys": ["ctrl+alt+h"], "command": "dash_doc", "args": { "flip_syntax_sensitive": true } },
 
     // custom layouts
     {

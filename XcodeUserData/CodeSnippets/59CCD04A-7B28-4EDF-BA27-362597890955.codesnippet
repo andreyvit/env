@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>eq</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>public func ==(lhs: &lt;#Class#&gt;, rhs: &lt;#Class#&gt;) -&gt; Bool {
+    return (lhs.&lt;#field#&gt; == rhs.&lt;#field#&gt;)
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>59CCD04A-7B28-4EDF-BA27-362597890955</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>eq</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>func ==</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

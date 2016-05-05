@@ -14,6 +14,8 @@
 	<string>2FDFDBCB-87F3-471F-893D-9EE22D2BFB37</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Post notification (Obj-C)</string>
 	<key>IDECodeSnippetTitle</key>
 	<string>notification_post</string>
 	<key>IDECodeSnippetUserSnippet</key>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>tripletap</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let doubleFingerTripleTap = UITapGestureRecognizer(target: self, action: #selector(&lt;#Self#&gt;.toggleDebugMode))
+doubleFingerTripleTap.numberOfTapsRequired = 3
+doubleFingerTripleTap.numberOfTouchesRequired = 2
+view.addGestureRecognizer(doubleFingerTripleTap)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>1628E51D-A420-4254-AE7F-A76F93300B18</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Add UITapGestureRecognizer for 2-finger 3-tap gesture</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>tripletap</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

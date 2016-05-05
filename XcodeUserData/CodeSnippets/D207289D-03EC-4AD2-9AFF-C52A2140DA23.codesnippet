@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mkhairline</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let hairline = HairlineView(edges: &lt;#T##UIRectEdge#&gt;, color: UIColor(0x&lt;#color#&gt;))
+&lt;#superview#&gt;.addSubview(hairline)
+hairline.setupLayoutConstraints()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D207289D-03EC-4AD2-9AFF-C52A2140DA23</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Make HairlineView</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>mkhairline</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

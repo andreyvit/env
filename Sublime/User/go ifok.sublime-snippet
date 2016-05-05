@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+if ${1:ok} := ${2:false}; !$1 {
+    t.Errorf("${3:Expected $2}")
+}
+]]></content>
+    <tabTrigger>ifok</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

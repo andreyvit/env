@@ -10,9 +10,9 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>//
-//  SwiftyFoundation
+//  Expressive&lt;#Something#&gt;, part of ExpressiveSwift project
 //
-//  Copyright (c) 2014-2015 Andrey Tarantsov &lt;andrey@tarantsov.com&gt;
+//  Copyright (c) 2014-2016 Andrey Tarantsov &lt;andrey@tarantsov.com&gt;
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

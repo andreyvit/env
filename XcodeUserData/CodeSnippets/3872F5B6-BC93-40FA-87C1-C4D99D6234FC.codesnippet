@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mkimageview</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let imageView = UIImageView(image: UIImage(named: "&lt;#name#&gt;")!)
+imageView.translatesAutoresizingMaskIntoConstraints = false
+imageView.contentMode = .TopLeft
+&lt;#superview#&gt;.addSubview(imageView)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3872F5B6-BC93-40FA-87C1-C4D99D6234FC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Make UIImageView</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>mkimageview</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

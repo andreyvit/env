@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>delegate</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+
+// MARK: - Delegate
+
+public protocol &lt;#MyClass#&gt;Delegate: class {
+
+    func &lt;#didSomething#&gt;(in&lt;#MyClass#&gt; &lt;#sender#&gt;: &lt;#MyClass#&gt;)
+
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9815262B-4BE6-4A4A-AAF6-1FDE9ABD999C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>protocol XxxDelegate</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>delegate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mklabel</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let label = UILabel()
+label.translatesAutoresizingMaskIntoConstraints = false
+label.text = "&lt;#text#&gt;"
+label.textColor = UIColor.whiteColor()
+label.font = UIFont.systemFontOfSize(&lt;#size#&gt;)
+&lt;#superview#&gt;.addSubview(label)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5DA24575-8122-4CA1-9FA1-00EB7C965291</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Make UILabel</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>mklabel</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

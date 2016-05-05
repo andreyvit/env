@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+func Test${1:Something}(t *testing.T) {
+    if ${2:ok := false; !ok} {
+        t.Errorf("Not implemented")
+    }
+}
+]]></content>
+    <tabTrigger>test</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

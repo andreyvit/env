@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>debugmode</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// MARK: - Debug Mode
+
+var isDebugMode = false
+
+@IBAction func toggleDebugMode(sender: AnyObject?) {
+    isDebugMode = !isDebugMode
+    updateDebugMode()
+}
+
+private func updateDebugMode() {
+    &lt;#view#&gt;.backgroundColor = (isDebugMode ? UIColor.yellowColor().colorWithAlphaComponent(0.25) : nil)
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C3A60DB1-F0AC-4E79-B057-D401ED596E57</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>View controller's debug mode</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>debugmode</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,2 @@
+#!/bin/bash
+mosh "$1" tmux attach

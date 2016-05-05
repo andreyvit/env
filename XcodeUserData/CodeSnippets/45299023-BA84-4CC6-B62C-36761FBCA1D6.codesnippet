@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>abort</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>@throw [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"&lt;#format#&gt;"] userInfo:nil];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>45299023-BA84-4CC6-B62C-36761FBCA1D6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>"abort" - @throw NSInternalInconsistencyException</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Abort with exception</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

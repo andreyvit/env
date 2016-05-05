@@ -256,11 +256,14 @@ System automation:
 	- Karabiner:
 		- F17 to Control + Shift + Option
 		- PC Insert to §
-		- PC Num Lock to Fn
-		- Custom Shortcuts → Change F19 to Escape and Control
+		- F13 to Fn
+		- Num Lock to Cmd-W in web browsers
 		- Change Fn Key → Fn+{letter,number,symbol} to Hyper (⇧⌃⌥⌘)
-		- For Russian: Command_L for English; Command_R for Russian
+		- Change F1..F19 → Functional Keys to F1..F12 → (F1 .. F9)
+		- Change F1..F19 → Fn+F1..F12 to Functional Keys → (F1 .. F9)
+		- Custom Shortcuts → Change F19 to Escape and Control
 		- For PC Users → Change Application Key to Option_R
+		- For Russian → Command_L for English; Command_R for Russian
 - [Shortcat](https://shortcatapp.com/download)
 - [Hazel](http://www.noodlesoft.com/hazel.php)
 	- enter a licence from 1Password
@@ -542,6 +545,21 @@ Configure apps using instructions above while waiting for the items below to com
 
 ## Step 7. Install & Configure Command-Line Tools
 
+Change sudoers (`sudo visudo`) to:
+
+1. Add `NOPASSWD:` to `%admin`:
+
+		%admin  ALL=(ALL) NOPASSWD: ALL
+
+2. Override umask:
+
+		Defaults        umask_override
+		Defaults        umask=022
+
+Clone Oh My Zsh:
+
+	git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
 Wait for Dropbox to finish syncing Dropbox/env, then:
 
 	ln -s ~/Dropbox/env ~/env
@@ -554,6 +572,7 @@ After command-line tools and Homebrew installation finishes, install Homebrew pa
 
     brew install git-extras
     brew install autojump
+    brew install autoenv
     brew install ack
     brew install cloc
     brew install rlwrap
@@ -564,6 +583,7 @@ After command-line tools and Homebrew installation finishes, install Homebrew pa
     brew install youtube-dl
     brew install s3cmd
     brew install tree
+    brew install httpie
     brew install --HEAD hub
     brew install caskroom/cask/brew-cask
 
@@ -579,6 +599,7 @@ After Node installation is finished, add npm packages:
 	sudo npm install -g json
 	sudo npm install -g bower
 	sudo npm install -g grunt-cli
+	sudo npm install -g http-server
 
 After Homebrew Cask is installed, use it to install some small infrequently used tools:
 
@@ -587,6 +608,19 @@ After Homebrew Cask is installed, use it to install some small infrequently used
     brew cask install cocoadialog
     brew cask install hex-fiend
     brew cask install platypus
+
+Install gems:
+
+	sudo gem install cocoapods
+	sudo gem install jekyll
+	sudo gem install kramdown
+	sudo gem install rake
+	sudo gem install s3_website
+	sudo gem install htty
+
+Install some extras:
+
+* [ProvisionQL](https://github.com/ealeksandrov/ProvisionQL)
 
 
 ## Step 8. Final Configuration

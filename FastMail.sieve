@@ -4,34 +4,12 @@ require ["envelope", "imapflags", "fileinto", "reject", "notify", "vacation", "r
 ## PERSONALITIES ##
 
 
-
 ## SPAM FILTERING ##
 
-if not anyof(
-  header :contains ["X-Spam-known-sender"] "yes"
-) {
-if address :all :is "from" "do-not-reply@checklist.com" {
-  discard;
-  stop;
-}
-if not header :contains ["X-Spam-known-sender"] "yes" {
-if allof(
-  header :contains ["X-Backscatter"] "yes",
-  not header :matches ["X-LinkName"] "*"
-) {
-  discard;
-  stop;
-}
-if  header :value "ge" :comparator "i;ascii-numeric" ["X-Spam-score"] ["10"]  {
-  discard;
-  stop;
-}
-if  header :value "ge" :comparator "i;ascii-numeric" ["X-Spam-score"] ["4"]  {
-  fileinto "INBOX.Junk Mail";
-  stop;
-}
-}
-}
+
+## OTHER SPECIAL FILTERS ##
+
+
 if header :contains ["x-resolved-to"] "+chatlogs@" {
   addflag "$ChatLog";
   addflag "\\Seen";
@@ -43,6 +21,11 @@ if header :contains ["x-resolved-to"] "+chatlogs@" {
 
 ## TOTAL JUNK ##
 
+if address :all :is "from" "do-not-reply@checklist.com" {
+  discard;
+  stop;
+}
+
 if address :domain "from" "imac.private" {
   discard;
   stop;
@@ -50,58 +33,48 @@ if address :domain "from" "imac.private" {
 
 
 ## SUPPORT ##
-
-if address "x-delivered-to" "alpha@livereload.com" {
-  fileinto "INBOX.Support.AlphaSupport";
-  stop;
-}
-if address "x-delivered-to" ["support@livereload.com", "help@livereload.com", "feedback@livereload.com"] {
-  if anyof(header :contains "subject" "URGENT", body :contains "URGENT") {
-    fileinto "INBOX.Support.Urgent";
-  } else {
-    fileinto "INBOX.Support.NewTickets";
-  }
-  stop;
-}
-if address "x-delivered-to" "urgent@livereload.com" {
-  fileinto "INBOX.Support.Urgent";
-  stop;
-}
-if allof(address "from" "support@livereload.com", header :matches "Message-Id" "<*@uservoice.com>") {
-  if body :contains "URGENT EMERGENCY" {
-    fileinto "INBOX.Support.Urgent";
-  } else {
-    fileinto "INBOX.Support.NewTickets";
-  }
-  stop;
-}
+#
+# if address "x-delivered-to" "alpha@livereload.com" {
+#   fileinto "INBOX.Support.AlphaSupport";
+#   stop;
+# }
+# if address "x-delivered-to" ["support@livereload.com", "help@livereload.com", "feedback@livereload.com"] {
+#   if anyof(header :contains "subject" "URGENT", body :contains "URGENT") {
+#     fileinto "INBOX.Support.Urgent";
+#   } else {
+#     fileinto "INBOX.Support.NewTickets";
+#   }
+#   stop;
+# }
+# if address "x-delivered-to" "urgent@livereload.com" {
+#   fileinto "INBOX.Support.Urgent";
+#   stop;
+# }
+# if allof(address "from" "support@livereload.com", header :matches "Message-Id" "<*@uservoice.com>") {
+#   if body :contains "URGENT EMERGENCY" {
+#     fileinto "INBOX.Support.Urgent";
+#   } else {
+#     fileinto "INBOX.Support.NewTickets";
+#   }
+#   stop;
+# }
 
 
 ## URGENT ##
 
-if anyof (
-  # sent to +urgent or put URGENT in the subject
-  address :detail ["to", "cc", "resent-to", "x-delivered-to"] ["urgent"],
-  header :contains "subject" "URGENT",
-  address "from" ["sam@snug.ug"]
-) {
-  addflag "\\Flagged";
-  fileinto "Inbox";
-  stop;
-}
-
-
 ## GTD INBOX ##
-
-if address :detail ["to", "cc", "resent-to", "x-delivered-to"] ["inbox"] {
-  redirect "andreyvit.b76cc@m.evernote.com";
-  addflag "\\Seen";
-  fileinto "Inbox";
-  stop;
-}
+# 
+# if address :detail ["to", "cc", "resent-to", "x-delivered-to"] ["inbox"] {
+#   redirect "andreyvit.b76cc@m.evernote.com";
+#   addflag "\\Seen";
+#   fileinto "Inbox";
+#   stop;
+# }
 
 
 ## SPECIAL LISTS AND GROUPS ##
+
+if header :contains "subject" "[swift-evolution]" { fileinto "INBOX.Mailing Lists"; stop; }
 
 if header :contains "list-id" "socketstream.googlegroups.com" { fileinto "INBOX.Junk.SocketStream"; stop; }
 
@@ -286,7 +259,8 @@ if anyof (
     "support-alert@code42.com",
     "noreply@sumome.com",
     "newsletter@basecamp.com",
-    "feedback@highrisehq.com"
+    "feedback@highrisehq.com",
+    "notifier@crashlytics.com"
   ],
   address :domain "from" [
     "livejournal.com",

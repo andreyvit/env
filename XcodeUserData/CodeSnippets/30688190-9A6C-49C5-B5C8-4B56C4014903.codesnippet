@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mkbutton</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let someButton = UIButton(type: .Custom)
+someButton.addTarget(self, action: #selector(&lt;#class#&gt;.&lt;#action#&gt;), forControlEvents: .TouchUpInside)
+someButton.translatesAutoresizingMaskIntoConstraints = false
+someButton.setTitle(&lt;#T##title: String?##String?#&gt;, forState: .Normal)
+someButton.setTitleColor(&lt;#T##color: UIColor?##UIColor?#&gt;, forState: .Normal)
+someButton.setImage(&lt;#T##image: UIImage?##UIImage?#&gt;, forState: .Normal)
+&lt;#superview#&gt;.addSubview(someButton)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>30688190-9A6C-49C5-B5C8-4B56C4014903</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Make UIButton</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>mkbutton</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

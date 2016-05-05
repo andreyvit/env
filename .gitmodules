@@ -4,3 +4,6 @@
 [submodule "config/fish"]
 	path = config/fish
 	url = git@github.com:andreyvit/fish-nuggets.git
+[submodule "vendor/pure"]
+	path = vendor/pure
+	url = git@github.com:sindresorhus/pure.git

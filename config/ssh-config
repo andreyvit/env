@@ -60,6 +60,11 @@ Host h2
   HostName h2.tarantsov.com
   ControlPath ~/.ssh/master-%r@%h:%p
 
+Host d1
+  User andreyvit
+  HostName 107.170.70.44
+  ControlPath ~/.ssh/master-%r@%h:%p
+
 Host nxp
   User dev
   Port 12222
@@ -85,6 +90,9 @@ Host heroku.ascendo
   IdentityFile ~/.ssh/id_ascendo_heroku
   IdentitiesOnly yes
 
+Host chewy
+  HostName chewy.tarantsov.com
+
 Host nfsn-lr
   HostName ssh.phx.nearlyfreespeech.net
   User andreyvit_livereload
@@ -93,3 +101,8 @@ Host ceres
   IdentityFile ~/.ssh/ceres.key
   IdentitiesOnly yes
   HostName andreyvit-ceres.cloudapp.net
+
+Host weeeee-prod
+  IdentityFile ~/.ssh/michigan-ci.pem
+  HostName 52.20.62.204
+  User ubuntu

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>embedvc</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let vc = DesignSpecsLeftPaneVC()
+let vcView = vc.view
+addChildViewController(vc)
+&lt;#superview#&gt;.addSubview(vcView)
+vcView.translatesAutoresizingMaskIntoConstraints = false
+vc.didMoveToParentViewController(self)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>61F051F8-8B95-40FF-8CCB-5508EFDF9FFD</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>embedvc</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

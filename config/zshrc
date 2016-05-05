@@ -1,76 +1,189 @@
 # .zshrc
 # executed for interactive shells only, after .zshenv
 
-PS1='[%n@%m:%~]%70(l|
-|)%# '
+# Key Bindings:
+#
+# Ctrl-Shift-Left/Right: cycle directories
+#
+# Aliases:
+#
+#     st          open Sublime Text
+#     stt         st .
+#     gi          fetch standard .gitignore (supports tab completion)
+#     npmg        npm i -g
+#     npmS        npm i -S
+#     npmD        npm i -D
+#     npmE        execute with node_modules/.bin in PATH
 
-case $OSTYPE in
-linux*)
-    alias ls="ls --color -hp"
-    ;;
-*)
-    alias ls="ls -hp"
-    ;;
-esac
 
-case $TERM in
-dumb)
-    PROMPT="%#"
-    ;;
-*)
-    PROMPT="[%(!.%S.)%n%x%(!.%s.)@%m:%~]%(?..%B%?%b)%70(l|
-|)%B%#%b "
-    ;;
-esac
 
-slashre=/; WORDCHARS=${WORDCHARS/$slashre}
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 
-# changing dirs
-setopt auto_cd auto_pushd pushd_ignore_dups
-# completion
-setopt no_auto_menu no_list_beep
-# globbing
-setopt extended_glob
-# history
-setopt bang_hist hist_verify
-setopt share_history inc_append_history extended_history
-setopt hist_ignore_all_dups hist_no_store hist_reduce_blanks
-# input/output
-setopt correct correct_all
-# job control
-setopt  notify print_exit_value
-# zle
-setopt no_beep
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="fishy-andreyvit"
 
-autoload -U compinit
-compinit
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-case $TERM in
-    xterm*|Eterm*|rxvt*)
-        function precmd { print -nP "\033]2;[zsh@%m:%~]%#\007\033]1;[%m:%~]%#\007" }
-        function preexec { local s=${2//\\/\\\\}; print -nP "\033]2;[zsh@%m:%~]%# $s\007\033]1;[%m:%~]%# $s\007" }
-    ;;
-esac
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-export PYTHONSTARTUP=$HOME/.pythonstartup
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-bindkey -e
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-cdpath=~/Projects
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(autoenv dircycle dirpersist history-substring-search mosh sublime z git gitignore golang brew npm pod nyan)
+
+# User configuration
+
+export PATH=$HOME/bin:~/Dropbox/env/bin:/usr/local/heroku/bin:/usr/local/bin:$PATH
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='subl_wait'
 fi
+export VISUAL=$EDITOR
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
-# rvm use 1.9.1
-. <(npm completion)
+export EMAIL="Andrey Tarantsov <andrey@tarantsov.com>"
 
-# workaround: compinit + precmd result in no-interpretation of special characters
-echo
+export MANSECT=1:3tcl:n:l:8:3:2:3posix:3pm:3perl:5:4:9:6:7
+
+export ACK_OPTIONS="--type-add php=.module"
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+##### EXTERNALS #####
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 source ~/Dropbox/env/config/iterm2_shell_integration.zsh
+
+
+##### OLD #####
+#
+# PS1='[%n@%m:%~]%70(l|
+# |)%# '
+# case $OSTYPE in
+# linux*)
+#     alias ls="ls --color -hp"
+#     ;;
+# *)
+#     alias ls="ls -hp"
+#     ;;
+# esac
+# 
+# case $TERM in
+# dumb)
+#     PROMPT="%#"
+#     ;;
+# *)
+#     PROMPT="[%(!.%S.)%n%x%(!.%s.)@%m:%~]%(?..%B%?%b)%70(l|
+# |)%B%#%b "
+#     ;;
+# esac
+# 
+# slashre=/; WORDCHARS=${WORDCHARS/$slashre}
+#
+# # changing dirs
+# setopt auto_cd auto_pushd pushd_ignore_dups
+# # completion
+# setopt no_auto_menu no_list_beep
+# # globbing
+# setopt extended_glob
+# # history
+# setopt bang_hist hist_verify
+# setopt share_history inc_append_history extended_history
+# setopt hist_ignore_all_dups hist_no_store hist_reduce_blanks
+# # input/output
+# setopt correct correct_all
+# # job control
+# setopt  notify print_exit_value
+# # zle
+# setopt no_beep
+
+# autoload -U compinit
+# compinit
+
+# case $TERM in
+#     xterm*|Eterm*|rxvt*)
+#         function precmd { print -nP "\033]2;[zsh@%m:%~]%#\007\033]1;[%m:%~]%#\007" }
+#         function preexec { local s=${2//\\/\\\\}; print -nP "\033]2;[zsh@%m:%~]%# $s\007\033]1;[%m:%~]%# $s\007" }
+#     ;;
+# esac
+
+# export PYTHONSTARTUP=$HOME/.pythonstartup
+
+# bindkey -e
+
+# cdpath=~/Projects
+
+# if [ -f `brew --prefix`/etc/autojump ]; then
+#   . `brew --prefix`/etc/autojump
+# fi
+
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+# # rvm use 1.9.1
+# . <(npm completion)
+
+# # workaround: compinit + precmd result in no-interpretation of special characters
+# echo

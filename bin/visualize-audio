@@ -1,0 +1,39 @@
+#!/bin/bash
+in="$1"
+out="$2"
+
+options=()
+# options+=(--intf rc)  # no interface
+options+=("$in")
+options+=(--audio-filter=visual)
+# options+=(--audio-visual=visual)
+options+=(--sout-transcode-afilter=visual)
+options+=(--effect-list=spectrum)
+options+=(--effect-width=480)
+options+=(--effect-height=80)
+options+=(--visual-80-bands)
+options+=(--visual-peaks)
+options+=(--sout-all --sout-video)
+    # options+=(--spect-80-bands)
+    # options+=(--spect-separ 0)
+# options+=(--sout="#transcode{vcodec=mp4v,acodec=mpga,vb=800,ab=128,deinterlace}:#std{access=file,mux=ps,dst=test.mpg}")
+options+=(--sout="#transcode{vcodec=mp4v,vb=1024,acodec=mpga,ab=192}:standard{mux=ps,access=file,dst=$out}")
+options+=(vlc://quit)
+
+for option in "${options[@]}"; do
+    echo ">>> $option <<<"
+done
+
+/Applications/VLC.app/Contents/MacOS/VLC "${options[@]}"
+
+# -I rc \
+#  \
+# --audio-visual=visual \
+# --effect-list=spectrum \
+# --effect-width=480 \
+# --effect-height=80 \
+# --visual-nbbands=16 \
+# --visual-separ=0 \
+# --no-visual-peaks \
+#  \
+# 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>confirm</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>let alert = UIAlertController(title: nil, message: "&lt;#prompt#&gt;", preferredStyle: .ActionSheet)
+alert.addAction(UIAlertAction(title: "&lt;#action#&gt;", style: .Destructive) { action in
+    &lt;#code#&gt;
+})
+alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { action in
+})
+
+let popover = alert.popoverPresentationController!
+popover.sourceView = sender!
+popover.sourceRect = sender!.bounds
+
+presentViewController(alert, animated: true, completion: nil)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>52DA8CB2-83C4-4E5E-A919-888D993500B4</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Confirm with UIAlertController</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,2 +1,2 @@
 #!/bin/sh
-youtube-dl -o ~/Downloads/'%(uploader)s - %(title)s (%(id)s).%(ext)s' "$@"
+youtube-dl -o '%(uploader)s - %(title)s (%(id)s).%(ext)s' "$@"

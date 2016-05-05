@@ -1,7 +1,7 @@
 # .zshenv
 # executed both for interactive shells and for shell scripts
 
-PATH=~/Dropbox/env/bin:/usr/local/heroku/bin:$PATH
+# PATH=~/Dropbox/env/bin:/usr/local/heroku/bin:$PATH
 
 test -d /sw/bin && source /sw/bin/init.sh
 
@@ -9,30 +9,15 @@ if [ "${BASH-no}" != "no" ]; then
 	[ -r /etc/bashrc ] && . /etc/bashrc
 fi
 
-EVENT_NOKQUEUE=1
-VISUAL="subl_wait"
-EDITOR="subl_wait"
-MANSECT=1:3tcl:n:l:8:3:2:3posix:3pm:3perl:5:4:9:6:7
-EMAIL="Andrey Tarantsov <andrey@tarantsov.com>"
-
 HISTFILE=$HOME/.zhist
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-export NODE_PATH=/usr/local/lib/node
-export NEKOPATH=/usr/local/lib/neko
+# export NODE_PATH=/usr/local/lib/node
+# export NEKOPATH=/usr/local/lib/neko
 
-export PATH EDITOR VISUAL EMAIL MANSECT EVENT_NOKQUEUE
+# alias s='screen -Rx -p='
 
-alias s='screen -Rx -p='
-
-export AMAZON_ACCESS_KEY_ID=1QPPZJR04QSS118WTS82
-export AWS_ACCESS_KEY_ID=$AMAZON_ACCESS_KEY_ID
-export AMAZON_SECRET_ACCESS_KEY=h+UDKBV8qzhRYMF/E5Rbbt35rQWVKLhqfqk7tgcY
-export AWS_SECRET_ACCESS_KEY="$AMAZON_SECRET_ACCESS_KEY"
-export EC2_HOME=~/Dropbox/Projects/cloud/ec2-api-tools
-export PATH=$PATH:$EC2_HOME/bin
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-export EC2_PRIVATE_KEY=~/Dropbox/Keys/aws/pk-6UVRRYQ7POGZU4UFLFBQJFHGPD77MXEM.pem
-export EC2_CERT=~/Dropbox/Keys/aws/cert-6UVRRYQ7POGZU4UFLFBQJFHGPD77MXEM.pem
-export ACK_OPTIONS="--type-add php=.module"
+# export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+# export EC2_PRIVATE_KEY=~/Dropbox/Keys/aws/pk-6UVRRYQ7POGZU4UFLFBQJFHGPD77MXEM.pem
+# export EC2_CERT=~/Dropbox/Keys/aws/cert-6UVRRYQ7POGZU4UFLFBQJFHGPD77MXEM.pem

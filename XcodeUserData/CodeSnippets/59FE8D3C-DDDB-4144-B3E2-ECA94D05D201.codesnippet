@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>fonts</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>print("Font families and fonts:")
+for family in UIFont.familyNames() {
+    let names = UIFont.fontNamesForFamilyName(family)
+    print("  \(family): \(names.joinWithSeparator(", "))")
+}
+print("The end.")</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>59FE8D3C-DDDB-4144-B3E2-ECA94D05D201</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Print all fonts and families</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>fonts</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -28,16 +28,27 @@
       </autogen>
   </item>
   <item>
-      <name>PC Num Lock to Fn</name>
-      <appendix>Change PC Num Lock key to Fn.</appendix>
+      <name>F13 to Fn</name>
+      <appendix></appendix>
  
-      <identifier>com.tarantsov.numlock_to_fn</identifier>
+      <identifier>com.tarantsov.f13_to_fn</identifier>
  
       <autogen>
           --KeyToKey--
+          KeyCode::F13,
+           KeyCode::FN
+      </autogen>
+  </item>
+  <item>
+      <name>Num Lock to Command-W in web browsers</name>
+      <appendix>Num Lock to Close Window in Safari and Chrome</appendix>
+      <identifier>com.tarantsov.numlock.command_w_in_browser</identifier>
+      <only>SAFARI, GOOGLE_CHROME</only>
+
+      <autogen>
+          --KeyToKey--
           KeyCode::KEYPAD_CLEAR,
- 
-          KeyCode::FN
+          KeyCode::W, ModifierFlag::COMMAND_L
       </autogen>
   </item>
 </root>
