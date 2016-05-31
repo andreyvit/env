@@ -3,23 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>d_main</string>
+	<string>mkstack</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>dispatch_async(dispatch_get_main_queue()) {
-    &lt;#code#&gt;
-}</string>
+	<string>let fieldsStackView = UIStackView()
+fieldsStackView.translatesAutoresizingMaskIntoConstraints = false
+fieldsStackView.axis = .Vertical
+fieldsStackView.distribution = .Fill
+fieldsStackView.alignment = .Fill
+fieldsStackView.spacing = 15
+view.addSubview(fieldsStackView)
+</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>F941B97F-1B68-4D74-BBC3-9F87FF1C8F84</string>
+	<string>A823A567-E855-497D-B678-90E0F5A4E63F</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>d_main</string>
+	<string>Make UIStackView </string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Swift dispatch_async on main queue</string>
+	<string>mkstack</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
