@@ -1,0 +1,5 @@
+#!/bin/bash
+pbpaste | ruby -e 'Ranges=[("0".."9").to_a, ("a".."z").to_a, ("A".."Z").to_a]' -e 'STDOUT.write STDIN.read.split("").map { |ch| (r = Ranges.find { |r| r.include?(ch) }) && r[0] || ch }.join("")' | pbcopy
+pbpaste
+echo
+echo "✓ Copied to clipboard."
