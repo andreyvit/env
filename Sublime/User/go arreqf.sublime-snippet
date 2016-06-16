@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+func ${1:xxxEqual}(${2:a}, ${3:b} []${4:type}) bool {
+    if len($2) != len($3) {
+        return false
+    }
+    for i, el := range $2 {
+        if ${5:el != $3[i]} {
+            return false
+        }
+    }
+    return true
+}
+]]></content>
+    <tabTrigger>arreqf</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
