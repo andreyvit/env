@@ -3,8 +3,19 @@
 
 ## Step 1. Get Started
 
-- Install Dropbox, log in, start downloading
-- Open System Preferences → Keyboard → Modifier Keys, remap Caps Lock to Control
+Generate a private key:
+
+	ssh-keygen -t rsa -b 4096 -C 'andreyvit@imac+2016jun'
+
+Rsync Dropbox from another computer:
+
+	ssh andreyvit-mbp.local
+	# add the new public key to authorized_keys
+	rsync -azrv andreyvit-mbp.local:/Users/andreyvit/Dropbox/ ~/Dropbox
+
+Install Dropbox, log in.
+
+Open System Preferences → Keyboard → Modifier Keys, remap Caps Lock to Control
 
 
 ## Step 2. Install Mac App Store apps
@@ -15,11 +26,8 @@
 
 - iA Writer
 	- after installation, copy this guide into iA Writer for easy updating
-- 1Password
+- 1Password 
 	- install browser extensions in Safari and Chrome
-- Things
-	- log in via 1Password
-	- enable “Quick Entry with Autofill” shortcut
 - Evernote
 	- Preferences
 		- General → “Show note counts in sidebar”
@@ -31,6 +39,7 @@
 - Day One
 
 ### Productivity
+
 - Alinof Timer
 - Tictoc
 	- Preferences:
@@ -218,6 +227,13 @@
 		- Show Document Outline ⌃O
 		- Select Line ⌃L
 		- Select Word ⌃W
+
+
+## Retired
+
+- Things
+	- log in via 1Password
+	- enable “Quick Entry with Autofill” shortcut
 
 
 ## Step 3. Install Other Apps
@@ -556,6 +572,10 @@ Change sudoers (`sudo visudo`) to:
 		Defaults        umask_override
 		Defaults        umask=022
 
+Symlink env from iCloud Drive:
+
+rsync -azrv andreyvit-mbp.local:~/env/ ~/env
+
 Clone Oh My Zsh:
 
 	git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
@@ -567,6 +587,14 @@ Wait for Dropbox to finish syncing Dropbox/env, then:
     rake config
     rake xcode_user_data
     rake sublime
+    make karabiner
+
+Rsync the rest of the data:
+
+	rsync -azrv andreyvit-mbp.local:~/dev/ ~/dev
+	rsync -azrv andreyvit-mbp.local:~/dev/neo/r300lafayette/ ~/dev/neo/r300lafayette
+	rsync -azrv andreyvit-mbp.local:/Volumes/JetDrive/ ~/JetDrive
+	rsync -azrv andreyvit-mbp.local:/Volumes/JetDrive/Images.sparsebundle ~/JetDrive
 
 After command-line tools and Homebrew installation finishes, install Homebrew packages:
 
@@ -608,6 +636,7 @@ After Homebrew Cask is installed, use it to install some small infrequently used
     brew cask install cocoadialog
     brew cask install hex-fiend
     brew cask install platypus
+    brew cask install provisionql
 
 Install gems:
 
@@ -617,10 +646,6 @@ Install gems:
 	sudo gem install rake
 	sudo gem install s3_website
 	sudo gem install htty
-
-Install some extras:
-
-* [ProvisionQL](https://github.com/ealeksandrov/ProvisionQL)
 
 
 ## Step 8. Final Configuration
