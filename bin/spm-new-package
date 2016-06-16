@@ -1,0 +1,11 @@
+#!/bin/bash
+if test -z "$1"; then
+    echo "Package name required."
+    exit 1
+fi
+mkdir $1
+cd $1
+swift package init
+rm -rf Tests
+swift package generate-xcodeproj
+open .

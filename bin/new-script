@@ -1,0 +1,8 @@
+#!/bin/bash
+if test -z "$1"; then
+    echo "Script name required."
+    exit 1
+fi
+(echo "#!/bin/bash"; echo "echo Hello, world") >~/env/bin/$1
+chmod +x ~/env/bin/$1
+subl ~/env/bin/$1
