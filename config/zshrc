@@ -117,6 +117,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 source ~/Dropbox/env/config/iterm2_shell_integration.zsh
 
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+
 
 ##### OLD #####
 #
