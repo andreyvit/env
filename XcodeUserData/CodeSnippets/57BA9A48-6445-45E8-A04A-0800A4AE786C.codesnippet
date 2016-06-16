@@ -3,21 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>transl</string>
+	<string>c_center</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>translatesAutoresizingMaskIntoConstraints = false</string>
+	<string>&lt;#first#&gt;.centerXAnchor.constraintEqualToAnchor(&lt;#view#&gt;.centerXAnchor),
+&lt;#first#&gt;.centerYAnchor.constraintEqualToAnchor(&lt;#view#&gt;.centerYAnchor),</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>6B5FF94D-6D24-4A5D-9929-4B14FCB17987</string>
+	<string>57BA9A48-6445-45E8-A04A-0800A4AE786C</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>translatesAutoresizingMaskIntoConstraints = false</string>
+	<string>Constraints: centerXAnchor</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>transl</string>
+	<string>c_center</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
