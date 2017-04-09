@@ -3,29 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>delegate</string>
+	<string>d_queue</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>TopLevel</string>
+		<string>CodeExpression</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>
-
-// MARK: - Delegate
-
-public protocol &lt;#MyClass#&gt;Delegate: class {
-
-    func &lt;#didSomething#&gt;(in&lt;#MyClass#&gt; &lt;#viewController#&gt;: &lt;#MyClass#&gt;)
-
+	<string>dispatch_async(&lt;#queue#&gt;) {
+    &lt;#code#&gt;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>9815262B-4BE6-4A4A-AAF6-1FDE9ABD999C</string>
+	<string>7D39EF8C-CF9B-423C-B45E-4624EF36DFBD</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>protocol XxxDelegate</string>
+	<string>dispatch_async on a given queue</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>delegate</string>
+	<string>d_queue</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

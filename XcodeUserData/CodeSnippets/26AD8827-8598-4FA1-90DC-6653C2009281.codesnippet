@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#selector(&lt;#Self#&gt;.&lt;#toggleDebugMode#&gt;)</string>
+	<string>#selector(&lt;#toggleDebugMode#&gt;)</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>26AD8827-8598-4FA1-90DC-6653C2009281</string>
 	<key>IDECodeSnippetLanguage</key>

@@ -62,7 +62,7 @@ Host h2
 
 Host d1
   User andreyvit
-  HostName 107.170.70.44
+HostName 107.170.70.44
   ControlPath ~/.ssh/master-%r@%h:%p
 
 Host nxp
@@ -105,4 +105,9 @@ Host ceres
 Host weeeee-prod
   IdentityFile ~/.ssh/michigan-ci.pem
   HostName 52.20.62.204
+  User ubuntu
+Host brvty-prod
+
+  IdentityFile ~/.ssh/michigan-ci.pem
+  HostName 23.20.84.161
   User ubuntu

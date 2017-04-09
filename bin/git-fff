@@ -1,0 +1,125 @@
+#!/usr/bin/env ruby
+$stderr.sync = true
+require 'active_support'
+require 'active_support/core_ext'
+require 'open3'
+require 'optparse'
+require 'ostruct'
+
+UNITS = {
+  "m" => (60),
+  "h" => (60 * 60),
+  "d" => (60 * 60 * 24)
+}
+
+def run command
+  output = `#{command}`
+  puts output
+  if $?.exitstatus != 0
+    puts
+    puts "*** Exit code is #{$?.exitstatus}. Stop."
+    exit 1
+  end
+  return output
+end
+
+def parse_duration input
+  input = input.gsub /^_/, ''
+  time = 0
+  sign = 1
+  if input =~ /^[+-]/
+    sign = ($& == '-' ? -1 : 1)
+    input = $'
+  else
+    puts "*** Invalid offset: #{input}, needs to start with + or -."
+    exit 1
+  end
+  input.scan(/(\d+)(\w)/).each do |amount, unit|
+    time += amount.to_i * UNITS[unit]
+  end
+  return time * sign
+end
+
+def main
+  options = OpenStruct.new
+  options.force = false
+
+  puts '---'
+  ARGV.map! { |arg| puts arg; arg.gsub(/^[+-]\d/) { "_#{$&}" } }
+
+  OptionParser.new do |opts|
+    opts.banner = "Usage: git fff [options] +1d2h3m"
+
+    opts.on("-f", "--[no-]force", "Actually apply the changes") do |v|
+      options.force = v
+    end
+
+    opts.on_tail("-h", "--help", "Show this message") do
+      puts opts
+      exit
+    end
+  end.parse!
+
+  if ARGV.size != 1
+    puts "Usage: git fff +1d2h3m"
+    exit 1
+  end
+  offset = parse_duration(ARGV[0])
+  puts offset
+
+  old_commit_data = `git cat-file commit HEAD`
+
+  puts
+  puts "--- BEFORE ---"
+  # puts old_commit_data
+  puts `git log -1 HEAD`
+
+  new_commit_data = old_commit_data.gsub(/( )(\d{9,12})( )/) do
+    "#{$1}#{$2.to_i + offset}#{$3}"
+  end
+
+  puts
+  puts "--- AFTER ---"
+  # puts new_commit_data
+
+  new_commit, status = Open3.capture2(*%w/git hash-object -t commit -w --stdin/, :stdin_data => new_commit_data)
+  new_commit.strip!
+  puts `git log -1 #{new_commit}`
+
+  if options.force
+    puts
+    puts "--- STASH SAVE ---"
+    output = run('git stash save')
+    case output
+    when /HEAD is now at/i
+      stashed = true
+    when /No local changes/i
+      stashed = false
+    else
+      stashed = nil
+    end
+
+    puts
+    puts "--- APPLY NEW COMMIT ID ---"
+    run "git reset --hard #{new_commit}"
+
+    if stashed.nil?
+      puts
+      puts "--- UNSTASH MANUALLY ---"
+      puts "*** Couldn't parse the ouput of prior stash save. Do 'stash pop' manually if needed!"
+    elsif stashed
+      puts
+      puts "--- STASH POP ---"
+      run "git stash pop"
+    end
+    
+    puts
+    puts "--- DONE ---"
+  else
+    puts
+    puts "--- NEW COMMIT ID ---"
+    puts "#{new_commit}"
+  end
+end
+
+main

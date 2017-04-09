@@ -4,8 +4,6 @@ task :zshconfig do
     sh 'rm -f ~/.zshrc ~/.zshenv'
     sh 'ln -s ~/env/config/zshenv ~/.zshenv'
     sh 'ln -s ~/env/config/zshrc ~/.zshrc'
-    sh 'mkdir -p ~/.oh-my-zsh'
-    sh 'ln -s ~/env/config/oh-my-zsh-custom ~/.oh-my-zsh/custom'
 end
 
 desc "Install ssh config"

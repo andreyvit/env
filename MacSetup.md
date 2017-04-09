@@ -574,7 +574,7 @@ Change sudoers (`sudo visudo`) to:
 
 Symlink env from iCloud Drive:
 
-rsync -azrv andreyvit-mbp.local:~/env/ ~/env
+	rsync -azrv andreyvit-mbp.local:~/env/ ~/env
 
 Clone Oh My Zsh:
 
@@ -596,56 +596,13 @@ Rsync the rest of the data:
 	rsync -azrv andreyvit-mbp.local:/Volumes/JetDrive/ ~/JetDrive
 	rsync -azrv andreyvit-mbp.local:/Volumes/JetDrive/Images.sparsebundle ~/JetDrive
 
-After command-line tools and Homebrew installation finishes, install Homebrew packages:
+After command-line tools and Homebrew installation finishes, install packages:
 
-    brew install git-extras
-    brew install autojump
-    brew install autoenv
-    brew install ack
-    brew install cloc
-    brew install rlwrap
-    brew install watch
-    brew install wget
-    brew install node
-    brew install icdiff
-    brew install youtube-dl
-    brew install s3cmd
-    brew install tree
-    brew install httpie
-    brew install --HEAD hub
-    brew install caskroom/cask/brew-cask
-
-After Node installation is finished, add npm packages:
-
-    sudo npm install -g coffee-script
-	sudo npm install -g iced-coffee-script
-	sudo npm install -g express
-	sudo npm install -g jade
-	sudo npm install -g less
-	sudo npm install -g stylus
-	sudo npm install -g supervisor
-	sudo npm install -g json
-	sudo npm install -g bower
-	sudo npm install -g grunt-cli
-	sudo npm install -g http-server
-
-After Homebrew Cask is installed, use it to install some small infrequently used tools:
-
-    brew cask install keyboard-cleaner
-    brew cask install android-file-transfer
-    brew cask install cocoadialog
-    brew cask install hex-fiend
-    brew cask install platypus
-    brew cask install provisionql
-
-Install gems:
-
-	sudo gem install cocoapods
-	sudo gem install jekyll
-	sudo gem install kramdown
-	sudo gem install rake
-	sudo gem install s3_website
-	sudo gem install htty
+	make brew
+	make gems
+	make npm
+	make cask
+	make python
 
 
 ## Step 8. Final Configuration

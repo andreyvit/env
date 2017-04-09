@@ -3,29 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>delegate</string>
+	<string>dres</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>TopLevel</string>
+		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>
-
-// MARK: - Delegate
-
-public protocol &lt;#MyClass#&gt;Delegate: class {
-
-    func &lt;#didSomething#&gt;(in&lt;#MyClass#&gt; &lt;#viewController#&gt;: &lt;#MyClass#&gt;)
-
-}</string>
+	<string>@discardableResult</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>9815262B-4BE6-4A4A-AAF6-1FDE9ABD999C</string>
+	<string>20D3673F-31E1-40FA-80E2-32FBEB5B5A81</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
-	<key>IDECodeSnippetSummary</key>
-	<string>protocol XxxDelegate</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>delegate</string>
+	<string>@discardableResult</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

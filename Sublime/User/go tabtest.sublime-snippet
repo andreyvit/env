@@ -5,15 +5,14 @@ import (
     "testing"
 )
 
-var ${1:foo}Tests = []struct {
-    input    string
-    expected string
-}{
-    {"", ""},
-}
-
-func Test${1/^(\w)(.*)$/\u$1$2/}(t *testing.T) {
-    for _, tt := range ${1}Tests {
+func Test$1(t *testing.T) {
+    tests := []struct {
+        input    string
+        expected string
+    }{
+        {"", ""},
+    }
+    for _, tt := range tests {
         actual := ${2:foo}(tt.input)
         if actual != tt.expected {
             t.Errorf("$2(%q) == %q, expected %q", tt.input, actual, tt.expected)
