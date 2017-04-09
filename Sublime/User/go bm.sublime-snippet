@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[bson.M{$0}]]></content>
+    <tabTrigger>bm</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

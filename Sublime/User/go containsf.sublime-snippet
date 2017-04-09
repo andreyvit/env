@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+
+func contains(list []${1:string}, v ${1:string}) bool {
+    for _, item := range list {
+        if item == v {
+            return true
+        }
+    }
+    return false
+}
+
+]]></content>
+    <tabTrigger>containsf</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

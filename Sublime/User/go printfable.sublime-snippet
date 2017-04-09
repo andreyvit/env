@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+type Printfable interface {
+    Printf(format string, v ...interface{})
+}
+]]></content>
+    <tabTrigger>printfable</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

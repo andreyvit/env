@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+${1:something} := os.Getenv("${2:SOMETHING}")
+if ${1:something} == "" {
+    fmt.Fprintf(os.Stderr, "** missing ${2:SOMETHING} env variable\n")
+    os.Exit(64)  // EX_USAGE
+}
+]]></content>
+    <tabTrigger>getenv</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+${1:locker}.Lock()
+defer ${1:locker}.Unlock()
+]]></content>
+    <tabTrigger>lock</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
