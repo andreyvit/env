@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+prefix = "???: "
+STDIN.each_line do |line|
+  line.strip!
+  if line =~ /^Andrey Tarantsov,/
+    prefix = "Андрей: "
+  elsif line =~ /^Аля,/
+    prefix = "Аля: "
+  elsif line == ''
+    #
+  else
+    puts "#{prefix}#{line}"
+  end
+end
