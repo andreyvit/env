@@ -20,6 +20,10 @@
 	[
 		"Vintage"
 	],
+	"ignored_words":
+	[
+		"refingest"
+	],
 	"indent_guide_options":
 	[
 		"draw_normal",
