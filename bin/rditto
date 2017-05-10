@@ -1,0 +1,53 @@
+#!/bin/bash
+
+action=
+server=
+dry=true
+
+###############################################################################
+TOOLNAME="$(basename "$0")"
+VERSION="0.1"
+BANNER="$TOOLNAME $VERSION: rsync between identical directory structures"
+USAGE="Usage: $TOOLNAME [options] (-d | -u) [-f] <server>"
+# parse command-line options
+while test -n "$1" && $cont_optparse true; do
+    case $1 in
+        -d | --down) # rsync FROM the remote server
+            action=down; shift;;
+        -u | --up) # rsync TO the remote server
+            action=up; shift;;
+        -f | --force) # actually perform the transfer
+            dry=false; shift;;
+        --version) # Display the version number
+            echo "$VERSION"; exit;;
+        --help) # Display this help message
+            echo "$BANNER"; echo
+            echo "$USAGE"; echo
+            echo "Available options:"
+            perl -ne 'printf "  %-15s %s\n", $1, $2 if / {8}(-.*)\) # (.*)$/' $0
+            exit;;
+        -*)
+            echo "** Invalid option $1. Run $TOOLNAME --help for a list of available options." >&2; exit 1;;
+        *)
+            server=$1; shift;;
+    esac
+done
+###############################################################################
+
+test -n "$server" || exec $0 --help
+test -n "$action" || exec $0 --help
+
+lpath="$(pwd)"
+rpath="${lpath/$HOME/~}"
+progress="--info=progress2"
+progress="--progress"
+args=(rsync -azR --delete "$progress")
+$dry && args+=(-n)
+if test "$action" = "down"; then
+    args+=("$server:$rpath" ".")
+else
+    args+=("." "$server:$rpath")
+fi
+
+echo "${args[@]}"
+"${args[@]}"
