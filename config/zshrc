@@ -73,7 +73,7 @@ plugins=(autoenv dircycle dirpersist history-substring-search mosh sublime z git
 
 # User configuration
 
-export PATH=$HOME/bin:~/Dropbox/env/bin:/usr/local/heroku/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:~/env/bin:/usr/local/heroku/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
