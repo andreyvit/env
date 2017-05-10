@@ -134,7 +134,8 @@ end
 desc "Clone SublimePackages.git"
 task :sublime do
     sh 'mkdir -p ~/"Library/Application Support/Sublime Text 3/Packages"'
-    sh 'ln -s ~/Dropbox/env/Sublime/User ~/"Library/Application Support/Sublime Text 3/Packages/User"'
+    sh 'rm -f ~/"Library/Application Support/Sublime Text 3/Packages/User"'
+    sh 'ln -s ~/env/Sublime/User ~/"Library/Application Support/Sublime Text 3/Packages/User"'
 end
 
 desc "Link backup.conf"
