@@ -1,0 +1,34 @@
+<snippet>
+    <content><![CDATA[
+import (
+    "errors"
+    "strconv"
+)
+
+type verbosity int
+
+func (v *verbosity) String() string {
+    return strconv.Itoa(int(*v))
+}
+
+func (v *verbosity) IsBoolFlag() bool {
+    return true
+}
+
+func (v *verbosity) Set(s string) error {
+    if s == "true" {
+        *v = *v + 1
+    } else {
+        n, err := strconv.Atoi(s)
+        if err != nil {
+            return errors.New("verbosity value must be a number")
+        }
+        *v = verbosity(n)
+    }
+    return nil
+}
+
+]]></content>
+    <tabTrigger>verbosity</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

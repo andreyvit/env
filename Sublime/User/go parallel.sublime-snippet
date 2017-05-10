@@ -1,0 +1,27 @@
+<snippet>
+    <content><![CDATA[
+    errc := make(chan error, 2)
+    fooc := make(chan Foo, 1)
+    barc := make(chan Bar, 1)
+
+    go func() {
+        f, err := foo()
+        errc <- err
+        fooc <- f
+    }()
+
+    go func() {
+        b, err := bar()
+        errc <- err
+        rowsc <- b
+    }()
+
+    var errs multierror.Accumulator
+    for i := 0; i < cap(errc); i++ {
+        errs.Push(<-errc)
+    }
+    return <-fooc, <-barc, errs.Error()
+]]></content>
+    <tabTrigger>parallel</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

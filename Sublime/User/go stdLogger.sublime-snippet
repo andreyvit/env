@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+type stdLogger struct{}
+
+func (l stdLogger) Printf(format string, v ...interface{}) {
+    log.Printf(format, v...)
+}
+
+]]></content>
+    <tabTrigger>stdLogger</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

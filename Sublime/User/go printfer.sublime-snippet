@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+// Printfer is a logger with a standard Printf method, for example, *log.Logger.
+type Printfer interface {
+    Printf(format string, v ...interface{})
+}
+]]></content>
+    <tabTrigger>printfer</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
