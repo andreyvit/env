@@ -39,12 +39,12 @@ test -n "$action" || exec $0 --help
 
 lpath="$(pwd)"
 rpath="${lpath/$HOME/~}"
-progress="--info=progress2"
 progress="--progress"
-args=(rsync -azR --delete "$progress")
+progress="--info=progress2"
+args=(rsync -azh --delete "$progress")
 $dry && args+=(-n)
 if test "$action" = "down"; then
-    args+=("$server:$rpath" ".")
+    args+=("$server:$rpath/" ".")
 else
     args+=("." "$server:$rpath")
 fi
