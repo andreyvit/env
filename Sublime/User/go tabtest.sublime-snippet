@@ -1,7 +1,6 @@
 <snippet>
     <content><![CDATA[
 import (
-    "fmt"
     "testing"
 )
 
@@ -15,9 +14,9 @@ func Test$1(t *testing.T) {
     for _, tt := range tests {
         actual := ${2:foo}(tt.input)
         if actual != tt.expected {
-            t.Errorf("$2(%q) == %q, expected %q", tt.input, actual, tt.expected)
+            t.Errorf("** $2(%q) == %q, expected %q", tt.input, actual, tt.expected)
         } else {
-            t.Logf("$2(%q) == %q", tt.input, actual)
+            t.Logf("✓ $2(%q) == %q", tt.input, actual)
         }
     }
 }

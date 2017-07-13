@@ -1,7 +1,6 @@
 <snippet>
     <content><![CDATA[
 import (
-    "fmt"
     "testing"
 )
 
@@ -16,9 +15,9 @@ func Test$1(t *testing.T) {
         ${3:actual} := ${2:foo}(tt.input)
         actualStr := ${4:${2}ResultToString}($3)
         if actualStr != tt.expected {
-            t.Errorf("$2(%q) == %s, expected %s", tt.input, actualStr, tt.expected)
+            t.Errorf("** $2(%q) == %s, expected %s", tt.input, actualStr, tt.expected)
         } else {
-            t.Logf("$2(%q) == %s", tt.input, actualStr)
+            t.Logf("✓ $2(%q) == %s", tt.input, actualStr)
         }
     }
 }
