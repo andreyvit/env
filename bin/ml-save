@@ -1,0 +1,18 @@
+#!/bin/bash
+source "$(dirname "${BASH_SOURCE[0]}")/ml-commons"
+
+dsname="$1"
+if test -z "$dsname"; then
+    echo "** Please pass dataset name on the command line."
+    exit 1
+fi
+
+dsdesc="$2"
+if test -z "$dsdesc"; then
+    read -e -p "Describe dataset (format: v1-k1_v1-k2_v2-...): " dsdesc
+fi
+
+dstimestamp="$(ml_make_timestamp)"
+
+ml_ds_save "$dsname" "$dsdesc" "$dstimestamp"
+echo "✓ $dsid"

@@ -1,0 +1,199 @@
+#!/bin/bash
+source "$(dirname "${BASH_SOURCE[0]}")/ml-commons"
+#
+# Usage: ml-run <cmdfile> <opt>=<value>... <input>=<dataset>...
+#
+# Where <cmdfile> is a text file (with no extension or .sh extension) like:
+#
+#    cmd_options=(foo bar)
+#    cmd_inputs=(vectors train eval)
+#    cmd_outputs=(fubar)
+#    cmd_run() {
+#      python something.py
+#    }
+#
+# that defines the options, inputs, outputs and the commands to run.
+# (Your cmd_run is invoked in set -e mode, so a failed command will halt execution.)
+#
+# You can specify default values for options and inputs using v_<key>:
+#
+#     v_foo=something
+#     v_vectors=glove_300
+#
+# To provide defaults that depend on other user-provided options, you can
+# define cmd_defaults function:
+#
+#     cmd_options=(dims)
+#     cmd_inputs=(vectors)
+#     cmd_defaults() {
+#       v_vectors=glove_${v_dims}
+#     }
+#
+# All options and inputs that don't have a default value must be provided
+# on the command line.
+#
+# When running the command, the inputs will be symlinked under the current
+# directory, and the outputs are expected as subfolder.
+#
+# All outputs will be automatically saved as datasets and can be used by
+# future commands.
+#
+
+cmdfile="$1"; shift
+if test -z "$cmdfile"; then
+    echo "** Please pass command name on the command line."
+    exit 1
+fi
+if ! test -f "$cmdfile"; then
+    echo "** File must exist: $cmdfile"
+    exit 1
+fi
+cmdname="$(basename "$cmdfile" .sh)"
+
+cmd_defaults() {
+    true
+}
+
+echo "▸ Loading command def"
+source "$cmdfile"
+
+echo "▸ Checking options"
+
+# set have_opt_<key> and have_inp_<key> for all valid options and inputs
+for opt in ${cmd_options[@]}; do
+    declare have_opt_${opt}=y
+done
+for opt in ${cmd_inputs[@]}; do
+    declare have_inp_${opt}=y
+done
+
+# parse all options and inputs given on the command line
+while test -n "$1"; do
+    arg="$1"
+    key="${arg%%=*}"
+    val="${arg#*=}"
+    opt_check="have_opt_$key"
+    inp_check="have_inp_$key"
+    if test -n "${!opt_check}"; then
+        declare v_$key="$val"
+    elif test -n "${!inp_check}"; then
+        dsid="$(ml_ds_resolve $val)"
+        if test -z "$dsid"; then
+            echo "** Unknown dataset $val for $key"
+            exit 1
+        fi
+
+        declare v_$key="$dsid" explicit_$key=y
+        ml_ds_get "$dsid"
+    else
+        echo "** Unknown option $key"
+        exit 1
+    fi
+    shift
+done
+
+# apply any dynamic defaults that the command might have defined
+cmd_defaults
+
+# check that all options are provided, and also build a one-line description of them
+optdesc=""
+for key in ${cmd_options[@]}; do
+    val_var="v_$key"; val=${!val_var}
+    if test -z "$val"; then
+        echo "** Please specify value for $key ($key=something)"
+        exit 1
+    fi
+    optdesc="${optdesc}-${key}_${val}"
+done
+
+# check that all inputs are provided, and resolve datasets for default values
+for key in ${cmd_inputs[@]}; do
+    val_var="v_$key"; dsid=${!val_var}
+    expl_var="explicit_$key"; expl=${!expl_var}
+    if test -z "$expl" && test -n "$dsid"; then
+        dsid="$(ml_ds_resolve $dsid)"
+        if test -z "$dsid"; then
+            echo "** Cannot find default dataset ${!val_var} for $key"
+            exit 1
+        fi
+        declare v_$key="$dsid"
+        ml_ds_get "$dsid"
+    fi
+    if test -z "$dsid"; then
+        echo "** Please specify $key dataset ($key=someds)"
+        exit 1
+    fi
+    echo "    $key → $dsid"
+done
+
+# create the working directory for the run
+ts="$(ml_make_timestamp)"
+runid="${cmdname}-${ts}${optdesc}"
+rundir="$MLROOT/tmp-runs/$runid"
+runmf="$rundir/manifest.txt"
+mkdir -p "$rundir"
+cd "$rundir"
+
+# generate the run manifest
+echo "runid=${runid}" >>$runmf
+echo "cmdname=${cmdname}" >>$runmf
+echo "tmstart=${ts}" >>$runmf
+for key in ${cmd_options[@]}; do
+    val_var="v_$key"; val=${!val_var}
+    echo "$key=$val" >>$runmf
+done
+echo "" >>$runmf
+for key in ${cmd_inputs[@]}; do
+    val_var="v_$key"; dsid=${!val_var}
+    echo "$key=$dsid" >>$runmf
+done
+
+# symlink all inputs
+for key in ${cmd_inputs[@]}; do
+    val_var="v_$key"; dsid=${!val_var}
+    ln -s "$MLROOT/ds/${dsid}" "$key"
+done
+
+# mkdir all outputs
+for key in ${cmd_outputs[@]}; do
+    mkdir "$key"
+done
+
+# run it!
+echo
+echo "▸ Starting $runid"
+echo
+${cmd[@]} 2>&1 | tee "$rundir/output.txt"
+# ${cmd[@]}
+
+echo "" >>$runmf
+echo "tmend=$(ml_make_timestamp)" >>$runmf
+
+# save all outputs as datasets
+echo
+echo "▸ Saving outputs"
+echo
+for key in ${cmd_outputs[@]}; do
+    cp $runmf $key/
+done
+echo "" >>$runmf
+for key in ${cmd_outputs[@]}; do
+    cd "$rundir/$key"
+    ml_ds_save $key "${optdesc#-}" "$ts"
+    echo "$key=$dsid" >>$runmf
+done
+
+# remove all input symlinks
+for key in ${cmd_inputs[@]}; do
+    rm "$rundir/$key"
+done
+cd "$rundir"
+
+# move the manifest and output.txt from /tmp-runs/ to /runs/
+mkdir -p "$MLROOT/runs"
+mv $rundir $MLROOT/runs/
+
+echo
+echo "✓ Finished"
+echo
+cat "$MLROOT/runs/$runid/manifest.txt"

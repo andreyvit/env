@@ -1,0 +1,82 @@
+#!/bin/bash
+if test -z "$MLROOT"; then
+    echo "** Please set \$MLROOT."
+    exit 1
+fi
+
+set -e
+
+ml_ds_get_size() {
+    local a="$1"
+    local b=${a##*-}
+    if test "$a" != "$b"; then
+        local c=${b%K}
+        if test "$c" != "$b"; then
+            echo "$c"
+        fi
+    fi
+}
+
+ml_ds_resolve() {
+    if test -f "$MLROOT/dsxz/$1.tar.xz"; then
+        echo "$1"
+    else
+        latest="$(ls -1 $MLROOT/dsxz/$1-*.tar.xz 2>/dev/null | sort | tail -1)"
+        if test -n "$latest"; then
+            basename $latest .tar.xz
+        fi
+    fi
+}
+
+ml_make_timestamp() {
+    date -u '+%Y%m%dT%H%M%S'
+}
+
+ml_ds_get() {
+    local dsid="$1"
+    local dssize="$(ml_ds_get_size $dsid)"
+    if test -z "$dssize"; then
+        echo "** Invalid ID '$dsid': size unknown"
+        exit 1
+    fi
+
+    local dsdir="$MLROOT/ds/${dsid}"
+
+    if ! test -d "$dsdir"; then
+        local dszip="$MLROOT/dsxz/${dsid}.tar.xz"
+        if ! test -f "$dszip"; then
+            echo "** $dsid is not available"
+            exit 1
+        fi
+
+        echo "▸ Decompressing $dsid"
+        mkdir -p "$dsdir"
+        cd "$dsdir"
+        pv -cN read "$dszip" | xz -d | pv -cN decompress -s "${dssize}K" | tar -xf -
+    fi
+}
+
+# returns $dsid defined
+ml_ds_save() {
+    local dsname="$1"
+    local dsdesc="$2"
+    local dstimestamp="$3"
+
+    echo "▸ Computing size of $dsname"
+    dssize="$(du -ck | tail -1 | cut -f1)"
+
+    dsid="${dsname}-${dstimestamp}-${dsdesc}-${dssize}K"
+    local dsdir="$MLROOT/ds/${dsid}"
+    local dszip="$MLROOT/dsxz/${dsid}.tar.xz"
+    local dsziptmp="$MLROOT/tmp-dsxz/${dsid}.tar.xz"
+
+    echo "▸ Moving into "$dsdir""
+    mv "$(pwd)" "$dsdir"
+    cd "$dsdir"
+
+    echo "▸ Compressing into $(basename "$dszip")"
+    mkdir -p "$(dirname "$dsziptmp")"
+    tar -cf- . | pv -cN read -s "${dssize}K" | xz -9 | pv -cN compress > "$dsziptmp"
+    mkdir -p "$(dirname "$dszip")"
+    mv "$dsziptmp" "$dszip"
+}

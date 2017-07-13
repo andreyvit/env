@@ -1,0 +1,11 @@
+#!/bin/bash
+source "$(dirname "${BASH_SOURCE[0]}")/ml-commons"
+
+dsid="$(ml_ds_resolve $1)"
+if test -z "$dsid"; then
+    echo "** Please pass valid existing dataset id on the command line."
+    exit 1
+fi
+
+ml_ds_get "$dsid"
+echo "$dsid"
