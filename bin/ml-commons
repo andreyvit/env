@@ -4,7 +4,7 @@ if test -z "$MLROOT"; then
     exit 1
 fi
 
-set -e
+set -eo pipefail
 
 ml_ds_get_size() {
     local a="$1"
@@ -61,6 +61,13 @@ ml_ds_save() {
     local dsname="$1"
     local dsdesc="$2"
     local dstimestamp="$3"
+
+    if test -f _dsdesc.txt; then
+        dsdesc="${dsdesc#-}"
+        dsdesc="${dsdesc}-$(cat _dsdesc.txt)"
+        dsdesc="${dsdesc#-}"
+        rm _dsdesc.txt
+    fi
 
     echo "▸ Computing size of $dsname"
     dssize="$(du -ck | tail -1 | cut -f1)"

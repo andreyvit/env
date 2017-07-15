@@ -8,4 +8,4 @@ if test -z "$dsid"; then
 fi
 
 ml_ds_get "$dsid"
-echo "$dsid"
+echo "$MLROOT/ds/$dsid"

@@ -39,6 +39,36 @@ source "$(dirname "${BASH_SOURCE[0]}")/ml-commons"
 # future commands.
 #
 
+draft_mode=false
+###############################################################################
+TOOLNAME="$(basename "$0")"
+VERSION="0.1"
+BANNER="$TOOLNAME $VERSION: run ML command"
+USAGE="Usage: $TOOLNAME [options] <cmdfile> <opt>=<value>... <input>=<dataset>..."
+# parse command-line options
+while test -n "$1" && $cont_optparse true; do
+    case $1 in
+        -d | --draft) # Don't save the results
+            draft_mode=true; shift;;
+        --version) # Display the version number
+            echo "$VERSION"; exit;;
+        --help) # Display this help message
+            echo "$BANNER"; echo
+            echo "$USAGE"; echo
+            echo "Available options:"
+            perl -ne 'printf "  %-15s %s\n", $1, $2 if / {8}(--\S*)\) # (.*)$/' $0
+            exit;;
+        --)
+            cont_optparse=false; shift;;
+        -*)
+            echo "** Invalid option $1. Run $TOOLNAME --help for a list of available options." >&2; exit 1;;
+        *)
+            cont_optparse=false;;
+    esac
+done
+###############################################################################
+
+
 cmdfile="$1"; shift
 if test -z "$cmdfile"; then
     echo "** Please pass command name on the command line."
@@ -129,8 +159,15 @@ done
 # create the working directory for the run
 ts="$(ml_make_timestamp)"
 runid="${cmdname}-${ts}${optdesc}"
-rundir="$MLROOT/tmp-runs/$runid"
-runmf="$rundir/manifest.txt"
+if $draft_mode; then
+    # more convenient to always run in the same folder
+    rundir="$MLROOT/tmp-runs/${cmdname}-draft"
+    rm -rf "$rundir"
+else
+    # make all runs isolated
+    rundir="$MLROOT/tmp-runs/$runid"
+fi
+runmf="$rundir/_manifest.txt"
 mkdir -p "$rundir"
 cd "$rundir"
 
@@ -163,37 +200,48 @@ done
 echo
 echo "▸ Starting $runid"
 echo
-${cmd[@]} 2>&1 | tee "$rundir/output.txt"
+cmd_run 2>&1 | tee "$rundir/_output.txt"
 # ${cmd[@]}
 
 echo "" >>$runmf
 echo "tmend=$(ml_make_timestamp)" >>$runmf
 
-# save all outputs as datasets
-echo
-echo "▸ Saving outputs"
-echo
-for key in ${cmd_outputs[@]}; do
-    cp $runmf $key/
-done
-echo "" >>$runmf
-for key in ${cmd_outputs[@]}; do
-    cd "$rundir/$key"
-    ml_ds_save $key "${optdesc#-}" "$ts"
-    echo "$key=$dsid" >>$runmf
-done
+if ! $draft_mode; then
+    # save all outputs as datasets
+    echo
+    echo "▸ Saving outputs"
+    echo
+    for key in ${cmd_outputs[@]}; do
+        cp $runmf $key/_manifest.txt
+    done
+    echo "" >>$runmf
+    for key in ${cmd_outputs[@]}; do
+        cd "$rundir/$key"
+        ml_ds_save $key "${optdesc#-}" "$ts"
+        echo "$key=$dsid" >>$runmf
+    done
 
-# remove all input symlinks
-for key in ${cmd_inputs[@]}; do
-    rm "$rundir/$key"
-done
-cd "$rundir"
+    # remove all input symlinks
+    for key in ${cmd_inputs[@]}; do
+        rm "$rundir/$key"
+    done
+    cd "$rundir"
 
-# move the manifest and output.txt from /tmp-runs/ to /runs/
-mkdir -p "$MLROOT/runs"
-mv $rundir $MLROOT/runs/
+    # move the working directory from /tmp-runs/ to /runs/
+    mkdir -p "$MLROOT/runs"
+    mv $rundir $MLROOT/runs/
 
-echo
-echo "✓ Finished"
-echo
-cat "$MLROOT/runs/$runid/manifest.txt"
+    echo
+    echo "✓ Finished"
+    echo
+    cat "$MLROOT/runs/$runid/_manifest.txt"
+    echo
+    echo "see: $MLROOT/runs/$runid"
+else
+    echo
+    echo "✓ Finished (draft mode)"
+    echo
+    cat "$rundir/_manifest.txt"
+    echo
+    echo "see: $rundir"
+fi
