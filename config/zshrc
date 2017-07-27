@@ -69,7 +69,7 @@ ZSH_CUSTOM=~/env/config/oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autoenv dircycle dirpersist history-substring-search mosh sublime z git gitignore golang brew npm pod nyan xcode sudo osx)
+plugins=(dircycle dirpersist history-substring-search mosh sublime z git gitignore golang brew npm pod nyan xcode sudo osx)
 
 # User configuration
 

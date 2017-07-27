@@ -61,6 +61,7 @@ brew:
 	brew install pt
 	brew install mongodb
 	brew install go
+	brew install direnv
 	brew tap caskroom/cask
 	brew services start mongodb
 	# brew install caskroom/cask/brew-cask
