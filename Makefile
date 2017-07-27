@@ -1,6 +1,31 @@
 .PHONY: karabiner ohmyzsh brew gems npm cask python
 
-all: karabiner ohmyzsh hammerspoon kwm brew gems npm cask python
+all: zshconfig sshconfig gitconfig gemconfig emacsconfig ohmyzsh hammerspoon kwm brew gems npm cask python
+
+all-linux: zshconfig sshconfig gitconfig gemconfig emacsconfig ohmyzsh
+
+zshconfig:
+    chsh -s /bin/zsh
+    rm -f ~/.zshrc ~/.zshenv
+    ln -s ~/env/config/zshenv ~/.zshenv
+    ln -s ~/env/config/zshrc ~/.zshrc
+
+sshconfig:
+    mkdir -p -m 700 ~/.ssh
+    rm -f ~/.ssh/config
+    ln -s ~/env/config/ssh-config ~/.ssh/config
+
+gitconfig:
+    rm -f ~/.gitconfig
+    ln -s ~/env/config/gitconfig ~/.gitconfig
+
+gemconfig:
+    rm -f ~/.gemrc
+    ln -s ~/env/config/gemrc ~/.gemrc
+
+emacsconfig:
+    rm -f ~/.emacs
+    ln -s ~/env/config/emacs ~/.emacs
 
 karabiner:
 	rm -rf  ~/Library/'Application Support'/Karabiner
@@ -41,7 +66,7 @@ brew:
 	brew services start mongodb
 	# brew install caskroom/cask/brew-cask
 
-gems:
+gems-mac:
 	sudo gem install cocoapods
 	sudo gem install jekyll
 	sudo gem install kramdown

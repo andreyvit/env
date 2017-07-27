@@ -1,39 +1,3 @@
-
-task :zshconfig do
-    sh 'chsh -s /bin/zsh'
-    sh 'rm -f ~/.zshrc ~/.zshenv'
-    sh 'ln -s ~/env/config/zshenv ~/.zshenv'
-    sh 'ln -s ~/env/config/zshrc ~/.zshrc'
-end
-
-desc "Install ssh config"
-task :sshconfig do
-    sh 'mkdir -p -m 700 ~/.ssh'
-    sh 'rm -f ~/.ssh/config'
-    sh 'ln -s ~/env/config/ssh-config ~/.ssh/config'
-end
-
-desc "Install global Git config"
-task :gitconfig do
-    sh 'rm -f ~/.gitconfig'
-    sh 'ln -s ~/env/config/gitconfig ~/.gitconfig'
-end
-
-desc 'Install gem config'
-task :gemconfig do
-    sh 'rm -f ~/.gemrc'
-    sh 'ln -s ~/env/config/gemrc ~/.gemrc'
-end
-
-desc 'Install Emacs config'
-task :emacsconfig do
-    sh 'rm -f ~/.emacs'
-    sh 'ln -s ~/env/config/emacs ~/.emacs'
-end
-
-desc "Install all configs"
-task :config => [:zshconfig, :sshconfig, :gitconfig, :gemconfig, :emacsconfig]
-
 desc "Install Homebrew"
 task :brew do
     sh '/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"'
@@ -145,4 +109,4 @@ task :backup do
 end
 
 desc "Install everything"
-task :all => [:config, :brewpkg, :npmpkg, :sublime, :itunes, :xcode_user_data, :backup]
+task :all => [:brewpkg, :npmpkg, :sublime, :itunes, :xcode_user_data, :backup]
