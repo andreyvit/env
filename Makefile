@@ -5,7 +5,6 @@ all: zshconfig sshconfig gitconfig gemconfig emacsconfig ohmyzsh hammerspoon kwm
 all-linux: zshconfig sshconfig gitconfig gemconfig emacsconfig ohmyzsh
 
 zshconfig:
-	chsh -s /bin/zsh
 	rm -f ~/.zshrc ~/.zshenv
 	ln -s ~/env/config/zshenv ~/.zshenv
 	ln -s ~/env/config/zshrc ~/.zshrc
