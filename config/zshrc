@@ -79,6 +79,10 @@ export PATH=$HOME/bin:~/env/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local
 if test -d /usr/local/go/bin; then
   export PATH=$PATH:/usr/local/go/bin
 fi
+if test -d /usr/local/cuda; then
+  export PATH=$PATH:/usr/local/cuda/bin
+  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+fi
 
 source $ZSH/oh-my-zsh.sh
 
