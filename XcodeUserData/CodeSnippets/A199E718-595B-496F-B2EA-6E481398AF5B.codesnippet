@@ -9,7 +9,7 @@
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>NSLayoutConstraint.activateConstraints([
+	<string>NSLayoutConstraint.activate([
     &lt;#constraints#&gt;
 ])</string>
 	<key>IDECodeSnippetIdentifier</key>

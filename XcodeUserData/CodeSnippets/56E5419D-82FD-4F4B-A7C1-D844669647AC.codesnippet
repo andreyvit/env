@@ -3,24 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>c_sides</string>
+	<string>c_edges</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>&lt;#first#&gt;.leftAnchor.constraintEqualToAnchor(&lt;#second#&gt;.leftAnchor),
-&lt;#first#&gt;.rightAnchor.constraintEqualToAnchor(&lt;#second#&gt;.rightAnchor),
-&lt;#first#&gt;.topAnchor.constraintEqualToAnchor(&lt;#second#&gt;.topAnchor),
-&lt;#first#&gt;.bottomAnchor.constraintEqualToAnchor(&lt;#second#&gt;.bottomAnchor),</string>
+	<string>&lt;#first#&gt;.leftAnchor.constraint(equalTo: &lt;#second#&gt;.leftAnchor),
+&lt;#first#&gt;.rightAnchor.constraint(equalTo: &lt;#second#&gt;.rightAnchor),
+&lt;#first#&gt;.topAnchor.constraint(equalTo: &lt;#second#&gt;.topAnchor),
+&lt;#first#&gt;.bottomAnchor.constraint(equalTo: &lt;#second#&gt;.bottomAnchor),</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>56E5419D-82FD-4F4B-A7C1-D844669647AC</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>contrainEqualToAnchor for all sides</string>
+	<string>contrain(equalTo:) for all sides</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>c_sides</string>
+	<string>c_edges</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

@@ -246,195 +246,23 @@
 			</dict>
 			<dict>
 				<key>Action</key>
-				<string>moveCurrentLineUp:</string>
+				<string>renameRefactor:</string>
 				<key>Alternate</key>
 				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
 				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
-				<key>Group</key>
-				<string>Editor Menu for Asset Catalog</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>~p</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
-				<key>Title</key>
-				<string>Move Line Up</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>moveCurrentLineDown:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>Group</key>
-				<string>Editor Menu for Asset Catalog</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>~n</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
-				<key>Title</key>
-				<string>Move Line Down</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>moveCurrentLineUp:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
-				<key>Group</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Editor Menu for Playground</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEPlaygroundEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>~p</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
-				<key>Title</key>
-				<string>Move Line Up</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>moveCurrentLineDown:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>Group</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Editor Menu for Playground</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEPlaygroundEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>~n</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
-				<key>Title</key>
-				<string>Move Line Down</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>moveCurrentLineUp:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
+				<string>Xcode.IDEPegasusSourceEditor.CmdDefinition.Refactor.Rename</string>
 				<key>Group</key>
 				<string>Editor Menu for Source Code</string>
 				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Editor</string>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>~p</string>
+				<string>^r</string>
 				<key>Navigation</key>
 				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
 				<key>Title</key>
-				<string>Move Line Up</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>moveCurrentLineDown:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>~n</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
-				<key>Title</key>
-				<string>Move Line Down</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>moveCurrentLineUp:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineUp</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>~p</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
-				<key>Title</key>
-				<string>Move Line Up</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>moveCurrentLineDown:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.MoveLineDown</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>~n</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Structure</string>
-				<key>Title</key>
-				<string>Move Line Down</string>
+				<string>Rename…</string>
 			</dict>
 			<dict>
 				<key>Action</key>
