@@ -76,6 +76,10 @@ plugins=(autoenv dircycle dirpersist history-substring-search mosh sublime z git
 export PATH=$HOME/bin:~/env/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
+if test -d /usr/local/go/bin; then
+  export PATH=$PATH:/usr/local/go/bin
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -178,7 +182,7 @@ test -f ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zs
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi
 
 # if [ -f `brew --prefix`/etc/autojump ]; then
 #   . `brew --prefix`/etc/autojump
