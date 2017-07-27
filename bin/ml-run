@@ -40,6 +40,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/ml-commons"
 #
 
 draft_mode=false
+dry_run=
 ###############################################################################
 TOOLNAME="$(basename "$0")"
 VERSION="0.1"
@@ -48,6 +49,8 @@ USAGE="Usage: $TOOLNAME [options] <cmdfile> <opt>=<value>... <input>=<dataset>..
 # parse command-line options
 while test -n "$1" && $cont_optparse true; do
     case $1 in
+        -n | --dry-run) # Don't run the commands, only show the command lines
+            dry_run=true; shift;;
         -d | --draft) # Don't save the results
             draft_mode=true; shift;;
         --version) # Display the version number
@@ -83,6 +86,8 @@ cmdname="$(basename "$cmdfile" .sh)"
 cmd_defaults() {
     true
 }
+
+export SRCROOT="$(pwd)"
 
 echo "▸ Loading command def"
 source "$cmdfile"
