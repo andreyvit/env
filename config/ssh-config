@@ -93,6 +93,9 @@ Host heroku.ascendo
 Host chewy
   HostName chewy.tarantsov.com
 
+Host grief
+  HostName 94.130.22.123
+
 Host nfsn-lr
   HostName ssh.phx.nearlyfreespeech.net
   User andreyvit_livereload
