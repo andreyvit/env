@@ -1,8 +1,11 @@
 #!/bin/bash
 
 action=
+action_name=
 server=
 dry=true
+dry_name="(dry run)"
+flags=()
 
 ###############################################################################
 TOOLNAME="$(basename "$0")"
@@ -13,10 +16,11 @@ USAGE="Usage: $TOOLNAME [options] (-d | -u) [-f] <server>"
 while test -n "$1" && $cont_optparse true; do
     case $1 in
         -d | --down) # rsync FROM the remote server
-            action=down; shift;;
+            action_name=DOWNLOAD; flags+=(--down); action=down; shift;;
         -u | --up) # rsync TO the remote server
-            action=up; shift;;
+            action_name=UPLOAD; flags+=(--up); action=up; shift;;
         -f | --force) # actually perform the transfer
+            dry_name="(**REAL RUN**)"
             dry=false; shift;;
         --version) # Display the version number
             echo "$VERSION"; exit;;
@@ -34,8 +38,38 @@ while test -n "$1" && $cont_optparse true; do
 done
 ###############################################################################
 
+ask() {
+    # https://djm.me/ask
+    local prompt default reply
+    while true; do
+        if [ "${2:-}" = "Y" ]; then
+            prompt="Y/n"; default=Y
+        elif [ "${2:-}" = "N" ]; then
+            prompt="y/N"; default=N
+        else
+            prompt="y/n"; default=
+        fi
+
+        # Ask the question (not using "read -p" as it uses stderr not stdout)
+        echo -n "$1 [$prompt] "
+
+        # Read the answer (use /dev/tty in case stdin is redirected from somewhere else)
+        read reply </dev/tty
+
+        if [ -z "$reply" ]; then
+            reply=$default
+        fi
+
+        case "$reply" in
+            Y*|y*) return 0 ;;
+            N*|n*) return 1 ;;
+        esac
+    done
+}
+
 test -n "$server" || exec $0 --help
 test -n "$action" || exec $0 --help
+flags+=($server)
 
 lpath="$(pwd)"
 rpath="${lpath/$HOME/~}"
@@ -49,5 +83,13 @@ else
     args+=("." "$server:$rpath")
 fi
 
+echo "▸ ${action_name} ${dry_name} $server"
+
 echo "${args[@]}"
 "${args[@]}"
+
+if $dry; then
+    if ask "${action_name} for real?" N; then
+        exec -- "$0" --force "${flags[@]}"
+    fi
+fi
