@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+for k, cand := range ${1:themap} {
+    if cand == ${2:item} {
+        delete($1, k)
+        break
+    }
+}
+]]></content>
+    <tabTrigger>remove_map</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
