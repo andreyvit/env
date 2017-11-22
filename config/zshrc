@@ -73,7 +73,7 @@ plugins=(dircycle dirpersist history-substring-search mosh sublime z git gitigno
 
 # User configuration
 
-export PATH=$HOME/bin:~/env/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=~/bin:~/.yarn/bin:~/env/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 if test -d /usr/local/go/bin; then
@@ -208,3 +208,5 @@ if [ -f '/Users/andreyvit/google-cloud-sdk/completion.zsh.inc' ]; then source '/
 
 if which direnv >/dev/null; then eval "$(direnv hook zsh)"; fi
 
+alias pt='pt --nogroup'
+alias ptg='pt --group'
