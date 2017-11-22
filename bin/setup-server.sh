@@ -6,11 +6,11 @@ if test $EUID -ne 0; then
    exit 1
 fi
 
-# apt-get install -y software-properties-common
-# apt-get update
+apt-get install -y software-properties-common
+apt-get update
 apt-get dist-upgrade -y
 
-apt-get install -y fail2ban unattended-upgrades logwatch zsh direnv pv mosh
+apt-get install -y fail2ban unattended-upgrades logwatch zsh direnv pv mosh bsdtar glances
 perl -i -pe 's!^/usr/sbin/logwatch .*!/usr/sbin/logwatch --output mail --mailto andrey@tarantsov.com --detail high!' /etc/cron.daily/00logwatch
 
 perl -i -pe 's/\) ALL/) NOPASSWD:ALL/' /etc/sudoers
@@ -23,6 +23,7 @@ grep -q '^IPV6=yes$' /etc/default/ufw
 ufw allow 22
 ufw allow 80
 ufw allow 443
+ufw allow 3000:3099/tcp
 ufw allow 60000:61000/udp
 ufw --force enable
 
@@ -72,6 +73,14 @@ fi
 if ! which go; then
     wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
     tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
+fi
+
+if ! which java >/dev/null; then
+    echo
+    echo "Please install Java using this tutorial:"
+    echo
+    echo "    http://tipsonubuntu.com/2016/07/31/install-oracle-java-8-9-ubuntu-16-04-linux-mint-18/"
+    echo
 fi
 
 ################################################################################
