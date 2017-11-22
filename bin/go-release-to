@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+cmd=$(basename $(pwd))
+host="$1"
+path="${2%/}"
+if test -z "$path"; then
+    echo "** Usage: go-release-to <host> <path>"
+    exit 1
+fi
+
+set -x
+GOOS=linux GOARCH=amd64 go build -o /tmp/$cmd && \
+    scp /tmp/$cmd "$host":"$path/$cmd.new" && \
+    ssh "$host" mv "$path/$cmd.new" "$path/$cmd" && \
+    ssh "$host" killall "$cmd"
