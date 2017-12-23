@@ -8,72 +8,6 @@
 		<array>
 			<dict>
 				<key>Action</key>
-				<string>performAlertEvent:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandID</key>
-				<string>48DE7C29-9E1A-4EE3-BFE4-C1C9E6A3755F-16808-0000357191933D51</string>
-				<key>Group</key>
-				<string>Xcode Menu</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEKit.MenuDefinition.Xcode</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>@</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Behaviors</string>
-				<key>Title</key>
-				<string>Coding</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>performAlertEvent:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandID</key>
-				<string>8B4C3D05-353E-4659-A096-C06F4D6DDB30-16808-0000357523A24667</string>
-				<key>Group</key>
-				<string>Xcode Menu</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEKit.MenuDefinition.Xcode</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>@</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Behaviors</string>
-				<key>Title</key>
-				<string>Images</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>performAlertEvent:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandID</key>
-				<string>A002B8E1-49D9-4589-A440-EF5E0D53A176-16808-00003583AD451560</string>
-				<key>Group</key>
-				<string>Xcode Menu</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEKit.MenuDefinition.Xcode</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>@</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Behaviors</string>
-				<key>Title</key>
-				<string>Console</string>
-			</dict>
-			<dict>
-				<key>Action</key>
 				<string>openDocument:</string>
 				<key>Alternate</key>
 				<string>NO</string>
@@ -114,158 +48,6 @@
 			</dict>
 			<dict>
 				<key>Action</key>
-				<string>jumpToPreviousCounterpart:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
-				<key>Group</key>
-				<string>Navigate Menu for Source Code</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>^q</string>
-				<key>Navigation</key>
-				<string>YES</string>
-				<key>Title</key>
-				<string>Jump to Previous Counterpart</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>jumpToPreviousCounterpartWithAlternate:</string>
-				<key>Alternate</key>
-				<string>YES</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
-				<key>Group</key>
-				<string>Navigate Menu for Source Code</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>^~q</string>
-				<key>Navigation</key>
-				<string>YES</string>
-				<key>Title</key>
-				<string>Jump to Previous Counterpart (option)</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>jumpToPreviousCounterpartWithShiftPlusAlternate:</string>
-				<key>Alternate</key>
-				<string>YES</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
-				<key>Group</key>
-				<string>Navigate Menu for Source Code</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>^~$Q</string>
-				<key>Navigation</key>
-				<string>YES</string>
-				<key>Title</key>
-				<string>Jump to Previous Counterpart (shift+option)</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>jumpToPreviousCounterpart:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
-				<key>Group</key>
-				<string>Navigate Menu for Source Code Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>^q</string>
-				<key>Navigation</key>
-				<string>YES</string>
-				<key>Title</key>
-				<string>Jump to Previous Counterpart</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>jumpToPreviousCounterpartWithAlternate:</string>
-				<key>Alternate</key>
-				<string>YES</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
-				<key>Group</key>
-				<string>Navigate Menu for Source Code Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>^~q</string>
-				<key>Navigation</key>
-				<string>YES</string>
-				<key>Title</key>
-				<string>Jump to Previous Counterpart (option)</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>jumpToPreviousCounterpartWithShiftPlusAlternate:</string>
-				<key>Alternate</key>
-				<string>YES</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
-				<key>Group</key>
-				<string>Navigate Menu for Source Code Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>^~$Q</string>
-				<key>Navigation</key>
-				<string>YES</string>
-				<key>Title</key>
-				<string>Jump to Previous Counterpart (shift+option)</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>renameRefactor:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandID</key>
-				<string>Xcode.IDEPegasusSourceEditor.CmdDefinition.Refactor.Rename</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Keyboard Shortcut</key>
-				<string>^r</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Title</key>
-				<string>Rename…</string>
-			</dict>
-			<dict>
-				<key>Action</key>
 				<string>testAgain:</string>
 				<key>Alternate</key>
 				<string>NO</string>
@@ -285,6 +67,160 @@
 				<string>Perform Action</string>
 				<key>Title</key>
 				<string>Test Again</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>renameRefactor:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>Xcode.IDEPegasusSourceEditor.CmdDefinition.Refactor.Rename</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>^r</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Refactor</string>
+				<key>Title</key>
+				<string>Rename…</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>jumpToPreviousCounterpart:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
+				<key>CommandID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
+				<key>Group</key>
+				<string>Navigate Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>^q</string>
+				<key>Navigation</key>
+				<string>YES</string>
+				<key>Title</key>
+				<string>Jump to Previous Counterpart</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>jumpToPreviousCounterpart:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
+				<key>CommandID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpart</string>
+				<key>Group</key>
+				<string>Navigate Menu for Source Code Comparison</string>
+				<key>GroupID</key>
+				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>^q</string>
+				<key>Navigation</key>
+				<string>YES</string>
+				<key>Title</key>
+				<string>Jump to Previous Counterpart</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>jumpToPreviousCounterpartWithAlternate:</string>
+				<key>Alternate</key>
+				<string>YES</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
+				<key>CommandID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
+				<key>Group</key>
+				<string>Navigate Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>^~q</string>
+				<key>Navigation</key>
+				<string>YES</string>
+				<key>Title</key>
+				<string>Jump to Previous Counterpart (option)</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>jumpToPreviousCounterpartWithAlternate:</string>
+				<key>Alternate</key>
+				<string>YES</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
+				<key>CommandID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithAlternate</string>
+				<key>Group</key>
+				<string>Navigate Menu for Source Code Comparison</string>
+				<key>GroupID</key>
+				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>^~q</string>
+				<key>Navigation</key>
+				<string>YES</string>
+				<key>Title</key>
+				<string>Jump to Previous Counterpart (option)</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>jumpToPreviousCounterpartWithShiftPlusAlternate:</string>
+				<key>Alternate</key>
+				<string>YES</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
+				<key>CommandID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
+				<key>Group</key>
+				<string>Navigate Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>^~$Q</string>
+				<key>Navigation</key>
+				<string>YES</string>
+				<key>Title</key>
+				<string>Jump to Previous Counterpart (shift+option)</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>jumpToPreviousCounterpartWithShiftPlusAlternate:</string>
+				<key>Alternate</key>
+				<string>YES</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
+				<key>CommandID</key>
+				<string>Xcode.IDESourceEditor.CmdDefinition.JumpToPreviousCounterpartWithShiftPlusAlternate</string>
+				<key>Group</key>
+				<string>Navigate Menu for Source Code Comparison</string>
+				<key>GroupID</key>
+				<string>Xcode.IDESourceEditor.MenuDefinition.Navigate</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Keyboard Shortcut</key>
+				<string>^~$Q</string>
+				<key>Navigation</key>
+				<string>YES</string>
+				<key>Title</key>
+				<string>Jump to Previous Counterpart (shift+option)</string>
 			</dict>
 		</array>
 		<key>Version</key>
