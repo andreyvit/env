@@ -33,6 +33,10 @@ apt-get install -y libglu1-mesa libxi-dev libxmu-dev libopenblas-dev liblapack-d
 apt-get install -y python-pip python-dev python-numpy python-scipy virtualenv
 # apt-get install -y python2-dev python2-pip python2-virtualenv
 
+apt-get install -y ffmpeg libav-tools
+
+apt-get install -y direnv
+
 # Instructions from:
 #     https://github.com/lwneal/install-keras
 
