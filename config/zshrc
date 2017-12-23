@@ -79,6 +79,7 @@ export PATH=~/bin:~/.yarn/bin:~/env/bin:/usr/local/heroku/bin:/usr/local/sbin:/u
 if test -d /usr/local/go/bin; then
   export PATH=$PATH:/usr/local/go/bin
 fi
+export PATH=~/go/bin:$PATH
 if test -d /usr/local/cuda; then
   export PATH=$PATH:/usr/local/cuda/bin
   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
