@@ -109,8 +109,11 @@ Host weeeee-prod
   IdentityFile ~/.ssh/michigan-ci.pem
   HostName 52.20.62.204
   User ubuntu
-Host brvty-prod
 
+Host brvty-prod
   IdentityFile ~/.ssh/michigan-ci.pem
   HostName 23.20.84.161
   User ubuntu
+
+Host zoomgit
+  HostName 192.168.0.52
