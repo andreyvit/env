@@ -1,5 +1,9 @@
 ServerAliveInterval 60
 
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+
 Host newpm
   HostName 178.63.10.144
   User root
@@ -62,7 +66,12 @@ Host h2
 
 Host d1
   User andreyvit
-HostName 107.170.70.44
+  HostName 107.170.70.44
+  ControlPath ~/.ssh/master-%r@%h:%p
+
+Host d3
+  User andreyvit
+  HostName 206.189.127.74
   ControlPath ~/.ssh/master-%r@%h:%p
 
 Host nxp
@@ -117,3 +126,10 @@ Host brvty-prod
 
 Host zoomgit
   HostName 192.168.0.52
+
+Host db1.office.procore
+  Hostname 207.154.97.177
+  IdentityFile ~/.ssh/id_procore
+  User atarantsov
+  Port 4654
+  LocalForward 9999 localhost:5432

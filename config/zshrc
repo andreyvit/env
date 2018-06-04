@@ -25,6 +25,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="fishy-andreyvit"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -159,8 +160,8 @@ test -f ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zs
 # # globbing
 # setopt extended_glob
 # # history
-# setopt bang_hist hist_verify
-# setopt share_history inc_append_history extended_history
+setopt BANG_HIST HIST_VERIFY SHARE_HISTORY EXTENDED_HISTORY HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
+# setopt inc_append_history 
 # setopt hist_ignore_all_dups hist_no_store hist_reduce_blanks
 # # input/output
 # setopt correct correct_all
