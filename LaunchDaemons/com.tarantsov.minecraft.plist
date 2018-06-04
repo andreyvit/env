@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GroupName</key>
+	<string>staff</string>
+	<key>InitGroups</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.tarantsov.minecraft</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/java</string>
+		<string>-Xms2G</string>
+		<string>-Xmx4G</string>
+		<string>-jar</string>
+		<string>/Users/Shared/minecraft/minecraft_server.jar</string>
+		<string>nogui</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/Users/Shared/minecraft/logs/stderr.txt</string>
+	<key>StandardOutPath</key>
+	<string>/Users/Shared/minecraft/logs/stdout.txt</string>
+	<key>ThrottleInterval</key>
+	<integer>10</integer>
+	<key>UserName</key>
+	<string>andreyvit</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/Shared/minecraft</string>
+</dict>
+</plist>
