@@ -1,6 +1,8 @@
 #!/bin/bash
 set -exo pipefail
 
+GO_VER=1.8.3
+
 if test $EUID -ne 0; then
    echo "This script must be run as root" 
    exit 1
@@ -15,8 +17,10 @@ perl -i -pe 's!^/usr/sbin/logwatch .*!/usr/sbin/logwatch --output mail --mailto 
 
 perl -i -pe 's/\) ALL/) NOPASSWD:ALL/' /etc/sudoers
 
-perl -i -pe 's/^#?PasswordAuthentication .*$/PasswordAuthentication no/' /etc/ssh/sshd_config
-service ssh restart
+if ! grep -q 'PasswordAuthentication no' /etc/ssh/sshd_config; then
+    perl -i -pe 's/^#?PasswordAuthentication .*$/PasswordAuthentication yes/' /etc/ssh/sshd_config
+    service ssh restart
+fi
 
 apt-get install -y ufw
 grep -q '^IPV6=yes$' /etc/default/ufw
@@ -74,9 +78,9 @@ if ! find /usr/lib | grep -q libcudnn; then
     echo "    https://developer.nvidia.com/cudnn"
 fi
 
-if ! which go; then
-    wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
-    tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
+if ! which go || ! test "$( (echo go${GO_VER}; go version | cut '-d ' -f3) | sort -V | head -1 )" = "go${GO_VER}"; then
+    wget https://storage.googleapis.com/golang/go${GO_VER}.linux-amd64.tar.gz
+    tar -C /usr/local -xzf go${GO_VER}.linux-amd64.tar.gz
 fi
 
 if ! which java >/dev/null; then
@@ -89,6 +93,9 @@ fi
 
 ################################################################################
 # User: andreyvit
+
+test -d /home/tg || { adduser --disabled-password --gecos "Telegram Proxy,,," --shell /usr/sbin/nologin tg; echo "tg:3141Durov" | chpasswd; }
+
 
 test -d /home/andreyvit || adduser --disabled-password --gecos "Andrey Tarantsov,,," --shell /usr/bin/zsh andreyvit
 usermod -aG sudo andreyvit
