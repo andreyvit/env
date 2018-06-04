@@ -1,3 +1,8 @@
 {
-	"gorename_debug": false
+	"gorename_debug": false,
+	"gorename_env":
+	{
+		"GOPATH": "$HOME/go/bin:$PATH"
+	},
+	"gorename_use_golangconfig": true
 }

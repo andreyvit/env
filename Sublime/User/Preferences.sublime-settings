@@ -14,11 +14,12 @@
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "Menlo",
-	"font_size": 14,
+	"font_size": 13,
 	"gutter": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"LESS",
 		"Vintage"
 	],
 	"ignored_words":

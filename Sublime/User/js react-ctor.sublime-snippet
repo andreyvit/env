@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+constructor(props) {
+  super(props)
+  $0
+}
+]]></content>
+    <tabTrigger>react-ctor</tabTrigger>
+    <scope>source.js</scope>
+</snippet>

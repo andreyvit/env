@@ -14,6 +14,7 @@
     { "keys": ["ctrl+t", "q"], "command": "change_quotes" },
     // StringUtilities
     { "keys": ["ctrl+t", "c"], "command": "convert_camel_underscores" },
+    { "keys": ["ctrl+t", "d"], "command": "convert_camel_dash" },
 
     // C-p, C-n move up/down; S- extends selection
     { "keys": ["ctrl+p"], "command": "move", "args": {"by": "lines", "forward": false} },
