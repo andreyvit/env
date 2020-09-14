@@ -5,4 +5,4 @@ if test -z "$1"; then
 fi
 (echo "#!/bin/bash"; echo "echo Hello, world") >~/env/bin/$1
 chmod +x ~/env/bin/$1
-subl ~/env/bin/$1
+code ~/env/bin/$1

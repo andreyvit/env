@@ -1,7 +1,13 @@
 #!/bin/bash
+host="$1"; shift
+if test -z "$host"; then
+    echo "Usage: ssh-master <host>"
+    exit 1
+fi
+
 while true
 do
-    rm ~/.ssh/master-*
-    ssh -MNv "$@"
+    rm -f ~/.ssh/"master-$host:"*
+    ssh -MNv "$host" "$@"
     sleep 1
 done

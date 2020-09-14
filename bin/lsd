@@ -1,5 +1,0 @@
-#!/bin/bash
-while true; do
-  say -r400 -v 'Serena' "Come on\! come on\! come on\!"
-  sleep 180
-done
