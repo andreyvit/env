@@ -50,11 +50,13 @@ Disable root and password logins:
     sudo dpkg-reconfigure unattended-upgrades
     sudo perl -i -pe 's!^//Unattended-Upgrade::Mail "root";$!Unattended-Upgrade::Mail "root";!' /etc/apt/apt.conf.d/50unattended-upgrades
     sudo perl -i -pe 's!^APT::Periodic::AutocleanInterval "0";$!APT::Periodic::AutocleanInterval "7";!' /etc/apt/apt.conf.d/10periodic
-    
+
     sudo apt-get install apt-listchanges
     sudo perl -i -pe 's!^which=news$!which=both!' /etc/apt/listchanges.conf
 
     sudo ufw allow ssh
+    sudo ufw allow http
+    sudo ufw allow https
     sudo ufw allow 500/udp
     sudo ufw allow 4500/udp
     sudo ufw allow 1701/udp
@@ -74,5 +76,5 @@ Disable root and password logins:
 
     sudo dpkg-reconfigure tzdata
     sudo apt-get install ntp
-    
+
     sudo apt-get install glances
