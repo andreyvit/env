@@ -1,0 +1,19 @@
+#!/bin/bash
+CRASH="$1"
+if test -z "$CRASH"; then
+    echo "Usage: $(basename "$0") report.crash"
+    exit 2
+fi
+
+OUTPUT="${CRASH%.crash}.symbolicated.crash"
+
+echo
+echo "Symbolicating $(basename "$CRASH")..."
+echo "(this may take several minutes, literally)"
+
+export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash "$CRASH" >"$OUTPUT"
+
+echo
+echo "DONE: $OUTPUT"
+$VISUAL "$OUTPUT"

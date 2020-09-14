@@ -1,0 +1,7 @@
+#!/bin/bash
+times="${TIMES-20}"
+
+for i in `seq "$times"`; do
+    echo "($i/$times) $@"
+    "$@" || break
+done

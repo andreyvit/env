@@ -1,0 +1,2 @@
+#!/bin/bash
+git diff-tree --no-commit-id --name-only -r HEAD | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs rubocop "$@"

@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
+git reset --soft HEAD
+git add Pods Podfile.lock *.xcodeproj
+git commit

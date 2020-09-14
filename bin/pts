@@ -1,0 +1,2 @@
+#!/bin/bash
+pt --color "$@" | sort

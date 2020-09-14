@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+if test -z "$1"; then
+    echo "** Usage: pod-update <pod_name>"
+    exit 1
+fi
+
+pod update --no-repo-update "$@"
+
+git reset --soft HEAD
+git add Pods Podfile.lock *.xcodeproj
+git commit -m "Update pod $*"
+
+git --no-pager log -1 --stat
+git status

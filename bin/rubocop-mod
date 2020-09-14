@@ -1,0 +1,2 @@
+#!/bin/bash
+git ls-files --exclude-standard -mo | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs rubocop "$@"
