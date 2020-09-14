@@ -1,27 +1,17 @@
 #!/bin/bash
+set -euo pipefail
 
-action=
-action_name=
 server=
-dry=true
-dry_name="(dry run)"
-flags=()
 
 ###############################################################################
 TOOLNAME="$(basename "$0")"
-VERSION="0.1"
+VERSION="0.3"
 BANNER="$TOOLNAME $VERSION: rsync between identical directory structures"
-USAGE="Usage: $TOOLNAME [options] (-d | -u) [-f] <server>"
+USAGE="Usage: $TOOLNAME <server>"
 # parse command-line options
-while test -n "$1" && $cont_optparse true; do
+cont_optparse=true
+while test -n "${1-}" && $cont_optparse; do
     case $1 in
-        -d | --down) # rsync FROM the remote server
-            action_name=DOWNLOAD; flags+=(--down); action=down; shift;;
-        -u | --up) # rsync TO the remote server
-            action_name=UPLOAD; flags+=(--up); action=up; shift;;
-        -f | --force) # actually perform the transfer
-            dry_name="(**REAL RUN**)"
-            dry=false; shift;;
         --version) # Display the version number
             echo "$VERSION"; exit;;
         --help) # Display this help message
@@ -38,26 +28,15 @@ while test -n "$1" && $cont_optparse true; do
 done
 ###############################################################################
 
-ask() {
-    # https://djm.me/ask
-    local prompt default reply
+# https://djm.me/ask
+ask_confirmation() {
+    local reply
     while true; do
-        if [ "${2:-}" = "Y" ]; then
-            prompt="Y/n"; default=Y
-        elif [ "${2:-}" = "N" ]; then
-            prompt="y/N"; default=N
-        else
-            prompt="y/n"; default=
-        fi
-
-        # Ask the question (not using "read -p" as it uses stderr not stdout)
-        echo -n "$1 [$prompt] "
-
-        # Read the answer (use /dev/tty in case stdin is redirected from somewhere else)
+        echo -n "${action_name} for real? [y/N] "
         read reply </dev/tty
 
         if [ -z "$reply" ]; then
-            reply=$default
+            reply=N
         fi
 
         case "$reply" in
@@ -67,29 +46,56 @@ ask() {
     done
 }
 
+ask_action() {
+    # https://djm.me/ask
+    local reply
+    while true; do
+        echo -n "Upload or Download? [u/d] "
+        read reply </dev/tty
+        case "$reply" in
+            D*|d*) action=down; return 0;;
+            U*|u*) action=up; return 0;;
+        esac
+        echo "Invalid input. Try again."
+    done
+}
+
+run() {
+    local dry=$1
+    local dry_name="(**REAL RUN**)"
+    $dry && dry_name="(dry run)"
+
+    local progress="--progress"
+    progress="--info=progress2"
+
+    local -a args=(rsync -azh --delete "$progress")
+    $dry && args+=(-n)
+    case $action in
+        up)   args+=("." "$server:$rpath");;
+        down) args+=("$server:$rpath/" ".");;
+    esac
+
+    echo; echo
+    echo "▸ ${action_name} ${dry_name} $server"
+    echo "${args[@]}"
+    "${args[@]}"
+}
+
 test -n "$server" || exec $0 --help
-test -n "$action" || exec $0 --help
-flags+=($server)
+
+ask_action
+case $action in
+    up)   action_name=UPLOAD;;
+    down) action_name=DOWNLOAD;;
+    *)    echo "** Canceled."; exit 1;;
+esac
 
 lpath="$(pwd)"
 rpath="${lpath/$HOME/~}"
-progress="--progress"
-progress="--info=progress2"
-args=(rsync -azh --delete "$progress")
-$dry && args+=(-n)
-if test "$action" = "down"; then
-    args+=("$server:$rpath/" ".")
-else
-    args+=("." "$server:$rpath")
-fi
 
-echo "▸ ${action_name} ${dry_name} $server"
+run true
 
-echo "${args[@]}"
-"${args[@]}"
-
-if $dry; then
-    if ask "${action_name} for real?" N; then
-        exec -- "$0" --force "${flags[@]}"
-    fi
+echo; echo
+if ask_confirmation; then
+    run false
 fi
