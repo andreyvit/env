@@ -9,24 +9,42 @@
 	quotepath = false
 	safecrlf = warn
 	pager = less --raw-control-chars
+[pager]
+	cfg = false
 [branch]
-  autosetuprebase = always
+	autosetuprebase = always
 [alias]
 	rec = ! sh -c 'git add -p -- $@ && git commit -v' --
 	wrec = ! sh -c 'white && git rec $@ ' --
 	c = commit -v
 	camm = commit --amend -v
 	l = log --graph --pretty=fancy-oneline --abbrev-commit --date=short --decorate
+	ll = log --graph --pretty=fancy-oneline --abbrev-commit --date=iso --decorate
 	lf = log --graph --pretty=fancy-full --abbrev-commit --date=iso --decorate
 	lff = log --graph --pretty=fuller --abbrev-commit --date=iso --stat --decorate
 	ls = log --graph --pretty=fancy-oneline --abbrev-commit --date=short --simplify-by-decoration --decorate
+	report = "log --pretty=report '--date=format:%b %d'"
 	patch = add --patch
 	ci = commit --inter -v
+	co = checkout
 	ai = add -i
 	ap = add --patch
 	amend = commit --amend -v
 	cp = commit --patch -v
 	ca = commit -a -v
+	count = ! sh -c 'git log --pretty=oneline | wc -l'
+	cfg = config --local --list
+	pick = cherry-pick
+	aaa = ! sh -c 'git config --global --list | grep "^alias." | sort'
+	pb = push origin HEAD
+	pbf = push origin HEAD -f
+	head = show HEAD
+	lsu = ls-files -u
+	fup = git commit --fixup
+	# Usage: git edit NUMBER_OF_COMMITS | COMMIT
+	edit = "!sh -c 'case \"$1\" in \"\") git rebase --interactive HEAD^;; *[!0-9]* | ????*) git rebase --interactive \"${1}^\";; *) git rebase --interactive \"HEAD~${1}\";; esac'" --
+	reset-to-prior = checkout HEAD^ --
+	ff = merge --ff-only
 [color]
 	branch = auto
 	diff = auto
@@ -37,7 +55,7 @@
 	ui = auto
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -45,6 +63,7 @@
 	fancy-oneline = %C(red)%h%C(reset) %C(green)%ad%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue)<%ae>%Creset
 	daily = %ad -%d %s <%ae>
 	fancy-full = %C(red)%h%C(reset) %C(green)%ad%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue)<%ae>%Creset%n%n%-b
+	report = "%n%C(green)## %ad — %cd%C(reset)%n* Commit: %s"
 [push]
 	default = simple
 [status]
@@ -60,10 +79,10 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustexitcode = true

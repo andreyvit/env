@@ -64,6 +64,11 @@ Host h2
   HostName h2.tarantsov.com
   ControlPath ~/.ssh/master-%r@%h:%p
 
+Host h3
+  User andreyvit
+  HostName h3.tarantsov.com
+  ControlPath ~/.ssh/master-%r@%h:%p
+
 Host d1
   User andreyvit
   HostName 107.170.70.44
@@ -133,3 +138,14 @@ Host db1.office.procore
   User atarantsov
   Port 4654
   LocalForward 9999 localhost:5432
+
+Host smokeon
+  Hostname 52.54.181.137
+
+Host lmtchat
+  Hostname chat.livemixtapes.com
+  # Hostname 12.217.125.139
+  User andreyt
+
+Host chat.livemixtapes.com
+  User andreyt

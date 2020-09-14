@@ -25,7 +25,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="fishy-andreyvit"
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -58,6 +58,9 @@ DISABLE_UPDATE_PROMPT="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# allow group-writable /usr/local to participate in completions
+ZSH_DISABLE_COMPFIX="true"
+
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
@@ -70,7 +73,7 @@ ZSH_CUSTOM=~/env/config/oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(dircycle dirpersist history-substring-search mosh sublime z git gitignore golang brew npm pod nyan xcode sudo osx)
+plugins=(dircycle dirpersist history-substring-search mosh sublime z git gitignore golang brew npm pod xcode sudo osx)
 
 # User configuration
 
@@ -86,6 +89,25 @@ if test -d /usr/local/cuda; then
   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 fi
 
+for frag in /usr/local/opt/postgresql@9.6/bin /usr/local/lib/ruby/gems/2.7.0/bin; do
+    if [ -d "$frag" ]; then
+        export PATH="$frag:$PATH"
+    fi
+done
+
+if test -d /usr/local/opt/ruby/bin; then
+  export PATH="/usr/local/opt/ruby/bin:$PATH"
+  export LDFLAGS="-L/usr/local/opt/ruby/lib"
+  export CPPFLAGS="-I/usr/local/opt/ruby/include"
+  export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+fi
+
+# For compilers to find this software you may need to set:
+#     LDFLAGS:  -L/usr/local/opt/postgresql@9.6/lib
+#     CPPFLAGS: -I/usr/local/opt/postgresql@9.6/include
+# For pkg-config to find this software you may need to set:
+#     PKG_CONFIG_PATH: /usr/local/opt/postgresql@9.6/lib/pkgconfig
+
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -95,7 +117,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='subl_wait'
+  export EDITOR='code -w'
 fi
 export VISUAL=$EDITOR
 
@@ -111,14 +133,7 @@ export ACK_OPTIONS="--type-add php=.module"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias sqlite3nice="sqlite3 -column -header"
 
 
 ##### EXTERNALS #####
@@ -140,7 +155,7 @@ test -f ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zs
 #     alias ls="ls -hp"
 #     ;;
 # esac
-# 
+#
 # case $TERM in
 # dumb)
 #     PROMPT="%#"
@@ -150,7 +165,7 @@ test -f ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zs
 # |)%B%#%b "
 #     ;;
 # esac
-# 
+#
 # slashre=/; WORDCHARS=${WORDCHARS/$slashre}
 #
 # # changing dirs
@@ -161,7 +176,7 @@ test -f ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zs
 # setopt extended_glob
 # # history
 setopt BANG_HIST HIST_VERIFY SHARE_HISTORY EXTENDED_HISTORY HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
-# setopt inc_append_history 
+# setopt inc_append_history
 # setopt hist_ignore_all_dups hist_no_store hist_reduce_blanks
 # # input/output
 # setopt correct correct_all
@@ -210,5 +225,8 @@ if [ -f '/Users/andreyvit/google-cloud-sdk/completion.zsh.inc' ]; then source '/
 
 if which direnv >/dev/null; then eval "$(direnv hook zsh)"; fi
 
+# if which rbenv >/dev/null; then eval "$(rbenv init -)"; fi
+
 alias pt='pt --nogroup'
 alias ptg='pt --group'
+alias da='direnv allow'
