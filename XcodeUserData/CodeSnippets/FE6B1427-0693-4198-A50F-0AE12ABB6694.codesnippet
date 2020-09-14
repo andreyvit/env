@@ -3,24 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>alert</string>
+	<string>timing</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
+		<string>CodeExpression</string>
+		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let alert = UIAlertController(title: &lt;#T##String?#&gt;, message: &lt;#T##String?#&gt;, preferredStyle: .alert)
-alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { a in
-})
-present(alert, animated: true, completion: nil)</string>
+	<string>let start = DispatchTime.now().uptimeNanoseconds
+let elapsed = TimeInterval(DispatchTime.now().uptimeNanoseconds - start) / 1_000_000_000
+os_log("&lt;#desc#&gt; took %0.1lfms", log: &lt;#log#&gt;, type: .debug, elapsed * 1000)</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>57D93909-90F1-4946-AF62-352B8742002E</string>
+	<string>FE6B1427-0693-4198-A50F-0AE12ABB6694</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Present UIAlertController</string>
+	<string>timing - compare two DispatchTime.now values</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>alert</string>
+	<string>Measure Execution Time</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

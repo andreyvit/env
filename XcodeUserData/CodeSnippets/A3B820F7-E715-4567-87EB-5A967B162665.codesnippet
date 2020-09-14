@@ -3,24 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>alert</string>
+	<string>debugme</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let alert = UIAlertController(title: &lt;#T##String?#&gt;, message: &lt;#T##String?#&gt;, preferredStyle: .alert)
-alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { a in
-})
-present(alert, animated: true, completion: nil)</string>
+	<string>if &lt;#condition#&gt; {
+    print("TODO XXX FIXME: debug me")
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>57D93909-90F1-4946-AF62-352B8742002E</string>
+	<string>A3B820F7-E715-4567-87EB-5A967B162665</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Present UIAlertController</string>
+	<string>conditional for a conditional breakpoint</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>alert</string>
+	<string>Debug Me</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

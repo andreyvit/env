@@ -3,24 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>alert</string>
+	<string>hashobj</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let alert = UIAlertController(title: &lt;#T##String?#&gt;, message: &lt;#T##String?#&gt;, preferredStyle: .alert)
-alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { a in
-})
-present(alert, animated: true, completion: nil)</string>
+	<string>public func hash(into hasher: inout Hasher) {
+    hasher.combine(ObjectIdentifier(self))
+}
+public static func == (lhs: &lt;#Self#&gt;, rhs: &lt;#Self#&gt;) -&gt; Bool {
+    return lhs === rhs
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>57D93909-90F1-4946-AF62-352B8742002E</string>
+	<string>E56C7430-E1E0-4C4D-B1A2-1DB6D0764590</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
-	<key>IDECodeSnippetSummary</key>
-	<string>Present UIAlertController</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>alert</string>
+	<string>Hashable As NSObject (By Identity)</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

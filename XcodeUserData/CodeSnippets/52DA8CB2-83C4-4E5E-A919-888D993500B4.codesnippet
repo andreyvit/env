@@ -9,24 +9,24 @@
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let alert = UIAlertController(title: nil, message: "&lt;#prompt#&gt;", preferredStyle: .ActionSheet)
-alert.addAction(UIAlertAction(title: "&lt;#action#&gt;", style: .Destructive) { action in
+	<string>let alert = UIAlertController(title: nil, message: "&lt;#prompt#&gt;", preferredStyle: .actionSheet)
+alert.addAction(UIAlertAction(title: "&lt;#action#&gt;", style: .destructive) { action in
     &lt;#code#&gt;
 })
-alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { action in
+alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { action in
 })
 
 let popover = alert.popoverPresentationController!
 popover.sourceView = sender!
 popover.sourceRect = sender!.bounds
 
-presentViewController(alert, animated: true, completion: nil)</string>
+present(alert, animated: true, completion: nil)</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>52DA8CB2-83C4-4E5E-A919-888D993500B4</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Confirm with UIAlertController</string>
+	<string>confirm - UIAlertController</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

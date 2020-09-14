@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>dispatch_async(dispatch_get_main_queue()) {
+	<string>DispatchQueue.main.async {
     &lt;#code#&gt;
 }</string>
 	<key>IDECodeSnippetIdentifier</key>

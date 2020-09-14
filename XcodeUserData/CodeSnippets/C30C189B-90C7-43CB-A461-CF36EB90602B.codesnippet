@@ -3,24 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>alert</string>
+	<string>logerr</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let alert = UIAlertController(title: &lt;#T##String?#&gt;, message: &lt;#T##String?#&gt;, preferredStyle: .alert)
-alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { a in
-})
-present(alert, animated: true, completion: nil)</string>
+	<string>os_log("&lt;#message#&gt;: %{public}@", log: &lt;#log#&gt;, type: .error, String(reflecting: &lt;#error#&gt;))</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>57D93909-90F1-4946-AF62-352B8742002E</string>
+	<string>C30C189B-90C7-43CB-A461-CF36EB90602B</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Present UIAlertController</string>
+	<string>os_log for eror</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>alert</string>
+	<string>Log Error</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

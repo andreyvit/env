@@ -6,18 +6,18 @@
 	<string>todo</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeBlock</string>
+		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// TODO: &lt;#qqq#&gt;</string>
+	<string>// &lt;#TODO#&gt;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>7848B33F-EC51-4591-990A-E785BB7DFB82</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>// TODO: &lt;marker&gt;</string>
+	<string>// TODO</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>todo</string>
+	<string>TODO (comment)</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

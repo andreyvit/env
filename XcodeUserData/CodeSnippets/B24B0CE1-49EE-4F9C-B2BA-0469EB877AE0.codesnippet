@@ -3,24 +3,40 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>alert</string>
+	<string>timer</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>All</string>
+		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let alert = UIAlertController(title: &lt;#T##String?#&gt;, message: &lt;#T##String?#&gt;, preferredStyle: .alert)
-alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { a in
-})
-present(alert, animated: true, completion: nil)</string>
+	<string>private var timer: Timer?
+
+deinit {
+    cancelTimer()
+}
+
+private func cancelTimer() {
+    timer?.invalidate()
+    timer = nil
+}
+
+private func startTimer() {
+    cancelTimer()
+    timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: false)
+}
+
+@objc private func timerDidFire() {
+    fatalError("&lt;#TODO#&gt;")
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>57D93909-90F1-4946-AF62-352B8742002E</string>
+	<string>B24B0CE1-49EE-4F9C-B2BA-0469EB877AE0</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Present UIAlertController</string>
+	<string>Methods for scheduling, handling and canceling a Timer</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>alert</string>
+	<string>Timer</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

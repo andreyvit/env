@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>codable</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>public enum CodingKeys: String, CodingKey {
+    case &lt;#foo#&gt; = "&lt;#foo#&gt;"
+    case &lt;#foo#&gt; = "&lt;#foo#&gt;"
+    case &lt;#foo#&gt; = "&lt;#foo#&gt;"
+    case &lt;#foo#&gt; = "&lt;#foo#&gt;"
+    case &lt;#foo#&gt; = "&lt;#foo#&gt;"
+    case &lt;#foo#&gt; = "&lt;#foo#&gt;"
+}
+
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(&lt;#foo#&gt;, forKey: .&lt;#foo#&gt;)
+    try container.encode(&lt;#foo#&gt;, forKey: .&lt;#foo#&gt;)
+    try container.encode(&lt;#foo#&gt;, forKey: .&lt;#foo#&gt;)
+    try container.encode(&lt;#foo#&gt;, forKey: .&lt;#foo#&gt;)
+    try container.encode(&lt;#foo#&gt;, forKey: .&lt;#foo#&gt;)
+    try container.encode(&lt;#foo#&gt;, forKey: .&lt;#foo#&gt;)
+}
+
+public required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    &lt;#foo#&gt; = try container.decode(&lt;#Foo#&gt;.self, forKey: .&lt;#foo#&gt;)
+    &lt;#foo#&gt; = try container.decode(&lt;#Foo#&gt;.self, forKey: .&lt;#foo#&gt;)
+    &lt;#foo#&gt; = try container.decode(&lt;#Foo#&gt;.self, forKey: .&lt;#foo#&gt;)
+    &lt;#foo#&gt; = try container.decode(&lt;#Foo#&gt;.self, forKey: .&lt;#foo#&gt;)
+    &lt;#foo#&gt; = try container.decode(&lt;#Foo#&gt;.self, forKey: .&lt;#foo#&gt;)
+    &lt;#foo#&gt; = try container.decode(&lt;#Foo#&gt;.self, forKey: .&lt;#foo#&gt;)
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B00C0E48-F47C-4F2A-AFF6-205A2645D958</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>init(from: Decoder), encode(to: Encoder)</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Codable implementation</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

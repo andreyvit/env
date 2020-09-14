@@ -3,19 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>todo</string>
+	<string>todoc</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// &lt;#todo#&gt;</string>
+	<string>// &lt;#TODO#&gt;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>D605DE0B-50B2-4E69-BB6D-A6BA233E35C7</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>// TODO</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>todo</string>
+	<string>TODO (comment)</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

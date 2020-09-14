@@ -2,24 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>cons</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>NSLayoutConstraint.activate([
-    &lt;#constraints#&gt;
-])</string>
+	<string>public static func == (lhs: &lt;#Self#&gt;, rhs: &lt;#Self#&gt;) -&gt; Bool {
+        return (lhs.x == rhs.x) &amp;&amp; (lhs.y == rhs.y) &amp;&amp; (lhs.z == rhs.z)
+    }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A199E718-595B-496F-B2EA-6E481398AF5B</string>
+	<string>6B2BF151-7279-4BD1-91E8-032A0B7D8307</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Swift</string>
-	<key>IDECodeSnippetSummary</key>
-	<string>NSLayoutConstraint.activate</string>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>Constraints: Activate (cons)</string>
+	<string>My Code Snippet</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
