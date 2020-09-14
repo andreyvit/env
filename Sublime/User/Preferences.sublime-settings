@@ -10,7 +10,7 @@
 	],
 	"auto_complete_with_fields": true,
 	"caret_style": "solid",
-	"color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
+	"color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "Menlo",
@@ -46,6 +46,7 @@
 	"show_tab_close_buttons": false,
 	"spell_check": false,
 	"tab_size": 4,
+	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": false,
 	"word_wrap": true

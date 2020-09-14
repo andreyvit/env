@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+func Must${1:Func}($2) $3 {
+    result, err := $1(${4:$2})
+    if err != nil {
+        panic(err)
+    }
+    return result
+}
+]]></content>
+    <tabTrigger>must</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -10,6 +10,7 @@
 		"Babel",
 		"ChangeQuotes",
 		"DashDoc",
+		"Decent Swift Syntax",
 		"Emmet",
 		"External Command",
 		"Filter Lines",
@@ -41,7 +42,7 @@
 		"StringUtilities",
 		"Stylus",
 		"Surround",
-		"Swift for F*ing Sublime",
+		"TOML",
 		"UnitJS"
 	]
 }
