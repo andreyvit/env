@@ -69,7 +69,7 @@ run() {
     progress="--info=progress2"
 
     local -a args=(rsync -azh --delete "$progress")
-    $dry && args+=(-n)
+    $dry && args+=(-nv)
     case $action in
         up)   args+=("." "$server:$rpath");;
         down) args+=("$server:$rpath/" ".");;
