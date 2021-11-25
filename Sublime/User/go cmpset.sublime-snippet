@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+if ${1:dest}.${2:Field} != ${3:source.$2} {
+    $1.$2 = $3
+    ${4:isModified} = true
+}
+]]></content>
+    <tabTrigger>cmpset</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

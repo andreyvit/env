@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[${1:list} = append($1, ${2:item})]]></content>
+    <tabTrigger>app</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

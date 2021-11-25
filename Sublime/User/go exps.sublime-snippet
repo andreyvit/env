@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+if ${1:actual} != ${2:expected} {
+    t.Errorf("** $1 = %v, wanted %v", $1, $2)
+}
+]]></content>
+    <tabTrigger>exps</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

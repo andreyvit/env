@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+func Group${1:Foo}sBy${2:UUID}(${3:list} []*$1) map[${4:KeyType}][]*$1 {
+    m := make(map[$4][]*$1, len($3))
+    for _, ${5:item} := range $3 {
+        m[$5.$2] = append(m[$5.$2], $5)
+    }
+    return m
+}
+]]></content>
+    <tabTrigger>groupf</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

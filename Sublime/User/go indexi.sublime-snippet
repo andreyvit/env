@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+${1:m} := make(map[${2:KeyType}]${3:ValueType}, len(${4:source}))
+for _, ${5:item} := range $4 {
+    $1[$5.${6:ID}] = $5
+}
+]]></content>
+    <tabTrigger>indexi</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

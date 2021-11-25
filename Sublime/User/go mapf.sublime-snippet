@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[
-func ${1:filterSomething}(${2:input} []${3:type}) []$3 {
+func ${1:mapSomething}(${2:input} []${3:type}) []$3 {
     result := make([]$3, 0, len($2))
     for _, el := range $2 {
         if ${4:el != nil} {

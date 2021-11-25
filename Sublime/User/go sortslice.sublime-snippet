@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+sort.Slice(${1:slice}, func(i, j int) bool {
+    return $1[i].${2:Field} < $1[j].$2
+})
+]]></content>
+    <tabTrigger>sortslice</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

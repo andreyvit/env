@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+func Assign${1:Foo}${2:Bar}s(${3:${1/.*/\L$&/}s} []*$1, ${4:${2/.*/\L$&/}s} []*$2) {
+    $3By${5:UUID} := Index$1sBy$5($3)
+    for _, ${7:${1/.*/\L$&/}} := range $3 {
+    	$7.$10 = nil
+    }
+    for _, ${6:${2/.*/\L$&/}} := range $4 {
+        $7 := $3By$5[$6.${8:$1$5}]
+        $6.${9:$1} = $7
+        if $7 == nil {
+            continue
+        }
+        $7.${10:$2s} = append($7.${10:$2s}, $6)
+    }
+}
+]]></content>
+    <tabTrigger>assignf</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

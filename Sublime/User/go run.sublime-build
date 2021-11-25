@@ -1,0 +1,5 @@
+{
+    "selector": "source.go",
+    "cancel": {"kill": true},
+    "cmd": ["go", "run", "$file"]
+}

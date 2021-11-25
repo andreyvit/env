@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[map[string]interface{}]]></content>
+    <tabTrigger>jsonobj</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

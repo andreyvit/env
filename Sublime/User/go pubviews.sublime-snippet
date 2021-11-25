@@ -1,0 +1,14 @@
+<snippet>
+<content><![CDATA[
+func ${1:Foo}${2:Public}Views(${3:list} []*$1) []*$1$2 {
+	result := make([]*$1$2, 0, len($3)) // ensure non-nil result
+	for _, ${4:item} := range $3 {
+		result = append(result, $4.$2View())
+	}
+	return result
+}
+]]></content>
+<tabTrigger>pubviews</tabTrigger>
+<description>PublicViews</description>
+<scope>source.go</scope>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+func (${1:foo} *${2:Foo}) ${3:Public}View(apiVer apiversions.Version) *$2$3 {
+    return &$2$3{
+        ${4:UUID}: $1.$4,
+    }
+}
+]]></content>
+    <tabTrigger>pubview</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

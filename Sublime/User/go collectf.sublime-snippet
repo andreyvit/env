@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+func ${1:Collect}${2:Foo}${3:UUID}s(${4:list} []*$2) []${5:UUID} {
+    var ${6:result} []$5
+    for _, ${7:item} := range $4 {
+        $6 = append($6, $7.$3)
+    }
+    return $6
+}
+]]></content>
+    <tabTrigger>collectf</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

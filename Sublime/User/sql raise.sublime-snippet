@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+IF NOT FOUND THEN
+    RAISE EXCEPTION '$0';
+END IF;
+]]></content>
+    <tabTrigger>raise</tabTrigger>
+    <scope>source.sql</scope>
+</snippet>
