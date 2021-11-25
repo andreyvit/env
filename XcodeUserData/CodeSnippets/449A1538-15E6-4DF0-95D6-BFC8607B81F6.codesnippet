@@ -3,21 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>ambig</string>
+	<string>blurrlabel</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>&lt;#view#&gt;.addGestureRecognizer(UITapGestureRecognizer(target: statusPanel, action: #selector(UIView.exerciseAmbiguityInLayout)))</string>
+	<string>private let &lt;#something#&gt;Label = Label().then { label in
+    label.text = NSLocalizedString("&lt;#text#&gt;", comment: "")
+    label.textColor = .white
+    label.font = .project(.bold, .s)
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>E502F0AA-C5CD-455E-8D35-DD75C7F95294</string>
+	<string>449A1538-15E6-4DF0-95D6-BFC8607B81F6</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>exerciseAmbiguityInLayout on tap</string>
+	<string>Blurr Label</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

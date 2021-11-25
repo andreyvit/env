@@ -23,8 +23,8 @@
     { "keys": ["ctrl+shift+n"], "command": "move", "args": {"by": "lines", "forward": true, "extend": true} },
 
     // M-p, M-n swap line up/down
-    { "keys": ["alt+p"], "command": "swap_line_up" },
-    { "keys": ["alt+n"], "command": "swap_line_down" },
+    { "keys": ["ctrl+up"], "command": "swap_line_up" },
+    { "keys": ["ctrl+down"], "command": "swap_line_down" },
 
     // M-b, M-f move left/right by word; C- moves by subwords, S- extends selection
     { "keys": ["alt+b"], "command": "move", "args": {"by": "words", "forward": false} },
@@ -37,7 +37,7 @@
     { "keys": ["ctrl+alt+shift+f"], "command": "move", "args": {"by": "subword_ends", "forward": true, "extend": true} },
 
     // quick sidebar toggle
-    { "keys": ["ctrl+s"], "command": "toggle_side_bar" },
+    { "keys": ["super+q"], "command": "toggle_side_bar" },
 
     // close all tabs without closing the project
     { "keys": ["super+alt+w"], "command": "close_all" },
@@ -52,7 +52,18 @@
     { "keys": ["super+shift+f2"], "command": "clear_bookmarks" },
     { "keys": ["alt+f2"], "command": "select_all_bookmarks" },
 
-    { "keys": ["super+alt+]"], "command": "reindent", "args": {"single_line": true} },
+    // LSP
+    { "keys": ["primary+alt+m"], "command": "lsp_show_diagnostics_panel", "context": [{"key": "setting.lsp_active"}] },
+    { "keys": ["ctrl+s"], "command": "noop", "context": [{"key": "lsp.signature_help", "operator": "equal", "operand": 0 }] },
+    { "keys": ["f1"], "command": "lsp_symbol_definition", "args": {"side_by_side": false}, "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "definitionProvider"}, {"key": "auto_complete_visible", "operator": "equal", "operand": false}] },
+    { "keys": ["ctrl+]"], "command": "lsp_symbol_definition", "args": {"side_by_side": false}, "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "definitionProvider"}, {"key": "auto_complete_visible", "operator": "equal", "operand": false}] },
+    { "keys": ["ctrl+r"], "command": "lsp_symbol_rename", "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "renameProvider"}] },
+    { "keys": ["super+o"], "command": "lsp_document_symbols", "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "documentSymbolProvider"}] },
+    { "keys": ["super+k", "super+k"], "command": "lsp_code_actions" },
+
+    { "keys": ["alt+/"], "command": "auto_complete"},
+
+    { "keys": ["ctrl+i"], "command": "reindent", "args": {"single_line": true} },
 
     // TAB and field editor behavior
     { "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false} },
@@ -98,7 +109,7 @@
         }
     },
     {
-        "keys": ["super+alt+3"],
+        "keys": ["super+alt+9"],
         "command": "set_layout",
         "args":
         {
@@ -118,7 +129,7 @@
         }
     },
     {
-        "keys": ["super+alt+9"],
+        "keys": ["super+alt+7"],
         "command": "set_layout",
         "args":
         {
@@ -127,9 +138,30 @@
             "cells": [[0, 0, 1, 2], [1, 0, 3, 1], [1, 1, 2, 2], [2, 1, 3, 2]]
         }
     },
+    {
+        "keys": ["super+alt+6"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 0.3, 0.7, 1.0],
+            "rows": [0.0, 0.7, 1.0],
+            "cells": [[0, 0, 1, 1], [1, 0, 2, 2], [2, 0, 3, 1], [0, 1, 1, 2], [2, 1, 3, 2]]
+        }
+    },
+    {
+        "keys": ["super+alt+3"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 0.3, 0.7, 1.0],
+            "rows": [0.0, 1.0],
+            "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+        }
+    },
 
     // Toggle Word Wrap
     { "keys": ["alt+w"], "command": "toggle_setting", "args": {"setting": "word_wrap"} },
+    { "keys": ["ctrl+z"], "command": "toggle_setting", "args": {"setting": "word_wrap"} },
 
     // Command-Control-P is unexplainably broken on my Mac
     { "keys": ["ctrl+["], "command": "prompt_select_workspace" },

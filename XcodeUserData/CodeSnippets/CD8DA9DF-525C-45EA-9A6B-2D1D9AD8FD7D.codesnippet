@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// swiftlint:disable:this force_cast</string>
+	<string>//swiftlint:disable:this force_cast</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>CD8DA9DF-525C-45EA-9A6B-2D1D9AD8FD7D</string>
 	<key>IDECodeSnippetLanguage</key>

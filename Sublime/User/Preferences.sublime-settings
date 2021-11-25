@@ -5,22 +5,25 @@
 	[
 		{
 			"characters": "<",
-			"selector": "text.html"
+			"selector": "text.html",
 		}
 	],
 	"auto_complete_with_fields": true,
 	"caret_style": "solid",
-	"color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
-	"font_face": "Menlo",
-	"font_size": 13,
+	"font_face": "JetBrains Mono Light",
+	"font_size": 12,
+	"font_options": [],
 	"gutter": true,
 	"highlight_modified_tabs": true,
+	"bold_folder_labels": true,
 	"ignored_packages":
 	[
+		"GoSublime",
 		"LESS",
-		"Vintage"
+		"Vintage",
 	],
 	"ignored_words":
 	[
@@ -31,7 +34,7 @@
 		"draw_normal",
 		"draw_active"
 	],
-	"index_files": false,
+	"index_files": true,
 	"line_numbers": true,
 	"margin": 4,
 	"remember_full_screen": true,
@@ -49,5 +52,16 @@
 	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": false,
-	"word_wrap": true
+	"word_wrap": true,
+	"fold_buttons": false,
+	"always_show_minimap_viewport": true,
+	"draw_minimap_border": true,
+	"highlight_line": false,
+	"highlight_gutter": true,
+	"block_caret": false,
+	"scroll_context_lines": 10,
+	"auto_complete_use_index": true,
+	"auto_complete_include_snippets": true,
+	"auto_complete_include_snippets_when_typing": true,
+	"show_navigation_bar": false,
 }

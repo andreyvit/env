@@ -1,0 +1,7 @@
+// These settings override both User and Default settings for the Go syntax
+{
+  "lsp_code_actions_on_save": {
+    "source.fixAll": true,
+    "source.organizeImports": true,
+  },    
+}

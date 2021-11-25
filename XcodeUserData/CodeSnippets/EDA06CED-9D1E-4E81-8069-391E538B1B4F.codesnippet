@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>ambig</string>
+	<string>lint_len</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>&lt;#view#&gt;.addGestureRecognizer(UITapGestureRecognizer(target: statusPanel, action: #selector(UIView.exerciseAmbiguityInLayout)))</string>
+	<string>//swiftlint:disable:this line_length</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>E502F0AA-C5CD-455E-8D35-DD75C7F95294</string>
+	<string>EDA06CED-9D1E-4E81-8069-391E538B1B4F</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Swift</string>
 	<key>IDECodeSnippetSummary</key>
 	<string></string>
 	<key>IDECodeSnippetTitle</key>
-	<string>exerciseAmbiguityInLayout on tap</string>
+	<string>swiftlint</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
