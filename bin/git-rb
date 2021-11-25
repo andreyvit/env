@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+branch="${1-master}"
+git stash || true
+git fetch
+git checkout $(git rev-parse HEAD)
+git branch -f "$branch" origin/"$branch"
+git checkout "$branch"
