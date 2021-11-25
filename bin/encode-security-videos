@@ -1,0 +1,118 @@
+#!/bin/bash
+set -euo pipefail
+
+src_root="/Volumes/Camera"
+preview_root=~/SecurityFootagePreviews
+dst_root=~/Library/'Mobile Documents'/com~apple~CloudDocs/SecurityFootage
+
+parse_file_names() {
+    perl -ne 'if(m<^\S*/(\d{4}-\d{2}-\d{2})/\d+/dav/\d+/(\d{1,2})\.(\d{1,2})\.(\d{1,2})-(\d{1,2})\.(\d{1,2})\.(\d{1,2})\[(\w)\]\S*\.dav$>) { print "$& $1 $2$3 $5$6 $8\n" }'
+}
+
+inputs=()
+
+mode=preview
+while test "$#" -gt 0; do
+    case "$1" in
+        -s) src_root="$2"; shift; shift;;
+        -*) echo "** unknown option $1"; exit 2;;
+        *)
+            inputs+=("$1");
+            shift;;
+    esac
+done
+
+if test "${#inputs[@]}" -gt 0; then
+    mode=concat
+    for fn in "${inputs[@]}"; do
+        bn="$(basename "$fn")"
+        bn="${bn%.*}"
+        bn="${bn//-/_}"
+        declare "INC_$bn=1"
+    done
+fi
+
+case $mode in
+    preview)
+        mkdir -p $preview_root
+        open $preview_root;;
+    concat)
+        mkdir -p $dst_root;;
+esac
+
+concat_files=()
+concat_sdate=""
+concat_stime=""
+concat_etime=""
+concat_filter_parts=()
+
+while IFS=" " read ifile date stime etime extra; do
+    preview_codec_options=(-c:v libx264 -crf 20 -preset fast)
+    if test -n "$date"; then
+        pwname="${date}_${stime}_${etime}_${extra}.mp4"
+        pwdir="$preview_root/$date"
+        pwfile="$pwdir/$pwname"
+
+        case $mode in
+        preview)
+            mkdir -p "$pwdir"
+            if test -f "$pwfile"; then
+                echo "  EXISTS $pwname"
+            else
+                echo " PREVIEW $pwname"
+                args=(-loglevel warning -y -i "$ifile" -t 3 "${preview_codec_options[@]}" $pwfile)
+                echo "$ ffmpeg ${args[@]}"
+                ffmpeg ${args[@]} </dev/null
+            fi;;
+        concat)
+            bn="$pwname"
+            bn="${bn%.*}"
+            bn="${bn//-/_}"
+            varname="INC_${bn}"
+            if test "${!varname-0}" == 1; then
+                echo " INCLUDE $pwname"
+                idx=${#concat_files[@]}
+                if test $idx -eq 0; then
+                    concat_sdate=$date
+                    concat_stime=$stime
+                fi
+                concat_files+=($ifile)
+                concat_etime=$etime
+                concat_filter_parts+=("[$idx:v]" "[$idx:a]")
+            fi;;
+        esac
+    else
+        echo "    SKIP $ifile"
+    fi
+done < <(find "$src_root" -name '*.dav' | grep -v .Trashes | sort -n | parse_file_names)
+
+case $mode in
+    preview)
+        echo "DONE!";;
+    concat)
+        oname="${concat_sdate}_${concat_stime}_${concat_etime}.mp4"
+        odir="$dst_root/$concat_sdate"
+        ofile="$odir/$oname"
+
+        concat_filter_parts+=(concat=n=${#concat_files[@]}:v=1:a=1 [ov] [oa])
+
+        codec_options=(-c:v libx265 -tag:v hvc1 -crf 26 -preset medium)
+        # codec_options=()
+        args=(-y)
+        for ifile in "${concat_files[@]}"; do
+            args+=(-i "$ifile")
+        done
+        args+=(-filter_complex "${concat_filter_parts[*]}" -map '[ov]' -map '[oa]' "${codec_options[@]}" "$ofile")
+        echo "$ ffmpeg ${args[@]}"
+        mkdir -p "$odir"
+        ffmpeg "${args[@]}" </dev/null
+        echo "DONE!"
+        open -R "$ofile";;
+esac
+
+# find $src_root -name '*.dav' | grep '[M]' | parse_file_names
+
+# for fn in $(find $src_root -name '*.dav' | grep '[M]'); do
+#     name="$(echo "$fn" | make_output_names)"
+#     echo "$fn => $name"
+# done
