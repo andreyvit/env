@@ -149,3 +149,13 @@ Host lmtchat
 
 Host chat.livemixtapes.com
   User andreyt
+
+Host bhas101
+  Hostname 136.243.5.27
+  User root
+  IdentityFile ~/.ssh/id_prairie_dev
+
+Host bh201
+  Hostname bh201.bubblehouse.com
+  User root
+  IdentityFile ~/.ssh/id_prairie_dev

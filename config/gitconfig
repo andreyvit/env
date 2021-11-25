@@ -1,7 +1,6 @@
 [user]
 	name = Andrey Tarantsov
 	email = andrey@tarantsov.com
-	signingkey = EE3B88A1
 [github]
 	user = andreyvit
 [core]
@@ -98,3 +97,5 @@
 	tool = Kaleidoscope
 [rebase]
 	autosquash = true
+[advice]
+	detachedHead = false
