@@ -9,7 +9,7 @@ all-linux: zshconfig sshconfig gitconfig gemconfig emacsconfig ohmyzsh
 
 config-mac: config-all xcode itunes
 
-config-all: zshconfig sshconfig gitconfig gemconfig emacsconfig ohmyzsh
+config-all: zshconfig sshconfig gitconfig gemconfig psqlrc emacsconfig ohmyzsh
 
 install-mac: brew cask mas gems-mac install-all
 
@@ -32,6 +32,10 @@ gitconfig:
 gemconfig:
 	rm -f ~/.gemrc
 	ln -s ~/env/config/gemrc ~/.gemrc
+
+psqlrc:
+	rm -f ~/.psqlrc
+	ln -s ~/env/config/psqlrc ~/.psqlrc
 
 emacsconfig:
 	rm -f ~/.emacs
@@ -122,6 +126,8 @@ cask:
 	brew cask install textexpander
 	brew cask install dash
 	brew cask install sf-symbols
+	brew cask install transmission
+	brew cask install cakebrew
 
 mas:
 	mas install 1278508951     # Trello
