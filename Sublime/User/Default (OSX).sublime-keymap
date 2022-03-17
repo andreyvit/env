@@ -2,6 +2,7 @@
     // expand selection
     { "keys": ["ctrl+l"], "command": "expand_selection", "args": {"to": "line"} },
     { "keys": ["ctrl+shift+space"], "command": "expand_selection", "args": {"to": "scope"} },
+    { "keys": ["ctrl+s"], "command": "expand_selection", "args": {"to": "smart"} },
 
     // restore C-e that's normally overridden by Emmet
     { "keys": ["ctrl+e"], "command": "move_to", "args": {"to": "eol"} },
@@ -55,11 +56,19 @@
     // LSP
     { "keys": ["primary+alt+m"], "command": "lsp_show_diagnostics_panel", "context": [{"key": "setting.lsp_active"}] },
     { "keys": ["ctrl+s"], "command": "noop", "context": [{"key": "lsp.signature_help", "operator": "equal", "operand": 0 }] },
-    { "keys": ["f1"], "command": "lsp_symbol_definition", "args": {"side_by_side": false}, "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "definitionProvider"}, {"key": "auto_complete_visible", "operator": "equal", "operand": false}] },
-    { "keys": ["ctrl+]"], "command": "lsp_symbol_definition", "args": {"side_by_side": false}, "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "definitionProvider"}, {"key": "auto_complete_visible", "operator": "equal", "operand": false}] },
-    { "keys": ["ctrl+r"], "command": "lsp_symbol_rename", "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "renameProvider"}] },
-    { "keys": ["super+o"], "command": "lsp_document_symbols", "context": [{"key": "lsp.session_with_capability", "operator": "equal", "operand": "documentSymbolProvider"}] },
+    { "keys": ["ctrl+r"], "command": "lsp_symbol_rename" },
+    { "keys": ["super+o"], "command": "lsp_document_symbols" },
+    { "keys": ["super+shift+o"], "command": "lsp_workspace_symbols" },
     { "keys": ["super+k", "super+k"], "command": "lsp_code_actions" },
+    { "keys": ["f1"], "command": "lsp_symbol_definition", "args": {"side_by_side": false} },
+    { "keys": ["shift+f1"], "command": "lsp_symbol_type_definition", "args": {"side_by_side": false} },
+    { "keys": ["f5"], "command": "lsp_symbol_references" },
+    { "keys": ["f6"], "command": "lsp_signature_help_show" },
+
+    // spell checker
+    { "keys": ["f12"], "command": "toggle_setting", "args": {"setting": "spell_check"} },
+    { "keys": ["ctrl+f12"], "command": "next_misspelling" },
+    { "keys": ["ctrl+shift+f12"], "command": "prev_misspelling" },
 
     { "keys": ["alt+/"], "command": "auto_complete"},
 

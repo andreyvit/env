@@ -1,0 +1,51 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: modd.conf
+scope: source.moddconf
+
+file_extensions:
+  - conf
+  - modd.conf
+
+settings:
+  shellVariables:
+    - name: TM_COMMENT_START
+      value: "# "
+
+contexts:
+  prototype:
+    - include: comments
+
+  main:
+    - match: \{
+      push: directives
+    - match: \}
+      scope: invalid.illegal.stray-bracket-end
+
+  directives:
+    - match: \}
+      pop: true
+    - include: directive_names
+
+  filenames:
+    - match: '\S+'
+      scope: punctuation.definition.string.begin.example-c
+
+  directive_names:
+    # Keywords are if, else for and while.
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other.
+    - match: '\b(prep|daemon)\b'
+      scope: keyword.control.moddconf
+
+  comments:
+    - match: "#"
+      scope: punctuation.definition.comment.example-c
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.double-slash.example-c
+        - match: $\n?
+          pop: true

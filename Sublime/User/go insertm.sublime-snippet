@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+func (listPtr *${1:ListType}) InsertAt(item ${2:Item}, i int) {
+    list := *listPtr
+    n := len(list)
+    list = append(list, item)
+    if i < n {
+        copy(list[i+1:n+1], list[i:n])
+        list[i] = item
+    }
+    *listPtr = list
+}
+]]></content>
+    <tabTrigger>insertm</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -1,0 +1,23 @@
+<snippet>
+    <content><![CDATA[
+func Test${1:Something}(t *testing.T) {
+    tests := []struct {
+        input    string
+        expected string
+    }{
+        {"", ""},
+     }
+    for _, test := range tests {
+        actual := $1$0(test.input)
+        a := fmt.Sprintf("%v", actual)
+        if a != test.expected {
+            t.Errorf("** $1(%q) = %q, wanted %q", test.input, a, test.expected)
+        } else {
+            t.Logf("✓ $1(%q) = %q", test.input, a)
+        }
+    }
+}
+]]></content>
+    <tabTrigger>test_tab</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func Min${1:Type}(a, b $1) $1 {
+    if a <= b {
+        return a
+    } else {
+        return b
+    }
+}]]></content>
+    <tabTrigger>min</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

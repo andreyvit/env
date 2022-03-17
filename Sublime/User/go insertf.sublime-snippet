@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+func insert${1:Type}(list ${2:[]$1}, item $1, i int) $2 {
+    n := len(list)
+    list = append(list, item)
+    if i < n {
+        copy(list[i+1:n+1], list[i:n])
+        list[i] = item
+    }
+    return list
+}
+]]></content>
+    <tabTrigger>insertf</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
