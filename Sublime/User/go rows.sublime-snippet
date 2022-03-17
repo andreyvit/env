@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+if err != nil {
+    return err
+}
+defer rows.Close()
+
+for rows.Next() {
+    var xxx string
+    err := rows.Scan(&xxx)
+    if err != nil {
+        return err
+    }
+}
+
+return rows.Err()
+]]></content>
+    <tabTrigger>scanrows</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
