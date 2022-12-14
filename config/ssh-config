@@ -1,8 +1,8 @@
 ServerAliveInterval 60
 
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
+# Host *
+#  AddKeysToAgent yes
+#  UseKeychain yes
 
 Host newpm
   HostName 178.63.10.144
