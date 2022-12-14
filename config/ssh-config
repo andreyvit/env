@@ -62,37 +62,46 @@ Host vs
 Host h2
   User andreyvit
   HostName h2.tarantsov.com
-  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
 
 Host h3
   User andreyvit
   HostName h3.tarantsov.com
-  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
 
 Host d1
   User andreyvit
   HostName 107.170.70.44
-  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
 
 Host d3
   User andreyvit
   HostName 206.189.127.74
-  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
 
 Host nxp
   User dev
   Port 12222
   HostName next.qask.ru
-  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
 
 Host w8
   User andreyvit
   HostName 10.211.55.6
-  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
 
 Host github.com
   User git
-  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlMaster auto
+  ControlPersist yes
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
+  ServerAliveInterval 60
+
+Host heroku.com
+  ControlMaster auto
+  ControlPersist yes
+  ControlPath ~/.ssh/control_%h_%p_%r.sock
+  ServerAliveInterval 60
 
 Host heroku.personal
   HostName heroku.com
@@ -155,7 +164,46 @@ Host bhas101
   User root
   IdentityFile ~/.ssh/id_prairie_dev
 
+Host rhodes
+  Hostname rhodes.tarantsov.com
+
 Host bh201
   Hostname bh201.bubblehouse.com
   User root
   IdentityFile ~/.ssh/id_prairie_dev
+Host bh201.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh202.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh203.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh204.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh205.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh206.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh207.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh208.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh209.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh210.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh211.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
+Host bh212.bubblehouse.com
+  IdentityFile ~/.ssh/id_prairie_dev
+  StrictHostKeyChecking no
