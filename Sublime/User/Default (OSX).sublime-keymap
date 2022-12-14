@@ -3,6 +3,10 @@
     { "keys": ["ctrl+l"], "command": "expand_selection", "args": {"to": "line"} },
     { "keys": ["ctrl+shift+space"], "command": "expand_selection", "args": {"to": "scope"} },
     { "keys": ["ctrl+s"], "command": "expand_selection", "args": {"to": "smart"} },
+    
+    { "keys": ["ctrl+w", "r"], "command": "close_to_right" },
+    { "keys": ["ctrl+w", "o"], "command": "close_others" },
+    { "keys": ["ctrl+w", "shift+o"], "command": "close_other_windows" },
 
     // restore C-e that's normally overridden by Emmet
     { "keys": ["ctrl+e"], "command": "move_to", "args": {"to": "eol"} },
@@ -12,7 +16,7 @@
     { "keys": ["ctrl+t", "w"], "command": "wrap_as_you_type" },
     { "keys": ["ctrl+t", "e"], "command": "expand_abbreviation" },
     // ChangeQuotes plugin
-    { "keys": ["ctrl+t", "q"], "command": "change_quotes" },
+    { "keys": ["super+'"], "command": "change_quotes" },
     // StringUtilities
     { "keys": ["ctrl+t", "c"], "command": "convert_camel_underscores" },
     { "keys": ["ctrl+t", "d"], "command": "convert_camel_dash" },

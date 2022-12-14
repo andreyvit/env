@@ -2,17 +2,19 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"Sass",
 	],
 	"installed_packages":
 	[
+		"0x0",
 		"1337 Color Scheme",
 		"All Autocomplete",
 		"Babel",
 		"ChangeQuotes",
+		"COBOL Syntax",
 		"DashDoc",
 		"Decent Swift Syntax",
 		"Emmet",
+		"Ethereum",
 		"External Command",
 		"Filter Lines",
 		"GenerateUUID",
@@ -27,7 +29,9 @@
 		"LESS",
 		"LineJumper",
 		"LSP",
+		"LSP-gopls",
 		"Markdown HTML Preview",
+		"MarkdownEditing",
 		"Marked App Menu",
 		"Meteor Snippets",
 		"Open URL",
@@ -49,5 +53,6 @@
 		"TOML",
 		"UnitJS",
 		"uroboroSQL Formatter",
+		"Zig Language",
 	],
 }

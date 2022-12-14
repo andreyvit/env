@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+func ensure(err error) {
+    if err != nil {
+        panic(err)
+    }
+}
+]]></content>
+    <tabTrigger>ensure</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

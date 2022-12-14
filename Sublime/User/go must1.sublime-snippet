@@ -1,11 +1,10 @@
 <snippet>
     <content><![CDATA[
-func Must${1:Func}($2) $3 {
-    result, err := $1(${4:$2})
+func must[T any](v T, err error) T {
     if err != nil {
         panic(err)
     }
-    return result
+    return v
 }
 ]]></content>
     <tabTrigger>must</tabTrigger>

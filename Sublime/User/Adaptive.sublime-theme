@@ -1,0 +1,25 @@
+// Documentation at https://www.sublimetext.com/docs/themes.html
+{
+    "variables":
+    {
+        "sidebar_font_size": 11,
+    },
+    "rules":
+    [
+        {
+            "class": "sidebar_label",
+            "fg": "color(var(--background) blend(white 15%))",
+            "font.face": "var(font_face)",
+            "font.size": "var(sidebar_font_size)",
+        },
+        {
+            "class": "sidebar_tree",
+            "row_padding": [16, 1, 4, 0],
+            "indent": 8,
+            "indent_offset": 2,
+            "indent_top_level": false,
+            "dark_content": true,
+            "spacer_rows": true
+        },
+   ]
+}

@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+type ${1:Foo}List []*${1:Foo}
+
+func (list ${1:Foo}List) PublicView(ctx context.Context, apiVer apiversions.Version, auth AuthContext, cache Cache, aux Aux) interface{} {
+    result := make([]*${1:Foo}Public, 0, len(list)) // ensure non-nil result
+    for _, item := range list {
+        result = append(result, item.PublicViewTyped())
+    }
+    return &${1:Foo}ListPublic{result}
+}
+]]></content>
+    <tabTrigger>pubviewst</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

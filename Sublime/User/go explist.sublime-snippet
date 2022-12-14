@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+if a, e := ${1:actual}, ${2:expected}; !reflect.DeepEqual(a, e) {
+    t.Errorf("** $1 = %d items %v, wanted %d items %v", len(a), a, len(e), e)
+}
+]]></content>
+    <tabTrigger>explist</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

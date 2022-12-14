@@ -1,4 +1,4 @@
-{
+ {
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
 	"auto_complete_triggers":
@@ -14,7 +14,7 @@
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "JetBrains Mono Light",
-	"font_size": 13,
+	"font_size": 15,
 	"font_options": [],
 	"gutter": true,
 	"highlight_modified_tabs": true,
@@ -23,7 +23,7 @@
 	[
 		"GoSublime",
 		"LESS",
-		"Sass",
+		"Markdown",
 		"Vintage",
 	],
 	"ignored_words":
@@ -65,4 +65,5 @@
 	"auto_complete_include_snippets": true,
 	"auto_complete_include_snippets_when_typing": true,
 	"show_navigation_bar": false,
+	"indent_subsequent_lines": true,
 }
