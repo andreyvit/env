@@ -2,14 +2,16 @@
 
 help:
 	@echo "make config-mac"
+	@echo "make config-linux"
 
 all: config-mac install-mac
-
-all-linux: zshconfig sshconfig gitconfig gemconfig emacsconfig ohmyzsh
+all-linux: config-linux
 
 config-mac: config-all xcode itunes
 
-config-all: zshconfig sshconfig gitconfig gemconfig psqlrc emacsconfig ohmyzsh
+config-linux: config-all
+
+config-all: zshconfig sshconfig gitconfig gemconfig psqlrc emacsconfig ohmyzsh tmuxconf
 
 install-mac: brew cask mas gems-mac install-all
 
@@ -32,6 +34,10 @@ gitconfig:
 gemconfig:
 	rm -f ~/.gemrc
 	ln -s ~/env/config/gemrc ~/.gemrc
+
+tmuxconf:
+	rm -f ~/.tmux.conf
+	ln -s ~/env/config/tmux.conf ~/.tmux.conf
 
 psqlrc:
 	rm -f ~/.psqlrc
