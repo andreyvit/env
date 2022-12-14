@@ -230,3 +230,5 @@ if which direnv >/dev/null; then eval "$(direnv hook zsh)"; fi
 alias pt='pt --nogroup'
 alias ptg='pt --group'
 alias da='direnv allow'
+
+add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
