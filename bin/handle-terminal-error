@@ -1,0 +1,13 @@
+#!/bin/bash
+file="$1"; shift
+line="$1"; shift
+col="$1"; shift
+dir="$1"; shift
+msg="$*"
+if [[ $(find /tmp/handle-terminal-error-marker -maxdepth 1 -type f -mtime -3s -print -quit) ]]; then
+    true
+else
+    touch /tmp/handle-terminal-error-marker
+    /usr/local/bin/terminal-notifier -title "$file ($line)" -message "$msg" -execute "/usr/local/bin/subl $dir/$file:$line:$col"
+fi
+
