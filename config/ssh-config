@@ -175,7 +175,6 @@ Host bh201.bubblehouse.com
   IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh202.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh203.bubblehouse.com
   IdentityFile ~/.ssh/id_prairie_dev

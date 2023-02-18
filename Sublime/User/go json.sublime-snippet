@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[`json:"$0"`]]></content>
+    <tabTrigger>json</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
