@@ -1,2 +1,2 @@
 #!/bin/bash
-git commit -m "💩 $(curl -s https://whatthecommit.com/ | grep '<p>' | cut -c 4-)"
+git commit -m "💩 $(curl -s https://whatthecommit.com/index.txt)"
