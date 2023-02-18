@@ -75,6 +75,10 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
+[url "https://github.com/apple"]
+	insteadOf = https://github.com/apple
+[url "https://github.com/marcoarment"]
+	insteadOf = https://github.com/marcoarment
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [filter "lfs"]
