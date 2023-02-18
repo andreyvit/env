@@ -14,16 +14,16 @@
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "JetBrains Mono Light",
-	"font_size": 15,
+	"font_size": 14,
 	"font_options": [],
 	"gutter": true,
 	"highlight_modified_tabs": true,
 	"bold_folder_labels": true,
 	"ignored_packages":
 	[
+		"All Autocomplete",
 		"GoSublime",
 		"LESS",
-		"Markdown",
 		"Vintage",
 	],
 	"ignored_words":
