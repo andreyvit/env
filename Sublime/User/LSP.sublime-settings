@@ -2,18 +2,19 @@
 
 {
     "clients": {
-        // "gopls": {
-        //     "enabled": true,
-        //     "command": ["/Users/andreyvit/go/bin/gopls"],
-        //     "selector": "source.go",
-        //     "initializationOptions": {
-        //         "experimentalWorkspaceModule": false
-        //     }
-        // }
+        "gopls": {
+            "enabled": true,
+            "command": ["/Users/andreyvit/go/bin/gopls"],
+            "selector": "source.go",
+            "initializationOptions": {
+                // "experimentalWorkspaceModule": false
+            }
+        }
     },
     "lsp_format_on_save": true,
     "show_diagnostics_panel_on_save": 0,
     "show_diagnostics_count_in_view_status": true,
     "show_diagnostics_in_view_status": false,
-    "show_diagnostics_severity_level": 4
+    "show_diagnostics_severity_level": 4,
+    // "log_debug": true
 }

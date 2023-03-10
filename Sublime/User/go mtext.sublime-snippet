@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+func (v ${1:MyType}) MarshalText() ([]byte, error) {
+    return []byte(v.String()), nil
+}
+func (v *$1) UnmarshalText(b []byte) error {
+    var err error
+    *v, err = Parse$1(string(b))
+    return err
+}
+]]></content>
+    <tabTrigger>mtext</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

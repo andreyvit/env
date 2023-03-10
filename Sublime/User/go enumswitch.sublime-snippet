@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+switch ${1:enumValue} {
+case $2:
+	$0
+default:
+	panic(fmt.Errorf("unsupported value %v", $1))
+}
+]]></content>
+    <tabTrigger>enumswitch</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

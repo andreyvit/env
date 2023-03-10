@@ -1,94 +1,11 @@
 ServerAliveInterval 60
 
+Host *
+  IdentityAgent /Users/andreyvit/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+
 # Host *
 #  AddKeysToAgent yes
 #  UseKeychain yes
-
-Host newpm
-  HostName 178.63.10.144
-  User root
-
-Host oldpm
-  HostName projektmagazin.de
-  User ssh-214460-58462
-
-Host livepm
-  HostName 109.239.60.134
-  User root
-
-Host pmweb1
-  HostName 109.239.60.134
-  User root
-
-Host pmweb2
-  HostName 46.252.21.49
-  User root
-
-Host pmweb3
-  HostName 46.252.21.46
-  User root
-
-Host pmweb4
-  HostName 46.252.21.41
-  User root
-
-Host pmweb5
-  HostName 109.239.49.215
-  User root
-
-Host pmdb
-  HostName 46.252.21.42
-  User root
-
-Host wiki.key-tec.de
-  User git-user
-
-Host wiki
-  HostName wiki.key-tec.de
-  User git-user
-
-Host ascendo
-  User u41356466
-  HostName lingidy.com
-
-Host vs
-  User andreyvit
-  HostName 95.169.190.206
-  LocalForward 12000 localhost:12000
-  LocalForward 12001 localhost:12001
-  LocalForward 12100 localhost:12100
-  LocalForward 12200 localhost:12200
-
-Host h2
-  User andreyvit
-  HostName h2.tarantsov.com
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
-
-Host h3
-  User andreyvit
-  HostName h3.tarantsov.com
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
-
-Host d1
-  User andreyvit
-  HostName 107.170.70.44
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
-
-Host d3
-  User andreyvit
-  HostName 206.189.127.74
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
-
-Host nxp
-  User dev
-  Port 12222
-  HostName next.qask.ru
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
-
-Host w8
-  User andreyvit
-  HostName 10.211.55.6
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
 
 Host github.com
   User git
@@ -113,12 +30,6 @@ Host heroku.ascendo
   IdentityFile ~/.ssh/id_ascendo_heroku
   IdentitiesOnly yes
 
-Host chewy
-  HostName chewy.tarantsov.com
-
-Host grief
-  HostName 94.130.22.123
-
 Host nfsn-lr
   HostName ssh.phx.nearlyfreespeech.net
   User andreyvit_livereload
@@ -127,37 +38,6 @@ Host ceres
   IdentityFile ~/.ssh/ceres.key
   IdentitiesOnly yes
   HostName andreyvit-ceres.cloudapp.net
-
-Host weeeee-prod
-  IdentityFile ~/.ssh/michigan-ci.pem
-  HostName 52.20.62.204
-  User ubuntu
-
-Host brvty-prod
-  IdentityFile ~/.ssh/michigan-ci.pem
-  HostName 23.20.84.161
-  User ubuntu
-
-Host zoomgit
-  HostName 192.168.0.52
-
-Host db1.office.procore
-  Hostname 207.154.97.177
-  IdentityFile ~/.ssh/id_procore
-  User atarantsov
-  Port 4654
-  LocalForward 9999 localhost:5432
-
-Host smokeon
-  Hostname 52.54.181.137
-
-Host lmtchat
-  Hostname chat.livemixtapes.com
-  # Hostname 12.217.125.139
-  User andreyt
-
-Host chat.livemixtapes.com
-  User andreyt
 
 Host bhas101
   Hostname 136.243.5.27

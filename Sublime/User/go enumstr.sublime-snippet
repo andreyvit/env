@@ -1,0 +1,28 @@
+<snippet>
+    <content><![CDATA[
+var ${2:_${1/^(.)/\l$1/}s} = []string{"", $0}
+
+func (v ${1:MyType}) String() string {
+    return $2[v]
+}
+
+func Parse$1(s string) ($1, error) {
+    if i := slices.Index($2, s); i >= 0 {
+        return $1(i), nil
+    } else {
+        return $1None, fmt.Errorf("invalid $1 %q", s)
+    }
+}
+
+func (v $1) MarshalText() ([]byte, error) {
+    return []byte(v.String()), nil
+}
+func (v *$1) UnmarshalText(b []byte) error {
+    var err error
+    *v, err = Parse$1(string(b))
+    return err
+}
+]]></content>
+    <tabTrigger>enumstr</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

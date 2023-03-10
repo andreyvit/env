@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail
+mkdir -p ~/bin
+set -x
+curl -L -o ~/bin/$2 "$1"
+chmod +x ~/bin/$2
+which "$2"

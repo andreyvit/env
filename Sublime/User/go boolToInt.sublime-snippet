@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func boolToInt(v bool) int {
+    if v {
+        return 1
+    } else {
+        return 0
+    }
+}]]></content>
+    <tabTrigger>boolToInt</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

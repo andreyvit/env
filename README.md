@@ -2,9 +2,8 @@ Andrey's dotfiles
 =================
 
 
-Installation procedure
-----------------------
+Configuring a new computer:
 
-1. Download env from iCloud
-2. `ln -s /Users/andreyvit/Library/Mobile\ Documents/com\~apple\~CloudDocs/env`
-3. `cd ~/env; make all-mac`
+1. Download env from iCloud (or from GitHub)
+2. CD into it, `make`, then `make preinstall-mac mac install-mac`.
+3. See `manual/` subfolder for things you need to configure manually.

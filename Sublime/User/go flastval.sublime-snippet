@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+func lastValue[T any, S ~[]T](slice S) T {
+    if len(slice) == 0 {
+        var zero T
+        return zero
+    }
+    return slice[len(slice)-1]
+}
+]]></content>
+    <tabTrigger>flastval</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
