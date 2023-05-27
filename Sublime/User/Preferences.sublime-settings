@@ -15,7 +15,7 @@
 	"caret_extra_top": 0,
 	"caret_extra_bottom": 0,
 	// "block_caret": true,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Monokai.sublime-color-scheme",
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "JetBrains Mono Light",
@@ -83,4 +83,5 @@
 	"show_full_path": true,
 	"show_rel_path": true,
 	"select_across_groups": true,
+	"scroll_past_end": 0.5,
 }

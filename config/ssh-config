@@ -1,7 +1,7 @@
 ServerAliveInterval 60
 
 Host *
-  IdentityAgent /Users/andreyvit/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
 # Host *
 #  AddKeysToAgent yes
@@ -11,13 +11,13 @@ Host github.com
   User git
   ControlMaster auto
   ControlPersist yes
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
+  ControlPath ~/.ssh/control/%h_%p_%r.sock
   ServerAliveInterval 60
 
 Host heroku.com
   ControlMaster auto
   ControlPersist yes
-  ControlPath ~/.ssh/control_%h_%p_%r.sock
+  ControlPath ~/.ssh/control/%h_%p_%r.sock
   ServerAliveInterval 60
 
 Host heroku.personal
@@ -50,39 +50,27 @@ Host rhodes
 Host bh201
   Hostname bh201.bubblehouse.com
   User root
-  IdentityFile ~/.ssh/id_prairie_dev
 Host bh201.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh202.bubblehouse.com
   StrictHostKeyChecking no
 Host bh203.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh204.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh205.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh206.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh207.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh208.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh209.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh210.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh211.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no
 Host bh212.bubblehouse.com
-  IdentityFile ~/.ssh/id_prairie_dev
   StrictHostKeyChecking no

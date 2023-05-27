@@ -79,6 +79,8 @@
 	insteadOf = https://github.com/apple
 [url "https://github.com/marcoarment"]
 	insteadOf = https://github.com/marcoarment
+[url "https://github.com/twostraws"]
+	insteadOf = https://github.com/twostraws
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [filter "lfs"]

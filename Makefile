@@ -113,8 +113,10 @@ install-brew:
 	brew install syncthing
 	brew services start syncthing
 	brew install --cask 1password
+	brew install --cask 1password-cli
 	brew install mas
 	brew install --cask secretive
+	brew install --cask maestral
 	brew install --cask keyboard-maestro
 	brew install --cask sublime-text
 	brew install --cask sublime-merge
@@ -127,7 +129,13 @@ install-brew:
 	brew install --cask zoom
 	brew install --cask telegram
 	brew install --cask dash
-	brew install --cask microsoft-edge
+	brew install --cask nvalt
+	brew install --cask workflowy
+	brew install --cask loom
+	brew install --cask vivaldi
+	brew install --cask battery
+	brew install --cask mullvad-browser
+	brew install --cask kindle
 	# core dev tools
 	brew install mosh
 	brew install go
@@ -164,18 +172,28 @@ install-brew:
 	brew install --cask textexpander
 	brew install --cask sf-symbols
 	brew install --cask transmission
+	brew install --cask optimage
+	brew install --cask trezor-suite
+	brew install --cask omnioutliner
+	# brew install --cask krisp
 
 	# run last because this requires ssh key when accessing GitHub
 	brew install --cask homebrew/cask-fonts/font-jetbrains-mono
+	brew install --cask homebrew/cask-fonts/font-ia-writer-duo
+	brew install --cask homebrew/cask-fonts/font-ia-writer-mono
+	brew install --cask homebrew/cask-fonts/font-ia-writer-quattro
+
+	# large downloads
+	brew install --cask android-studio
 
 install-mas:
 	mas install 803453959      # Slack
 	mas install 406056744      # Evernote
-	mas install 497799835      # Xcode
 	mas install 1388020431     # DevCleaner
 	mas install 1006087419     # SnippetsLab
-	mas install 1289583905     # Pixelmator Pro
 	mas install 775737590      # iA Writer
+	mas install 488764545      # The Clock
+	mas install 412155298      # Nag
 
 	mas install 1365531024     # 1Blocker
 	mas install 1188020834     # OverPicture
@@ -184,11 +202,14 @@ install-mas:
 	mas install 1569813296     # 1Password for Safari
 
 	mas install 1489816366     # Mic Drop — mute
+	mas install 1508732804     # Soulver
 
 	# mas install 1278508951     # Trello
 	# mas install 904280696      # Things
 	# mas install 961632517      # Be Focused Pro
 	## apple
+	mas install 497799835      # Xcode
+	mas install 1289583905     # Pixelmator Pro
 	mas install 409201541      # Pages
 	# mas install 409183695      # Keynote
 	# mas install 408981434      # iMovie
@@ -205,6 +226,7 @@ install-mas:
 	# mas install 1141323850     # C. Anatomy 2021
 	# mas install 1464649839     # Butter Royale
 	# mas install 1489275350     # Crossy Road Castle
+	mas install 1541482816     # PSWD
 	mas install 482898991      # LiveReload
 	mas install 1388020431     # DevCleaner
 	mas install 1057705278     # ColorSquid — mix colors
@@ -214,14 +236,11 @@ install-mas:
 	mas install 556381974      # IconFly
 	mas install 867814185      # Acana QR Code Generator
 	mas install 1485436674     # A Companion for SwiftUI
-	mas install 413965349      # Soulver
 	mas install 640199958      # Developer
 	mas install 929960914      # Red Hot Timer
-	mas install 412155298      # Nag
 	# mas install 1380446739     # InjectionIII
 	mas install 452840086      # Receigen
 	mas install 409203825      # Numbers
-	mas install 488764545      # The Clock
 	mas install 539188678      # Unique Code Generator
 	mas install 1091189122     # Bear
 	mas install 1153157709     # Speedtest

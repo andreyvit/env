@@ -1,7 +1,7 @@
 {
   "lists": {
     "default": {
-      "quotes": [["'", "\""]]
+      "quotes": [["'", "\"", "`"]]
     },
     "source.go": {
       "quotes": [["\"", "`", "'"]]
