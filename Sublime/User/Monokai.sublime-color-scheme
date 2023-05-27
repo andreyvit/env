@@ -1,0 +1,29 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+    "variables":
+    {
+        "green": "hsl(97, 100%, 50%)",
+    },
+    "globals":
+    {
+    },
+    "rules":
+    [
+        {
+            "name": "Go template start/end",
+            "scope": "punctuation.definition.raw.begin.gotemplate, punctuation.definition.raw.end.gotemplate",
+            "foreground": "color(var(white) alpha(0.47))"
+        },
+        {
+            "name": "Go template action",
+            "scope": "markup.raw.gotemplate",
+            "background": "color(var(green) alpha(0.1))",
+            "foreground_adjust": "l(+ 10%)",
+        },
+        {
+            "name": "Go template control-flow keyword",
+            "scope": "keyword.control.gotemplate",
+            "font_style": "bold",
+        },
+    ]
+}

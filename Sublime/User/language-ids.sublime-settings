@@ -1,0 +1,5 @@
+// SublimeText base scope -> LSP Language ID overrides
+{
+    // "source.mylanguage": "mylang"
+    "text.html.gohtml": "html",
+}
