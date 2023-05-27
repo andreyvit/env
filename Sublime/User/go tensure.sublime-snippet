@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func ok(t testing.TB, err error) {
+    if err != nil {
+        t.Helper()
+        t.Fatalf("** %v", err)
+    }
+}
+]]></content>
+    <tabTrigger>tok</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+func must[T any](t testing.TB, v T, err error) T {
+    if err != nil {
+        t.Helper()
+        t.Fatalf("** %v", err)
+    }
+    return v
+}
+]]></content>
+    <tabTrigger>tmust</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

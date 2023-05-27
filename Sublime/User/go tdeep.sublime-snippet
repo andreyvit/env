@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func deepEqual[T any](t testing.TB, a, e T) {
+    if !reflect.DeepEqual(a, e) {
+        t.Helper()
+        t.Errorf("** got %v, wanted %v", a, e)
+    }
+}
+]]></content>
+    <tabTrigger>tdeep</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

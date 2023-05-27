@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+func zeroOrOne[T comparable](v T) []T {
+    var zero T
+    if v == zero {
+        return nil
+    } else {
+        return []T{v}
+    }
+}
+]]></content>
+    <tabTrigger>zeroOrOne</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

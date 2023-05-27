@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func isempty[T any, S ~[]T](t testing.TB, a S) {
+    if len(a) > 0 {
+        t.Helper()
+        t.Errorf("** got %v, wanted empty slice", a)
+    }
+}
+]]></content>
+    <tabTrigger>temptyslice</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func isnonnil[T any](t testing.TB, a *T) {
+    if a == nil {
+        t.Helper()
+        t.Errorf("** got nil %T, wanted non-nil", a)
+    }
+}
+]]></content>
+    <tabTrigger>tnonnil</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+defer func() {
+            if e := recover(); e != nil {
+                log.Printf("** PANIC: %v", e)
+                debug.PrintStack()
+                panic(e)
+            }
+        }()
+]]></content>
+    <tabTrigger>printstack</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
