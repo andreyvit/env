@@ -1,0 +1,48 @@
+%YAML 1.2
+---
+name: 'Go HTML Template'
+file_extensions:
+  - html
+scope: text.html.gohtml
+variables:
+#   start_prefix: (?:-\s*)?
+#   end_suffix: (?:-\s*)?
+  action_keyword: \b(?:if|with|range|else|end|template|define|block)\b
+#   embed_start: (?:if|with|range|else|end|template|define|block)
+contexts:
+  main:
+      - match: ''
+        push: 'Packages/HTML/HTML.sublime-syntax'
+        with_prototype:
+          - match: '({{)(\s*(?:(-)\s*)?\/\*)'
+            captures:
+              1: punctuation.definition.raw.begin.gotemplate
+              2: comment
+              3: punctuation.accessor
+              4: keyword.control.gotemplate
+            embed: scope:comment
+            embed_scope: comment.gotemplate
+            escape: '(\*\/\s*(?:(-)\s*)?)(}})'
+            escape_captures:
+              1: comment
+              2: punctuation.accessor
+              3: punctuation.definition.raw.end.gotemplate
+          - match: '({{)(\s*(?:(-)\s+)?({{action_keyword}}))'
+            captures:
+              1: punctuation.definition.raw.begin.gotemplate
+              2: markup.raw.gotemplate.action
+              3: punctuation.accessor
+              4: keyword.control.gotemplate
+            embed: Packages/User/Go-Template.sublime-syntax
+            embed_scope: markup.raw.gotemplate.action
+            escape: '}}'
+            escape_captures:
+              0: punctuation.definition.raw.end.gotemplate
+          - match: '{{'
+            captures:
+              0: punctuation.definition.raw.begin.gotemplate
+            embed: Packages/User/Go-Template.sublime-syntax
+            embed_scope: markup.raw.gotemplate.value
+            escape: '}}'
+            escape_captures:
+              0: punctuation.definition.raw.end.gotemplate
