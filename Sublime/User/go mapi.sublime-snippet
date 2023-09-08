@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+${1:result} := make([]${2:NewItemType}, 0, len(${3:list}))
+for _, ${4:el} := range ${3:list} {
+    ${1:result} = append(${1:result}, ${5:${4:el}})
+}
+]]></content>
+    <tabTrigger>mapi</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

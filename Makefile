@@ -14,7 +14,7 @@ help:
 preinstall-mac: preinstall-env-symlink preinstall-ohmyzsh preinstall-brew preinstall-tea
 preinstall-linux: preinstall-ohmyzsh preinstall-tea
 
-mac: common sublime-symlink sublime-packages xcode
+mac: common sublime-symlink sublime-packages xcode hammerspoon
 linux: common
 common: zshconfig sshconfig gitconfig ohmyzsh gemconfig psqlrc tmuxconf emacsconfig
 
@@ -47,11 +47,6 @@ sshconfig:
 gitconfig:
 	rm -f ~/.gitconfig
 	ln -s ~/env/config/gitconfig ~/.gitconfig
-
-ohmyzsh:
-	mkdir -p ~/.oh-my-zsh
-	rm -rf ~/.oh-my-zsh/custom
-	ln -s ~/env/config/oh-my-zsh-custom ~/.oh-my-zsh/custom
 
 gemconfig:
 	rm -f ~/.gemrc
@@ -90,13 +85,13 @@ sublime-packages:
 	rm -rf ~/"Library/Application Support/Sublime Text/Packages/User"
 	ln -s ~/env/Sublime/User ~/"Library/Application Support/Sublime Text/Packages/User"
 
+hammerspoon:
+	rm -rf ~/.hammerspoon
+	ln -s ~/env/config/hammerspoon ~/.hammerspoon
+
 retired-karabiner:
 	rm -rf  ~/Library/'Application Support'/Karabiner
 	ln -s ~/env/Karabiner ~/Library/'Application Support'/
-
-retired-hammerspoon:
-	rm -rf ~/.hammerspoon
-	ln -s ~/env/config/hammerspoon ~/.hammerspoon
 
 retired-kwm:
 	rm -rf ~/.kwm
@@ -115,6 +110,7 @@ install-brew:
 	brew install --cask 1password
 	brew install --cask 1password-cli
 	brew install mas
+	brew install --cask hammerspoon
 	brew install --cask secretive
 	brew install --cask maestral
 	brew install --cask keyboard-maestro
@@ -147,6 +143,7 @@ install-brew:
 	brew install wget
 	brew install autojump
 	brew install figlet
+	brew install up
 	brew install cloc
 	brew install rlwrap
 	brew install icdiff
@@ -185,6 +182,9 @@ install-brew:
 
 	# large downloads
 	brew install --cask android-studio
+
+	brew tap tinygo-org/tools
+	brew install tinygo
 
 install-mas:
 	mas install 803453959      # Slack

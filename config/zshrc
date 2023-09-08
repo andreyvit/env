@@ -223,3 +223,9 @@ alias ptg='pt --group'
 alias da='direnv allow'
 
 add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
+
+export HOMEBREW_GITHUB_API_TOKEN=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
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

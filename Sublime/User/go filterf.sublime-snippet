@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+func ${1:filterSomething}(${2:input} []${3:type}) []${3:type} {
+    result := make([]${3:type}, 0, len(${2:input}))
+    for _, ${4:el} := range ${2:input} {
+        if ${5:$4 != nil} {
+            result = append(result, ${6:${4:el}})
+        }
+    }
+    return result
+}
+]]></content>
+    <tabTrigger>filterf</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

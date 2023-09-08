@@ -1,11 +1,9 @@
 <snippet>
     <content><![CDATA[
 func ${1:mapSomething}(${2:input} []${3:type}) []$3 {
-    result := make([]$3, 0, len($2))
-    for _, el := range $2 {
-        if ${4:el != nil} {
-            result = append(result, el)
-        }
+    result := make([]${3:type}, 0, len(${2:input}))
+    for _, ${4:el} := range $2 {
+        result = append(result, ${5:${4:el}})
     }
     return result
 }

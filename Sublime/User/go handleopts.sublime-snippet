@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+for _, opt := range opts {
+    switch opt := opt.(type) {
+    case $0
+    default:
+        panic(fmt.Errorf("invalid option %T %v", opt, opt))
+    }
+}
+]]></content>
+    <tabTrigger>handleopts</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

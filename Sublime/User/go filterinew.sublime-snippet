@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+${1:result} := make([]*${2:StructType}, 0, len(${3:list}))
+for _, ${4:el} := range ${3:list} {
+    if ${5:${4:el} != nil} {
+        ${1:result} = append(${1:result}, &${2:StructType}{
+            ${5:: ${4:el}},
+        })
+    }
+}
+]]></content>
+    <tabTrigger>filterinew</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

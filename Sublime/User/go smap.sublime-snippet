@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+func smap[T1, T2 any, S ~[]T1](list S, f func(T1) T2) []T2 {
+    if list == nil {
+        return nil
+    }
+    result := make([]T2, 0, len(list))
+    for _, item := range list {
+        result = append(result, f(item))
+    }
+    return result
+}
+]]></content>
+    <tabTrigger>smap</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

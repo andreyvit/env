@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func fallback(first, second ${1:string}) ${1:string} {
+    if first != ${2:""} {
+        return first
+    }
+    return second
+}
+]]></content>
+    <tabTrigger>ffallback</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

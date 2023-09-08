@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[{{t  "$0"}}]]></content>
+    <tabTrigger>t</tabTrigger>
+    <scope>text.html.gohtml</scope>
+</snippet>

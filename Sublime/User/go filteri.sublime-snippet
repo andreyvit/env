@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+${1:result} := make([]${2:NewItemType}, 0, len(${3:list}))
+for _, ${4:el} := range ${3:list} {
+    if ${5:${4:el} != nil} {
+        ${1:result} = append(${1:result}, ${4:el}$0)
+    }
+}
+]]></content>
+    <tabTrigger>filteri</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

@@ -1,4 +1,4 @@
- {
+{
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
 	"auto_complete_triggers":
@@ -19,15 +19,13 @@
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "JetBrains Mono Light",
-	"font_size": 14,
+	"font_size": 13,
 	"font_options": [],
-	"highlight_modified_tabs": true,
 	"bold_folder_labels": true,
 	"ignored_packages":
 	[
 		"All Autocomplete",
 		"GoSublime",
-		"LESS",
 		"LSP-gopls",
 		"Vintage",
 	],
@@ -41,7 +39,7 @@
 		"draw_active"
 	],
 	"index_files": true,
-	"gutter": false,
+	"gutter": true,
 	"margin": 4,
 	"line_numbers": true,
 	"remember_full_screen": true,
@@ -51,9 +49,8 @@
 		100,
 		120
 	],
-	"save_on_focus_lost": true,
+	"save_on_focus_lost": false,
 	"shift_tab_unindent": true,
-	"show_tab_close_buttons": false,
 	"spell_check": false,
 	"tab_size": 4,
 	"theme": "Adaptive.sublime-theme",
@@ -77,11 +74,19 @@
 	"show_definitions": true,
 	"tab_completion": true,
 	"auto_complete": true,
-	"enable_tab_scrolling": false,
-	"hide_tab_scrolling_buttons": true,
-	"hide_new_tab_button": true,
 	"show_full_path": true,
 	"show_rel_path": true,
 	"select_across_groups": true,
 	"scroll_past_end": 0.5,
+	"overlay_scroll_bars": "enabled",
+	"show_line_column": "compact",
+	"show_project_first": false,
+
+	"enable_tab_scrolling": false,
+	"hide_tab_scrolling_buttons": true,
+	"hide_new_tab_button": true,
+	"highlight_modified_tabs": true,
+	"file_tab_style": "square",
+	"show_tab_close_buttons": false,
+	"open_tabs_after_current": false,
 }

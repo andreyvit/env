@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+func cond[T any](cond bool, trueVal, falseVal T) T {
+    if cond {
+        return trueVal
+    } else {
+        return falseVal
+    }
+}
+]]></content>
+    <tabTrigger>cond</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
