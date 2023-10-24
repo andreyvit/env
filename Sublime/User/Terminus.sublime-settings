@@ -1,0 +1,7 @@
+{
+	"theme": "grape",
+    "view_settings": {
+        "font_size": 11,
+        "result_file_regex": "^\\s*([^\\s:]+):(\\d+)(?::(\\d+))?(?::\\s+([^\\n]+))?",
+    },
+}

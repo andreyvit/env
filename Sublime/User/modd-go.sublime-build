@@ -1,0 +1,8 @@
+{
+  "target": "terminus_exec",
+  "cancel": "terminus_cancel_build",
+  "shell_cmd": "zsh -c 'pwd; modd'",
+  "working_dir": "$project_path",
+  "keyfiles": ["modd.conf"],
+  "file_regex": "^(\\S+):(\\d+):(\\d+): ([^\\n]+)"
+}
