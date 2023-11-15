@@ -2,6 +2,7 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
+		"LSP-typescript",
 	],
 	"installed_packages":
 	[

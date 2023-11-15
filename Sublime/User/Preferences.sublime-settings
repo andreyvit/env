@@ -27,6 +27,7 @@
 		"All Autocomplete",
 		"GoSublime",
 		"LSP-gopls",
+		"LSP-typescript",
 		"Vintage",
 	],
 	"ignored_words":

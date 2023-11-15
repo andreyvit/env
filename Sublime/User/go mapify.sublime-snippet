@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+func mapify[T comparable, V any](slice []T, v V) map[T]V {
+    result := make(map[T]V, len(slice))
+    for _, item := range slice {
+        result[item] = v
+    }
+    return result
+}
+]]></content>
+    <tabTrigger>mapify</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
