@@ -1,14 +1,13 @@
 <snippet>
     <content><![CDATA[
 func (v ${1:MyType}) EncodeMsgpack(enc *msgpack.Encoder) error {
-    return enc.Encode${2:Uint}(${2/^.*$/\l$0/}(v))
+    return enc.Encode${2:Uint}(${2/^.*$/\l$0/}64(v))
 }
 func (v *$1) DecodeMsgpack(dec *msgpack.Decoder) error {
     n, err := dec.Decode$2()
     *v = $1(n)
     return err
 }
-
 ]]></content>
     <tabTrigger>enummsgpack</tabTrigger>
     <scope>source.go</scope>

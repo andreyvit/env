@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[var _ ${1:InterfaceName} = (*${2:TypeName})(nil) // assert $2 implements $1]]></content>
+    <tabTrigger>assertinterface</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

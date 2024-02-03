@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+func zerofallback[T any](ptr *T) T {
+    if ptr == nil {
+        var zero T
+        return zero
+    } else {
+        return *ptr
+    }
+}
+]]></content>
+    <tabTrigger>zerofallback</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

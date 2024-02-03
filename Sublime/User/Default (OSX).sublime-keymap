@@ -1,4 +1,6 @@
 [
+    {"keys": ["alt+r"], "command": "repeat"},
+
     // sidebar
     { "keys": ["ctrl+d"], "command": "reveal_in_side_bar" },
     { "keys": ["ctrl+s"], "command": "toggle_side_bar" },

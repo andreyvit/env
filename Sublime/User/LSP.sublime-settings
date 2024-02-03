@@ -8,6 +8,13 @@
             "selector": "source.go",
             "initializationOptions": {
                 // "experimentalWorkspaceModule": false
+                "hints": {
+                    "assignVariableTypes": false,
+                    "constantValues": true,
+                },
+                "templateExtensions": ["html"],
+                "local": "blurr",
+                "diagnosticsTrigger": "Save",
             }
         }
     },
@@ -16,5 +23,6 @@
     "show_diagnostics_count_in_view_status": true,
     "show_diagnostics_in_view_status": false,
     "show_diagnostics_severity_level": 4,
+    "show_references_in_quick_panel": true,
     // "log_debug": true
 }

@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+func keymapnz[T1, T2 comparable, V any, S ~map[T1]V](source S, f func(T1) T2) map[T2]V {
+    if source == nil {
+        return nil
+    }
+    result := make(map[T2]V, len(source))
+    var zero T2
+    for key, value := range source {
+        mapped := f(key)
+        if mapped != zero {
+            result[mapped] = value
+        }
+    }
+    return result
+}
+]]></content>
+    <tabTrigger>keymapnz</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

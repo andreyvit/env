@@ -2,7 +2,6 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"LSP-typescript",
 	],
 	"installed_packages":
 	[
@@ -20,7 +19,6 @@
 		"Filter Lines",
 		"GenerateUUID",
 		"GitHub Flavored Markdown Preview",
-		"GoSublime",
 		"GraphQL",
 		"Handlebars",
 		"IcedCoffeeScript",
@@ -37,6 +35,7 @@
 		"MarkdownEditing",
 		"Marked App Menu",
 		"Meteor Snippets",
+		"nRepeat",
 		"Open URL",
 		"Package Control",
 		"PackageDev",

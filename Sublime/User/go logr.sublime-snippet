@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[log.Printf("$1 = %#v", ${1:value}) ]]></content>
+    <tabTrigger>logr</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

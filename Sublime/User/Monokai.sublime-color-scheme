@@ -3,6 +3,8 @@
     "variables":
     {
         "green": "hsl(97, 100%, 50%)",
+        "blue2": "hsl(170, 81%, 75%)",
+        "yellow-white": "hsl(54, 58%, 75%)",
     },
     "globals":
     {
@@ -25,5 +27,63 @@
             "scope": "keyword.control.gotemplate",
             "font_style": "bold",
         },
-    ]
+        {
+            "name": "Highlight keys",
+            "scope": "meta.mapping.key string.quoted.double.json",
+            "foreground": "var(red2)",
+        },
+        {
+            "name": "Highlight keys but not start/end",
+            "scope": "string.quoted.double.json punctuation.definition.string",
+            "foreground": "var(yellow5)",
+        },
+        {
+            "name": "Highlight keys but not start/end",
+            "scope": "variable.bubbletheme.subtitution",
+            "font_style": "italic",
+            "foreground": "var(yellow2)",
+        },
+        {
+            "name": "Function argument",
+            "scope": "variable.parameter, meta.function.declaration storage.type.go, meta.function.declaration support.type.builtin.go",
+            "font_style": "italic"
+        },
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "font_style": ""
+        },
+        {
+            "name": "Library function",
+            "scope": "support.function, support.macro",
+            "font_style": "italic"
+        },
+        {
+            "name": "Library class/type",
+            "scope": "support.type.builtin.go",
+            "foreground": "var(blue2)",
+            "font_style": ""
+        },
+        {
+            "name": "Variable decl",
+            "scope": "variable.other.readwrite.declaration, variable.other.readwrite.shell",
+            "foreground": "var(yellow-white)",
+            "font_style": "italic",
+        },
+        {
+            "name": "Variable decl",
+            "scope": "variable.function.shell",
+            "font_style": "bold",
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword.declaration.type, keyword.declaration.function, keyword.declaration.const, keyword.declaration.var, keyword.control, keyword.other.go",
+            "font_style": "italic"
+        },
+        {
+            "name": "Tag name",
+            "scope": "entity.name.tag, entity.other.attribute-name, punctuation.definition.tag",
+            "font_style": "italic"
+        },
+   ]
 }

@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+func smapnz[T1 any, T2 comparable, S ~[]T1](list S, f func(T1) T2) []T2 {
+    if list == nil {
+        return nil
+    }
+    result := make([]T2, 0, len(list))
+    var zero T2
+    for _, item := range list {
+        mapped := f(item)
+        if mapped != zero {
+            result = append(result, mapped)
+        }
+    }
+    return result
+}
+]]></content>
+    <tabTrigger>smapnz</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

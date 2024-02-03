@@ -1,0 +1,19 @@
+<snippet>
+    <content><![CDATA[
+func filterInPlace[S ~[]T, T any](slice S, filter func(item T, inIndex, outIndex int) (T, bool)) S {
+    o := 0
+    for i, item := range slice {
+        item, add := filter(item, i, o)
+        if add {
+            if o != i {
+                slice[o] = item
+            }
+            o++
+        }
+    }
+    return slice[:o]
+}
+]]></content>
+    <tabTrigger>filterInPlace</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

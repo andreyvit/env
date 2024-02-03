@@ -11,38 +11,74 @@ variables:
 #   embed_start: (?:if|with|range|else|end|template|define|block)
 contexts:
   main:
-      - match: ''
-        push: 'Packages/HTML/HTML.sublime-syntax'
-        with_prototype:
-          - match: '({{)(\s*(?:(-)\s*)?\/\*)'
-            captures:
-              1: punctuation.definition.raw.begin.gotemplate
-              2: comment
-              3: punctuation.accessor
-              4: keyword.control.gotemplate
-            embed: scope:comment
-            embed_scope: comment.gotemplate
-            escape: '(\*\/\s*(?:(-)\s*)?)(}})'
-            escape_captures:
-              1: comment
-              2: punctuation.accessor
-              3: punctuation.definition.raw.end.gotemplate
-          - match: '({{)(\s*(?:(-)\s+)?({{action_keyword}}))'
-            captures:
-              1: punctuation.definition.raw.begin.gotemplate
-              2: markup.raw.gotemplate.action
-              3: punctuation.accessor
-              4: keyword.control.gotemplate
-            embed: Packages/User/Go-Template.sublime-syntax
-            embed_scope: markup.raw.gotemplate.action
-            escape: '}}'
-            escape_captures:
-              0: punctuation.definition.raw.end.gotemplate
-          - match: '{{'
-            captures:
-              0: punctuation.definition.raw.begin.gotemplate
-            embed: Packages/User/Go-Template.sublime-syntax
-            embed_scope: markup.raw.gotemplate.value
-            escape: '}}'
-            escape_captures:
-              0: punctuation.definition.raw.end.gotemplate
+    - match: ''
+      push: 'Packages/HTML/HTML.sublime-syntax'
+      with_prototype:
+        - match: '^({{\/\*)(?={)'
+          captures:
+            1: punctuation.definition.raw.begin.frontmatter
+          embed: frontmatter
+          # embed_scope: meta.frontmatter.json
+          escape: '(?!})\*\/}}'
+          escape_captures:
+            0: punctuation.definition.raw.end.frontmatter
+        - match: '({{)(\s*(?:(-)\s*)?\/\*)'
+          captures:
+            1: punctuation.definition.raw.begin.gotemplate
+            2: comment
+            3: punctuation.accessor
+            4: keyword.control.gotemplate
+          embed: scope:comment
+          embed_scope: comment.gotemplate
+          escape: '(\*\/\s*(?:(-)\s*)?)(}})'
+          escape_captures:
+            1: comment
+            2: punctuation.accessor
+            3: punctuation.definition.raw.end.gotemplate
+        - match: '({{)(\s*(?:(-)\s+)?({{action_keyword}}))'
+          captures:
+            1: punctuation.definition.raw.begin.gotemplate
+            2: markup.raw.gotemplate.action
+            3: punctuation.accessor
+            4: keyword.control.gotemplate
+          embed: Packages/User/Go-Template.sublime-syntax
+          embed_scope: markup.raw.gotemplate.action
+          escape: '}}'
+          escape_captures:
+            0: punctuation.definition.raw.end.gotemplate
+        - match: '{{'
+          captures:
+            0: punctuation.definition.raw.begin.gotemplate
+          embed: Packages/User/Go-Template.sublime-syntax
+          embed_scope: markup.raw.gotemplate.value
+          escape: '}}'
+          escape_captures:
+            0: punctuation.definition.raw.end.gotemplate
+  frontmatter:
+    - match: ''
+      push: 'Packages/JSON/JSON.sublime-syntax'
+      with_prototype:
+        - match: '({{\.)(.*)(}})'
+          captures:
+            0: meta.interpolation.bubbletheme
+            1: comment.interpolation.begin.bubbletheme
+            2: variable.parameter.bubbletheme
+            3: comment.interpolation.end.bubbletheme
+        - match: '({)(?=\.)'
+          captures:
+            0: meta.interpolation.bubbletheme
+            1: comment.interpolation.begin.bubbletheme
+          embed: bubbletheme-variable
+          embed_scope: meta.interpolation.bubbletheme
+          escape: '}'
+          escape_captures:
+            0: comment.interpolation.end.bubbletheme
+  bubbletheme-variable:
+    - match: '\.'
+      scope: punctuation.bubbletheme.dot
+    # - match: '(color|size|style|derived)\b'
+    #   scope: keyword.bubbletheme
+    - match: '\$\w+'
+      scope: variable.bubbletheme.subtitution
+    - match: '\w+'
+      scope: variable.parameter.bubbletheme

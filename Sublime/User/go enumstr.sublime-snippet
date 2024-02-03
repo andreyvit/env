@@ -1,21 +1,21 @@
 <snippet>
     <content><![CDATA[
-var ${2:_${1/^(.)/\l$1/}Strings} = []string{
-    "",$0
+var ${2:_${1/^(.)/\l$1/}Strings} = [...]string{
+    $1None: "",$0
 }
+
+// Boring stuff
 
 func (v ${1:MyType}) String() string {
     return $2[v]
 }
-
 func Parse$1(s string) ($1, error) {
-    if i := slices.Index($2, s); i >= 0 {
+    if i := slices.Index($2, s[:]); i >= 0 {
         return $1(i), nil
     } else {
         return $1None, fmt.Errorf("invalid $1 %q", s)
     }
 }
-
 func (v $1) MarshalText() ([]byte, error) {
     return []byte(v.String()), nil
 }
