@@ -129,6 +129,7 @@ install-brew:
 	brew install --cask kindle
 	# core dev tools
 	brew install atuin
+	brew install fzf
 	brew install zoxide
 	brew install mosh
 	brew install go

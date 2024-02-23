@@ -1,5 +1,19 @@
 # .zshrc
 # executed for interactive shells only, after .zshenv
+#
+# Using z:
+#
+#    z foo              # cd into highest ranked directory matching foo
+#    z foo bar          # cd into highest ranked directory matching foo and bar
+#    z foo /            # cd into a subdirectory starting with foo
+#
+#    z ~/foo            # z also works like a regular cd command
+#    z foo/             # cd into relative path
+#    z ..               # cd one level up
+#    z -                # cd into previous directory
+#
+#    zi foo             # cd with interactive selection (using fzf)
+#    z foo<SPACE><TAB>  # show interactive completions (zoxide v0.8.0+, bash 4.4+/fish/zsh only)
 
 ##### ALIASES #####
 
@@ -84,22 +98,26 @@ setopt NO_BEEP                 # don't beep on error in ZLE
 
 WORDCHARS='*?_-.~=&;!#%^{}<>' # remove []()/$
 
-autoload -U compinit
-compinit
-
 bindkey -e                     # enable eMacs-style bindings
 
 
 ##### INTEGRATIONS #####
+#
+
+mkdir -p ~/.zshplugins
+[[ -r ~/.zshplugins/znap/znap.zsh ]] || git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.zshplugins/znap/
+source ~/.zshplugins/znap/znap.zsh
+
+znap source marlonrichert/zsh-autocomplete
 
 # if [ -f '/Users/andreyvit/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/andreyvit/google-cloud-sdk/path.zsh.inc'; fi
 # if [ -f '/Users/andreyvit/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/andreyvit/google-cloud-sdk/completion.zsh.inc'; fi
 # test -f ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zsh
 # if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
-if which direnv >/dev/null; then eval "$(direnv hook zsh)"; fi
-# source <(pkgx --shellcode)
 # export SDKMAN_DIR="$HOME/.sdkman"; [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-eval "$(atuin init zsh)"
-eval "$(zoxide init zsh)"
+znap eval pkgx 'pkgx --shellcode'
+znap eval direnv 'direnv hook zsh'
+znap eval atuin 'atuin init zsh'
+znap eval zoxide 'zoxide init zsh'
 
 true
