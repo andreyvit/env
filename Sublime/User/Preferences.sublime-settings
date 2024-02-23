@@ -30,6 +30,7 @@
 		"All Autocomplete",
 		"LSP-gopls",
 		"Vintage",
+		"YAML Nav",
 	],
 	"ignored_words":
 	[

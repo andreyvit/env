@@ -8,4 +8,5 @@
         "proxy": "",
         "completion_style": "popup",
     },
+    "enabled": true,
 }

@@ -96,7 +96,7 @@ setopt CORRECT CORRECT_ALL     # correct the spelling of commands and arguments
 setopt NOTIFY                  # report status of background jobs immediately
 setopt NO_BEEP                 # don't beep on error in ZLE
 
-WORDCHARS='*?_-.~=&;!#%^{}<>' # remove []()/$
+WORDCHARS='*?.~=&;!#%^'        # remove [](){}<>/$-_
 
 bindkey -e                     # enable eMacs-style bindings
 
