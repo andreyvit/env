@@ -10,7 +10,7 @@ func (v ${1:MyType}) String() string {
     return $2[v]
 }
 func Parse$1(s string) ($1, error) {
-    if i := slices.Index($2, s[:]); i >= 0 {
+    if i := slices.Index($2[:], s); i >= 0 {
         return $1(i), nil
     } else {
         return $1None, fmt.Errorf("invalid $1 %q", s)
