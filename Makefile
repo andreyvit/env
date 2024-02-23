@@ -1,4 +1,4 @@
-.PHONY: karabiner ohmyzsh brew gems npm python
+.PHONY: karabiner-elements brew gems npm python
 
 help:
 	@echo "make preinstall-mac mac install-mac"
@@ -11,12 +11,12 @@ help:
 	@echo "* See README-Setup.md for manual configuration steps."
 	@echo ""
 
-preinstall-mac: preinstall-env-symlink preinstall-ohmyzsh preinstall-brew preinstall-tea
-preinstall-linux: preinstall-ohmyzsh preinstall-tea
+preinstall-mac: preinstall-env-symlink preinstall-brew
+preinstall-linux:
 
-mac: common sublime-symlink sublime-packages xcode hammerspoon
+mac: common sublime-symlink sublime-packages xcode hammerspoon karabiner-elements
 linux: common
-common: zshconfig sshconfig gitconfig ohmyzsh gemconfig psqlrc tmuxconf emacsconfig
+common: zshconfig sshconfig gitconfig gemconfig psqlrc tmuxconf emacsconfig
 
 install-mac: install-brew install-mas install-common
 install-common: install-gopkg 
@@ -24,15 +24,9 @@ install-common: install-gopkg
 preinstall-env-symlink:
 	test -d ~/env || ln -s ~/Library/'Mobile Documents/com~apple~CloudDocs/env' ~/
 
-preinstall-ohmyzsh:
-	test -d ~/.oh-my-zsh || sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 preinstall-brew:
 	which brew || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	grep /opt/homebrew/bin /etc/paths || { echo "*** Manually prepend /opt/homebrew/bin to /etc/paths (probably after /usr/local/bin but before the rest) ***"; exit 1; }
-
-preinstall-tea:
-	bash -c "sh <(curl https://tea.xyz)"
 
 zshconfig:
 	rm -f ~/.zshrc ~/.zshenv
@@ -89,9 +83,10 @@ hammerspoon:
 	rm -rf ~/.hammerspoon
 	ln -s ~/env/config/hammerspoon ~/.hammerspoon
 
-retired-karabiner:
-	rm -rf  ~/Library/'Application Support'/Karabiner
-	ln -s ~/env/Karabiner ~/Library/'Application Support'/
+karabiner-elements:
+	mkdir -p  ~/.config/karabiner/
+	rm -f  ~/.config/karabiner/karabiner.json
+	ln -s ~/env/config/karabiner.json ~/.config/karabiner/karabiner.json
 
 retired-kwm:
 	rm -rf ~/.kwm
@@ -133,6 +128,8 @@ install-brew:
 	brew install --cask mullvad-browser
 	brew install --cask kindle
 	# core dev tools
+	brew install atuin
+	brew install zoxide
 	brew install mosh
 	brew install go
 	brew install node
