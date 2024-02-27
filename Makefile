@@ -35,6 +35,7 @@ zshconfig:
 
 sshconfig:
 	mkdir -p -m 700 ~/.ssh
+	mkdir -p -m 700 ~/.ssh/control
 	rm -f ~/.ssh/config
 	ln -s ~/env/config/ssh-config ~/.ssh/config
 
