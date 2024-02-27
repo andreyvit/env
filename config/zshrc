@@ -35,7 +35,7 @@ export VISUAL=$EDITOR
 
 ##### PATHS #####
 
-export PATH=~/go/bin:~/bin:~/.yarn/bin:~/env/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=~/go/bin:~/env/bin:~/bin:~/.local/bin:~/.yarn/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 if test -d /usr/local/go/bin; then export PATH=$PATH:/usr/local/go/bin; fi
