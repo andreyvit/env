@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+var ${1:ContextKey} = ${2:${1/^./\l$0/}Type}{}
+
+type $2 struct{}
+
+func ($2) String() string {
+    return "${3:${TM_DIRECTORY/^.*\///}}.$1"
+}
+
+func ${4:${1/Key$//}}From(ctx context.Context) ${5:*$4} {
+	if v := ctx.Value($1); v != nil {
+		return v.($5)
+	}
+	return ${6:nil}
+}
+]]></content>
+    <tabTrigger>contextkey</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

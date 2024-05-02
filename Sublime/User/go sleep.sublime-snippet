@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+func sleep(ctx context.Context, dur time.Duration) {
+    ctxDone := ctx.Done()
+    if ctxDone == nil {
+        time.Sleep(dur)
+    } else {
+        timer := time.NewTimer(dur)
+        select {
+        case <-timer.C:
+            break
+        case <-ctx.Done():
+            timer.Stop()
+        }
+    }
+}
+]]></content>
+    <tabTrigger>sleep</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

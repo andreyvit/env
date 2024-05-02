@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func (v ${1:SomeFlags}) Contains(f $1) bool {
+    return (v & f) == f
+}
+func (v $1) ContainsAny(f $1) bool {
+    return (v & f) != 0
+}
+]]></content>
+    <tabTrigger>flags_contains</tabTrigger>
+    <scope>source.go</scope>
+</snippet>

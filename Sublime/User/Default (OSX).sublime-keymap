@@ -93,8 +93,8 @@
     { "keys": ["super+o"], "command": "lsp_document_symbols" },
     { "keys": ["super+shift+o"], "command": "lsp_workspace_symbols" },
     { "keys": ["super+k", "super+k"], "command": "lsp_code_actions" },
-    { "keys": ["super+b"], "command": "lsp_symbol_definition", "args": {"side_by_side": false} },
-    { "keys": ["super+shift+b"], "command": "lsp_symbol_type_definition", "args": {"side_by_side": false} },
+    { "keys": ["super+b"], "command": "lsp_symbol_definition", "args": {"side_by_side": false, "force_group": false} },
+    { "keys": ["super+shift+b"], "command": "lsp_symbol_type_definition", "args": {"side_by_side": false, "force_group": false} },
     { "keys": ["f5"], "command": "lsp_symbol_references" },
     { "keys": ["f6"], "command": "lsp_signature_help_show" },
 

@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+tag="$1"
+die() { echo "** $*"; exit 1; }
+test -z "$tag" && die "tag required; usage: git release v1.2.3"
+set -x
+git tag -a "$tag" -m "Release $tag"
+git push --tags
