@@ -74,7 +74,8 @@ dumb)
     ;;
 *)
     # PROMPT="[%(!.%S.)%n%x%(!.%s.)@%m:%~]%(?..%B%?%b)%70(l||)%B%#%b "
-    PROMPT='%F{green}$(_fishy_collapsed_wd)%(?.. %F{red}%?) %F{green}%#%f '
+    precmd() { print -Pn "\e]0;$(basename "$(pwd)")\a"; }
+    PROMPT=$'%F{green}$(_fishy_collapsed_wd)%(?.. %F{red}%?) %F{green}%#%f '
     PROMPT2="%F{red}\%f "
     ;;
 esac
