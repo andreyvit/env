@@ -6,8 +6,9 @@
     {"keys": ["alt+["], "command": "copilot_get_panel_completions", "context": [{"key": "setting.copilot.completion.is_visible", "operand": false}]},
     {"keys": ["alt+]"], "command": "copilot_next_completion", "context": [{"key": "setting.copilot.completion.is_visible"}]},
     {"keys": ["alt+["], "command": "copilot_previous_completion", "context": [{"key": "setting.copilot.completion.is_visible"}]},
-    {"keys": ["alt+\\"], "command": "copilot_accept_completion", "context": [{"key": "setting.copilot.completion.is_visible"}]},
-    {"keys": ["alt+'"], "command": "copilot_close_panel_completion", "context": [{"key": "setting.copilot.completion.is_visible"}]}, // TODO
+    {"keys": ["alt+\\"], "command": "copilot_accept_panel_completion", "context": [{"key": "setting.copilot.completion.is_visible_panel_completions"}]},
+    {"keys": ["alt+\\"], "command": "copilot_accept_completion", "context": [{"key": "copilot.is_on_completion"}, {"key": "setting.copilot.completion.is_visible_panel_completions", "operand": false}]},
+    {"keys": ["alt+'"], "command": "copilot_close_panel_completion", "context": [{"key": "setting.copilot.completion.is_visible_panel_completions"}]},
 
     // sidebar
     { "keys": ["ctrl+d"], "command": "reveal_in_side_bar" },
@@ -85,6 +86,8 @@
     { "keys": ["super+f2"], "command": "toggle_bookmark" },
     { "keys": ["super+shift+f2"], "command": "clear_bookmarks" },
     { "keys": ["alt+f2"], "command": "select_all_bookmarks" },
+
+    {"keys": ["super+t"], "command": "goto_symbol_in_project"},
 
     // LSP
     { "keys": ["primary+alt+m"], "command": "lsp_show_diagnostics_panel", "context": [{"key": "setting.lsp_active"}] },
