@@ -96,7 +96,7 @@ setopt EXTENDED_HISTORY        # save timestamp and duration
 setopt HIST_IGNORE_ALL_DUPS    # remove older dups from history
 setopt HIST_IGNORE_SPACE       # don't save commands with leading space
 setopt HIST_REDUCE_BLANKS      # trim extra blanks when adding to history
-setopt CORRECT CORRECT_ALL     # correct the spelling of commands and arguments
+# setopt CORRECT CORRECT_ALL     # correct the spelling of commands and arguments
 setopt NOTIFY                  # report status of background jobs immediately
 setopt NO_BEEP                 # don't beep on error in ZLE
 
