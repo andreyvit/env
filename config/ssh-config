@@ -52,8 +52,6 @@ Host bh201
   User root
 Host bh201.bubblehouse.com
   StrictHostKeyChecking no
-Host bh202.bubblehouse.com
-  StrictHostKeyChecking no
 Host bh203.bubblehouse.com
   StrictHostKeyChecking no
 Host bh204.bubblehouse.com
@@ -66,11 +64,5 @@ Host bh207.bubblehouse.com
   StrictHostKeyChecking no
 Host bh208.bubblehouse.com
   StrictHostKeyChecking no
-Host bh209.bubblehouse.com
-  StrictHostKeyChecking no
-Host bh210.bubblehouse.com
-  StrictHostKeyChecking no
-Host bh211.bubblehouse.com
-  StrictHostKeyChecking no
-Host bh212.bubblehouse.com
-  StrictHostKeyChecking no
+Host bh202.bubblehouse.com
+  StrictHostKeyChecking yes
