@@ -21,12 +21,16 @@ alias pt='pt --nogroup'
 alias ptg='pt --group'
 alias da='direnv allow'
 alias sqlite3nice="sqlite3 -column -header"
+alias ls='ls -G -F'
 
 
 ##### SETTINGS #####
 
 export EMAIL="Andrey Tarantsov <andrey@tarantsov.com>"
 export MANSECT=1:3tcl:n:l:8:3:2:3posix:3pm:3perl:5:4:9:6:7
+export CLICOLOR=1
+export LSCOLORS=GxfxcxdxBxegedabagacad
+export LS_COLORS="di=1;36:ln=35:so=32:pi=33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export ACK_OPTIONS="--type-add php=.module"
 
 if [[ -n $SSH_CONNECTION ]]; then export EDITOR='vim'; else export EDITOR=subl_wait; fi
