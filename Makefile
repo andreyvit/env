@@ -19,7 +19,7 @@ linux: common
 common: zshconfig sshconfig gitconfig gemconfig psqlrc tmuxconf emacsconfig
 
 install-mac: install-brew install-mas install-common
-install-common: install-gopkg 
+install-common: install-gopkg
 
 preinstall-env-symlink:
 	test -d ~/env || ln -s ~/Library/'Mobile Documents/com~apple~CloudDocs/env' ~/
@@ -128,6 +128,7 @@ install-brew:
 	brew install --cask battery
 	brew install --cask mullvad-browser
 	brew install --cask kindle
+	brew install raycast
 	# core dev tools
 	brew install atuin
 	brew install fzf
