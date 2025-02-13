@@ -42,6 +42,8 @@ export VISUAL=$EDITOR
 export PATH=~/go/bin:~/env/bin:~/bin:~/.local/bin:~/.yarn/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
+if test -d ~/.codeium/windsurf/bin; then export PATH=$PATH:~/.codeium/windsurf/bin; fi
+
 if test -d /usr/local/go/bin; then export PATH=$PATH:/usr/local/go/bin; fi
 if test -d /opt/homebrew/opt/ruby/bin; then export PATH=/opt/homebrew/opt/ruby/bin:$PATH; fi
 if test -d /usr/local/cuda; then export PATH=$PATH:/usr/local/cuda/bin; export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH; fi
