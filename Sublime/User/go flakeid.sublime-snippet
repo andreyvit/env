@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+func (${2:obj} *${1:Foo}) FlakeID() ID {
+    if $2 == nil {
+        return 0
+    }
+    return $2.ID
+}
+]]></content>
+    <tabTrigger>flakeid</tabTrigger>
+    <scope>source.go</scope>
+</snippet>
