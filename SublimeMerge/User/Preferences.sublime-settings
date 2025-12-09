@@ -1,0 +1,8 @@
+{
+	"side_bar_layout": "commit_graph_as_column",
+	"theme": "Merge Dark.sublime-theme",
+	"editor_argument_format": "${file}:${line}:${col}",
+	"editor_path": "/usr/local/bin/zed",
+	"editor_wait_args": "--wait",
+	"show_tab_close_buttons": false,
+}

@@ -1,0 +1,14 @@
+{
+    "rules": [
+        {
+            "class": "icon_folder",
+            "layer0.opacity": 0,
+            "content_margin": 0,
+        },
+        {
+            "class": "tab_label",
+            "layer0.opacity": 0.5,
+            "font.size": 11,
+        }
+    ]
+}

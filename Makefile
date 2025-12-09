@@ -14,7 +14,7 @@ help:
 preinstall-mac: preinstall-env-symlink preinstall-brew
 preinstall-linux:
 
-mac: common sublime-symlink sublime-packages xcode hammerspoon karabiner-elements
+mac: common sublime-symlink sublime-packages sublime-merge-packages xcode hammerspoon karabiner-elements
 linux: common
 common: zshconfig sshconfig gitconfig gemconfig psqlrc tmuxconf emacsconfig
 
@@ -79,6 +79,11 @@ sublime-packages:
 	mkdir -p ~/"Library/Application Support/Sublime Text/Packages"
 	rm -rf ~/"Library/Application Support/Sublime Text/Packages/User"
 	ln -s ~/env/Sublime/User ~/"Library/Application Support/Sublime Text/Packages/User"
+
+sublime-merge-packages:
+	mkdir -p ~/"Library/Application Support/Sublime Merge/Packages"
+	rm -rf ~/"Library/Application Support/Sublime Merge/Packages/User"
+	ln -s ~/env/SublimeMerge/User ~/"Library/Application Support/Sublime Merge/Packages/User"
 
 hammerspoon:
 	rm -rf ~/.hammerspoon
