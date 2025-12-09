@@ -1,0 +1,6 @@
+{
+    "keep_arrays_single_line": true,
+    "bracket_newline": false,
+    "brace_newline": false,
+    "indent": 2
+}
