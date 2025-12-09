@@ -22,7 +22,7 @@
 	// "font_face": "JetBrainsMono-Thin", // => != :=
 	// "font_face": "VictorMono-Light", // => != :=
 	"font_face": "VictorMono-ExtraLight", // => != :=
-	"font_size": 12, 
+	"font_size": 11, 
 	"font_options": ["no_round", "dlig", "ss01"],
 	"bold_folder_labels": true,
 	"ignored_packages":
