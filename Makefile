@@ -4,6 +4,8 @@
 .PHONY: xcode sublime-symlink sublime-packages sublime-merge-packages hammerspoon karabiner-elements
 .PHONY: retired-kwm retired-itunes
 
+BREW = HOMEBREW_NO_ASK=1 brew
+
 help:
 	@echo "make preinstall-mac mac install-mac"
 	@echo "make preinstall-linux linux"
@@ -109,91 +111,98 @@ retired-itunes:
 
 install-brew:
 	# most important
-	brew install rsync
-	brew install syncthing
-	brew services start syncthing
-	brew install --cask 1password-cli
-	brew install mas
-	brew install --cask hammerspoon
-	brew install --cask secretive
-	brew install --cask keyboard-maestro
-	brew install --cask sublime-text
-	brew install --cask sublime-merge
-	brew install --cask iterm2
-	brew install --cask rectangle-pro
-	brew install --cask transmit
-	brew install --cask zoom
-	brew install --cask telegram
-	brew install --cask dash
-	brew install --cask workflowy
-	brew install --cask battery
+	$(BREW) install rsync
+	$(BREW) install syncthing
+	$(BREW) services start syncthing
+	$(BREW) install --cask 1password-cli
+	$(BREW) install mas
+	$(BREW) install --cask chatgpt
+	$(BREW) install --cask heynote
+	$(BREW) install --cask hammerspoon
+	$(BREW) install --cask secretive
+	$(BREW) install --cask keyboard-maestro
+	$(BREW) install --cask sublime-text
+	$(BREW) install --cask sublime-merge
+	$(BREW) install --cask iterm2
+	$(BREW) install --cask rectangle-pro
+	$(BREW) install --cask transmit
+	$(BREW) install --cask zoom
+	$(BREW) install --cask telegram
+	$(BREW) install --cask telegram-desktop
+	$(BREW) install --cask dash
+	$(BREW) install --cask workflowy
+	$(BREW) install --cask google-chrome
+	$(BREW) install --cask battery
+	$(BREW) install --cask zed
 	# core dev tools
-	brew install atuin
-	brew install fzf
-	brew install zoxide
-	brew install mosh
-	brew install go
-	brew install node
-	brew install deno
-	brew install uv
-	brew install direnv
-	brew install pt
-	brew install watch
-	brew install cmake
-	brew install graphviz
-	brew install xcodegen
-	brew install tailwindcss
+	$(BREW) install atuin
+	$(BREW) install fzf
+	$(BREW) install zoxide
+	$(BREW) install mosh
+	$(BREW) install go
+	$(BREW) install node
+	$(BREW) install deno
+	$(BREW) install uv
+	$(BREW) install direnv
+	$(BREW) install pt
+	$(BREW) install watch
+	$(BREW) install cmake
+	$(BREW) install graphviz
+	$(BREW) install xcodegen
+	$(BREW) install tailwindcss
 	# various tools
-	brew install asciinema
-	brew install wget
-	brew install autojump
-	brew install figlet
-	brew install up
-	brew install cloc
-	brew install rlwrap
-	brew install icdiff
-	brew install s3cmd
-	brew install tree
-	brew install awscli
-	brew install ffmpeg
-	brew install rclone
-	brew install restic
-	brew install glow
-	brew install qsv
-	brew install xsv
-	brew install virtualenv
-	brew install cocoapods
-	# brew install jq
-	# brew install hub
-	# brew install swiftlint
-	# brew install heroku
+	$(BREW) install asciinema
+	$(BREW) install wget
+	$(BREW) install autojump
+	$(BREW) install figlet
+	$(BREW) install up
+	$(BREW) install cloc
+	$(BREW) install rlwrap
+	$(BREW) install icdiff
+	$(BREW) install s3cmd
+	$(BREW) install tree
+	$(BREW) install awscli
+	$(BREW) install ffmpeg
+	$(BREW) install rclone
+	$(BREW) install restic
+	$(BREW) install glow
+	$(BREW) install qsv
+	$(BREW) install xsv
+	$(BREW) install virtualenv
+	$(BREW) install cocoapods
+	# $(BREW) install jq
+	# $(BREW) install hub
+	# $(BREW) install swiftlint
+	# $(BREW) install heroku
 	# casks
-	brew install --cask asana
-	brew install --cask daisydisk
-	brew install --cask keyboard-cleaner
-	brew install --cask hex-fiend
-	# brew install --cask visual-studio-code
-	brew install --cask hazel
-	brew install --cask ngrok
-	brew install --cask sf-symbols
-	brew install --cask transmission
-	brew install --cask optimage
-	brew install --cask trezor-suite
-	brew install --cask omnioutliner
-	# brew install --cask krisp
+	$(BREW) install --cask aqua-voice
+	$(BREW) install --cask asana
+	$(BREW) install --cask carbon-copy-cloner
+	$(BREW) install --cask daisydisk
+	$(BREW) install --cask keyboard-cleaner
+	$(BREW) install --cask hex-fiend
+	# $(BREW) install --cask visual-studio-code
+	$(BREW) install --cask hazel
+	$(BREW) install --cask ngrok
+	$(BREW) install --cask sf-symbols
+	$(BREW) install --cask transmission
+	$(BREW) install --cask optimage
+	$(BREW) install --cask trezor-suite
+	$(BREW) install --cask omnioutliner
+	# $(BREW) install --cask krisp
 
 	# fonts
-	brew install --cask font-jetbrains-mono
-	brew install --cask font-ia-writer-duo
-	brew install --cask font-ia-writer-mono
-	brew install --cask font-ia-writer-quattro
+	$(BREW) install --cask font-jetbrains-mono
+	$(BREW) install --cask font-ia-writer-duo
+	$(BREW) install --cask font-ia-writer-mono
+	$(BREW) install --cask font-ia-writer-quattro
 
 	# large downloads
-	# brew install --cask android-studio
+	# $(BREW) install --cask android-studio
 
-	brew tap tinygo-org/tools
-	brew trust --formula tinygo-org/tools/tinygo
-	brew install tinygo-org/tools/tinygo
+	$(BREW) tap tinygo-org/tools
+	$(BREW) trust --formula tinygo-org/tools/tinygo
+	$(BREW) install tinygo-org/tools/tinygo
 
 install-mas:
 	mas install 803453959      # Slack
@@ -222,6 +231,7 @@ install-mas:
 	mas install 1499198946     # Structured
 	mas install 6747497179     # Marked
 	mas install 6739505345     # Hyperspace
+	mas install 920404675      # Monodraw
 
 	# mas install 1278508951     # Trello
 	# mas install 904280696      # Things
