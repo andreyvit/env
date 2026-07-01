@@ -112,32 +112,21 @@ install-brew:
 	brew install rsync
 	brew install syncthing
 	brew services start syncthing
-	brew install --cask 1password
 	brew install --cask 1password-cli
 	brew install mas
 	brew install --cask hammerspoon
 	brew install --cask secretive
-	brew install --cask maestral
 	brew install --cask keyboard-maestro
 	brew install --cask sublime-text
 	brew install --cask sublime-merge
 	brew install --cask iterm2
-	brew install --cask hey
 	brew install --cask rectangle-pro
-	brew install --cask setapp
 	brew install --cask transmit
-	brew install --cask mullvad-vpn
 	brew install --cask zoom
 	brew install --cask telegram
 	brew install --cask dash
-	brew install --cask nvalt
 	brew install --cask workflowy
-	brew install --cask loom
-	brew install --cask vivaldi
 	brew install --cask battery
-	brew install --cask mullvad-browser
-	brew install --cask kindle
-	brew install --cask raycast
 	# core dev tools
 	brew install atuin
 	brew install fzf
@@ -179,7 +168,6 @@ install-brew:
 	# brew install swiftlint
 	# brew install heroku
 	# casks
-	brew install --cask arq
 	brew install --cask asana
 	brew install --cask daisydisk
 	brew install --cask keyboard-cleaner
@@ -187,8 +175,6 @@ install-brew:
 	# brew install --cask visual-studio-code
 	brew install --cask hazel
 	brew install --cask ngrok
-	brew install --cask sketch
-	brew install --cask textexpander
 	brew install --cask sf-symbols
 	brew install --cask transmission
 	brew install --cask optimage
@@ -203,7 +189,7 @@ install-brew:
 	brew install --cask font-ia-writer-quattro
 
 	# large downloads
-	brew install --cask android-studio
+	# brew install --cask android-studio
 
 	brew tap tinygo-org/tools
 	brew trust --formula tinygo-org/tools/tinygo
