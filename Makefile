@@ -1,4 +1,8 @@
-.PHONY: karabiner-elements brew gems npm python
+.PHONY: help preinstall-mac preinstall-linux mac linux common install-mac install-common
+.PHONY: install-brew install-mas install-gopkg preinstall-env-symlink preinstall-brew
+.PHONY: zshconfig sshconfig gitconfig gemconfig psqlrc tmuxconf emacsconfig
+.PHONY: xcode sublime-symlink sublime-packages sublime-merge-packages hammerspoon karabiner-elements
+.PHONY: retired-kwm retired-itunes
 
 help:
 	@echo "make preinstall-mac mac install-mac"
@@ -8,7 +12,7 @@ help:
 	@echo ""
 	@echo "* Preinstall phases will require manual intervention."
 	@echo "* As soon as 1Password is installed, configure it and save ssh key."
-	@echo "* See README-Setup.md for manual configuration steps."
+	@echo "* See MacSetup.md and manual/ for manual configuration steps."
 	@echo ""
 
 preinstall-mac: preinstall-env-symlink preinstall-brew
@@ -122,7 +126,7 @@ install-brew:
 	brew install --cask rectangle-pro
 	brew install --cask setapp
 	brew install --cask transmit
-	brew install --cask mullvadvpn
+	brew install --cask mullvad-vpn
 	brew install --cask zoom
 	brew install --cask telegram
 	brew install --cask dash
@@ -133,7 +137,7 @@ install-brew:
 	brew install --cask battery
 	brew install --cask mullvad-browser
 	brew install --cask kindle
-	brew install raycast
+	brew install --cask raycast
 	# core dev tools
 	brew install atuin
 	brew install fzf
@@ -141,10 +145,17 @@ install-brew:
 	brew install mosh
 	brew install go
 	brew install node
+	brew install deno
+	brew install uv
 	brew install direnv
 	brew install pt
 	brew install watch
+	brew install cmake
+	brew install graphviz
+	brew install xcodegen
+	brew install tailwindcss
 	# various tools
+	brew install asciinema
 	brew install wget
 	brew install autojump
 	brew install figlet
@@ -155,12 +166,18 @@ install-brew:
 	brew install s3cmd
 	brew install tree
 	brew install awscli
+	brew install ffmpeg
+	brew install rclone
+	brew install restic
+	brew install glow
+	brew install qsv
+	brew install xsv
 	brew install virtualenv
 	brew install cocoapods
 	# brew install jq
 	# brew install hub
 	# brew install swiftlint
-	# brew install heroku/brew/heroku
+	# brew install heroku
 	# casks
 	brew install --cask arq
 	brew install --cask asana
@@ -179,17 +196,18 @@ install-brew:
 	brew install --cask omnioutliner
 	# brew install --cask krisp
 
-	# run last because this requires ssh key when accessing GitHub
-	brew install --cask homebrew/cask-fonts/font-jetbrains-mono
-	brew install --cask homebrew/cask-fonts/font-ia-writer-duo
-	brew install --cask homebrew/cask-fonts/font-ia-writer-mono
-	brew install --cask homebrew/cask-fonts/font-ia-writer-quattro
+	# fonts
+	brew install --cask font-jetbrains-mono
+	brew install --cask font-ia-writer-duo
+	brew install --cask font-ia-writer-mono
+	brew install --cask font-ia-writer-quattro
 
 	# large downloads
 	brew install --cask android-studio
 
 	brew tap tinygo-org/tools
-	brew install tinygo
+	brew trust --formula tinygo-org/tools/tinygo
+	brew install tinygo-org/tools/tinygo
 
 install-mas:
 	mas install 803453959      # Slack
@@ -200,14 +218,24 @@ install-mas:
 	mas install 488764545      # The Clock
 	mas install 412155298      # Nag
 
+	mas install 425424353      # The Unarchiver
+	mas install 1475387142     # Tailscale
+	mas install 987045856      # FTPServer
+
 	mas install 1365531024     # 1Blocker
 	mas install 1188020834     # OverPicture
 	mas install 1160374471     # PiPifier
-	mas install 1376402589     # StopTheMadness
+	-mas install 1376402589    # StopTheMadness (legacy)
 	mas install 1569813296     # 1Password for Safari
+	mas install 1622835804     # Kagi Search
+	mas install 1549370672     # Save to Raindrop.io
+	mas install 1136220934     # Infuse
 
 	mas install 1489816366     # Mic Drop — mute
-	mas install 1508732804     # Soulver
+	mas install 1508732804     # Soulver 3
+	mas install 1499198946     # Structured
+	mas install 6747497179     # Marked
+	mas install 6739505345     # Hyperspace
 
 	# mas install 1278508951     # Trello
 	# mas install 904280696      # Things
@@ -215,41 +243,45 @@ install-mas:
 	## apple
 	mas install 497799835      # Xcode
 	mas install 1289583905     # Pixelmator Pro
-	mas install 409201541      # Pages
-	# mas install 409183695      # Keynote
+	mas install 361309726      # Pages
+	mas install 361304891      # Numbers
+	# mas install 361285480      # Keynote
 	# mas install 408981434      # iMovie
 	# mas install 682658836      # GarageBand
 	# mas install 634148309      # Logic Pro X
 	## microsoft
 	# mas install 823766827      # OneDrive
-	mas install 1295203466     # Microsoft Remote Desktop
+	mas install 1295203466     # Windows App
 	# mas install 462054704      # Microsoft Word
 	# mas install 462058435      # Microsoft Excel
 	# mas install 462062816      # Microsoft PowerPoint
 	# mas install 784801555      # Microsoft OneNote
+	## development
+	mas install 899247664      # TestFlight
+	mas install 6476452351     # DevHub
 	## games/entertainment
 	# mas install 1141323850     # C. Anatomy 2021
 	# mas install 1464649839     # Butter Royale
 	# mas install 1489275350     # Crossy Road Castle
 	mas install 1541482816     # PSWD
-	mas install 482898991      # LiveReload
-	mas install 1388020431     # DevCleaner
-	mas install 1057705278     # ColorSquid — mix colors
-	mas install 960391457      # BayIcons
-	mas install 1296180121     # Iris
+	-mas install 482898991     # LiveReload (legacy)
+	-mas install 1057705278    # ColorSquid — mix colors (legacy)
+	-mas install 960391457     # BayIcons (legacy)
+	-mas install 1296180121    # Iris (legacy)
 	# mas install 1176895641     # Spark
 	mas install 556381974      # IconFly
 	mas install 867814185      # Acana QR Code Generator
 	mas install 1485436674     # A Companion for SwiftUI
 	mas install 640199958      # Developer
-	mas install 929960914      # Red Hot Timer
+	mas install 929960914      # Timer RH
 	# mas install 1380446739     # InjectionIII
-	mas install 452840086      # Receigen
-	mas install 409203825      # Numbers
-	mas install 539188678      # Unique Code Generator
+	-mas install 452840086     # Receigen (legacy)
+	-mas install 539188678     # Unique Code Generator (legacy)
 	mas install 1091189122     # Bear
 	mas install 1153157709     # Speedtest
 	mas install 905953485      # NordVPN
+	mas install 1663047912     # Screens 5
+	mas install 6740315592     # Spokenly
 
 install-gopkg:
 	go install github.com/cortesi/modd/cmd/modd@latest
