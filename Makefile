@@ -1,5 +1,5 @@
 .PHONY: help preinstall-mac preinstall-linux mac linux common install-mac install-common
-.PHONY: install-brew install-mas install-gopkg preinstall-env-symlink preinstall-brew
+.PHONY: install-brew install-mas install-gopkg install-npm preinstall-env-symlink preinstall-brew
 .PHONY: zshconfig sshconfig gitconfig gemconfig psqlrc tmuxconf emacsconfig
 .PHONY: xcode sublime-symlink sublime-packages sublime-merge-packages hammerspoon karabiner-elements
 .PHONY: retired-kwm retired-itunes
@@ -25,7 +25,7 @@ linux: common
 common: zshconfig sshconfig gitconfig gemconfig psqlrc tmuxconf emacsconfig
 
 install-mac: install-brew install-mas install-common
-install-common: install-gopkg
+install-common: install-gopkg install-npm
 
 preinstall-env-symlink:
 	test -d ~/env || ln -s ~/Library/'Mobile Documents/com~apple~CloudDocs/env' ~/
@@ -282,3 +282,6 @@ install-mas:
 install-gopkg:
 	go install github.com/cortesi/modd/cmd/modd@latest
 	go install golang.org/x/tools/gopls@latest
+
+install-npm:
+	npm install -g linearis
