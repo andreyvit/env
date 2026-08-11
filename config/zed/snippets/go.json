@@ -1,0 +1,13 @@
+{
+  "Ensure": {
+    "prefix": "ensure",
+    "body": [
+      "func ensure(err error) {",
+      "\tif err != nil {",
+      "\t\tpanic(err)",
+      "\t}",
+      "}"
+    ],
+    "description": "Ensure that an error is nil"
+  }
+}

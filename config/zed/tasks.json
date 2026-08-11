@@ -1,0 +1,26 @@
+// Static tasks configuration.
+//
+// Example:
+[
+  {
+    "label": "$ZED_SYMBOL",
+    "command": "go test . -v -vet=off -parallel=1 -run '^$ZED_SYMBOL$'",
+    "cwd": "$ZED_DIRNAME",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "hide": "never",
+    "shell": "system",
+    "tags": ["go-test"]
+  },
+  {
+    "label": "Package tests",
+    "command": "go test .",
+    "cwd": "$ZED_DIRNAME",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "hide": "never",
+    "shell": "system"
+  }
+]

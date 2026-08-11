@@ -1,0 +1,216 @@
+[
+  {
+    "bindings": {
+      "cmd-m": "diagnostics::Deploy",
+      "alt-1": ["workspace::MoveItemToPane", { "destination": 0 }],
+      "alt-2": ["workspace::MoveItemToPane", { "destination": 1 }],
+      "alt-3": ["workspace::MoveItemToPane", { "destination": 2 }],
+      "alt-4": ["workspace::MoveItemToPane", { "destination": 3 }],
+      "alt-5": ["workspace::MoveItemToPane", { "destination": 3 }],
+      "alt-6": ["workspace::MoveItemToPane", { "destination": 4 }],
+      "alt-7": ["workspace::MoveItemToPane", { "destination": 5 }],
+      "alt-8": ["workspace::MoveItemToPane", { "destination": 6 }]
+    }
+  },
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-ctrl-[": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left" }
+      ],
+      "cmd-ctrl-]": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right" }
+      ],
+      "cmd-alt-left": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left" }
+      ],
+      "cmd-alt-right": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right" }
+      ],
+      "cmd-alt-up": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "up" }
+      ],
+      "cmd-alt-down": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "down" }
+      ],
+      "ctrl-[": "workspace::ActivatePaneLeft",
+      "ctrl-]": "workspace::ActivatePaneRight",
+      "ctrl-w shift-left": "workspace::SwapPaneLeft",
+      "ctrl-w shift-right": "workspace::SwapPaneRight"
+    }
+  },
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "f8": "task::Spawn",
+      "f9": "task::Rerun"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-up": "editor::MoveToStartOfParagraph",
+      "alt-down": "editor::MoveToEndOfParagraph",
+      "alt-shift-up": "editor::SelectToStartOfParagraph",
+      "alt-shift-down": "editor::SelectToEndOfParagraph",
+      "ctrl-up": "editor::MoveLineUp",
+      "ctrl-down": "editor::MoveLineDown",
+      "cmd-alt-up": "editor::AddSelectionAbove",
+      "cmd-alt-down": "editor::AddSelectionBelow",
+
+      "cmd-shift-d": "editor::DuplicateLineDown",
+
+      "ctrl-backspace": "editor::DeleteToPreviousSubwordStart",
+      "ctrl-delete": "editor::DeleteToNextSubwordEnd",
+      "ctrl-alt-d": "editor::DeleteToNextSubwordEnd",
+      "ctrl-left": "editor::MoveToPreviousSubwordStart",
+      "ctrl-right": "editor::MoveToNextSubwordEnd",
+      "ctrl-shift-left": "editor::SelectToPreviousSubwordStart",
+      "ctrl-shift-right": "editor::SelectToNextSubwordEnd",
+
+      "f3": "editor::FindAllReferences",
+      "f7": [
+        "editor::GoToDiagnostic",
+        {
+          "severity": {
+            "min": "warning",
+            "max": "error"
+          }
+        }
+      ],
+      "shift-f7": [
+        "editor::GoToPreviousDiagnostic",
+        {
+          "severity": {
+            "min": "warning",
+            "max": "error"
+          }
+        }
+      ],
+      "f8": "task::Spawn",
+      "f9": "task::Rerun",
+
+      "cmd-shift-c": "workspace::CopyRelativePath",
+
+      "ctrl-d": "pane::RevealInProjectPanel",
+      "ctrl-shift-d": "workspace::CloseAllDocks",
+      // "ctrl-s": "workspace::CloseAllDocks",
+      // "ctrl-s": "workspace::ToggleLeftDock",
+      // "ctrl-s": "project_panel::ToggleFocus",
+      "cmd-k cmd-shift-s": "zed::OpenDefaultKeymap",
+      "cmd-k cmd-k": "pane::TogglePinTab",
+      "cmd-k cmd-x": "project_panel::OpenPermanent",
+      "cmd-k cmd-,": "zed::OpenSettings",
+      "cmd-k cmd-<": "zed::OpenDefaultSettings",
+      "cmd-k f2": "project_panel::Rename",
+      "ctrl-w": null,
+      "ctrl-w shift-w": [
+        "vim::PreviousWordStart",
+        { "ignore_punctuation": true }
+      ],
+      // "ctrl-alt-right": ["vim::NextWordStart", { "ignorePunctuation": true }],
+      // "shift-e": ["vim::NextWordEnd", { "ignorePunctuation": true }],
+      // "shift-e": ["vim::PreviousWordEnd", { "ignorePunctuation": true }],
+      "ctrl-v": ["editor::MovePageDown", { "center_cursor": true }],
+      "alt-v": ["editor::MovePageUp", { "center_cursor": true }],
+      "ctrl-/": "editor::Rewrap",
+      "tab": "editor::ShowCompletions",
+      "ctrl-z": "editor::ToggleSoftWrap",
+      "alt-/": "editor::Tab", // go to next completion placeholder
+      "alt-?": "editor::Backtab" // go to next completion placeholder
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "cmd-o": "outline::Toggle"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space": "project_panel::Open",
+      "enter": "project_panel::OpenPermanent",
+      "ctrl-d": "workspace::ToggleLeftDock",
+      "ctrl-shift-d": "workspace::CloseAllDocks"
+    }
+  },
+  {
+    "context": "Editor && !edit_prediction",
+    "use_key_equivalents": true,
+    "bindings": {
+      // "alt-tab": "editor::ShowEditPrediction",
+      // "alt-\\": "editor::ShowEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "use_key_equivalents": true,
+    "bindings": {
+      // "enter": "editor::Newline",
+      // "tab": "editor::ConfirmCompletion",
+      // "alt+tab": "editor::ComposeCompletion"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "alt-tab": "editor::AcceptEditPrediction",
+      "tab": "editor::AcceptEditPrediction",
+      "alt-\\": "editor::AcceptEditPrediction",
+      "ctrl-\\": "editor::AcceptNextWordEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction_conflict",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-tab": "editor::AcceptEditPrediction",
+      "alt-\\": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && showing_code_actions",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "editor::ConfirmCodeAction"
+    }
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "use_key_equivalents": true,
+    "bindings": {
+      // "ctrl-n": "editor::ContextMenuNext",
+      // "ctrl-p": "editor::ContextMenuPrevious",
+      // "pageup": "editor::ContextMenuFirst",
+      // "pagedown": "editor::ContextMenuLast",
+      // "up": "editor::MoveUp",
+      // "down": "editor::MoveDown"
+    }
+  },
+  {
+    "context": "((Editor && mode == full) && edit_prediction)",
+    "bindings": {
+      // "alt-]": "editor::NextEditPrediction"
+    }
+  },
+  {
+    "context": "((Editor && mode == full) && edit_prediction)",
+    "bindings": {
+      "alt-[": "editor::PreviousEditPrediction"
+    }
+  },
+  {
+    "bindings": {
+      "alt-cmd-d": "git::Diff"
+    }
+  }
+]

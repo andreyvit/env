@@ -1,0 +1,269 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "cli_default_open_behavior": "new_window",
+  "git_panel": {
+    "dock": "left"
+  },
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "agent_servers": {
+    "claude": {
+      "default_mode": "acceptEdits"
+    }
+  },
+  "auto_update_extensions": {
+    "kanagawa-themes": false
+  },
+  "terminal": {
+    "dock": "bottom",
+    "font_size": 10,
+    "toolbar": {
+      "breadcrumbs": false
+    }
+  },
+  "vim_mode": false,
+  "agent": {
+    "dock": "right",
+    "message_editor_min_lines": 5,
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-thinking-latest"
+    },
+    "profiles": {
+      "ask": {
+        "name": "Ask",
+        "tools": {
+          "contents": true,
+          "diagnostics": true,
+          "fetch": true,
+          "list_directory": true,
+          "now": true,
+          "find_path": true,
+          "read_file": true,
+          "open": true,
+          "grep": true,
+          "thinking": true,
+          "web_search": true,
+          "terminal": true
+        },
+        "enable_all_context_servers": false,
+        "context_servers": {}
+      }
+    },
+    "default_profile": "write",
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-opus-4-1"
+    }
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "left"
+  },
+  "search": {
+    "include_ignored": false
+  },
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_branch_name": true,
+    "show_project_items": true,
+    "show_user_picture": true,
+    "show_menus": true,
+    "show_sign_in": true,
+    "show_onboarding_banner": false
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+  "ui_font_size": 11,
+  "agent_ui_font_size": 12,
+  "buffer_font_size": 12.0,
+  "buffer_font_family": "Victor Mono",
+  "buffer_font_weight": 300,
+  "buffer_line_height": { "custom": 1.4 },
+  "active_pane_modifiers": {
+    "border_size": 0,
+    "inactive_opacity": 0.85
+    // "magnification": 1
+  },
+  "wrap_guides": [80],
+  "double_click_in_multibuffer": "select",
+  "show_signature_help_after_edits": true,
+  "cursor_shape": "block",
+  "soft_wrap": "preferred_line_length",
+  "preferred_line_length": 80,
+  "show_wrap_guides": true,
+  "scroll_beyond_last_line": "vertical_scroll_margin",
+  "vertical_scroll_margin": 4,
+  "use_system_path_prompts": false,
+  "expand_excerpt_lines": 5,
+  "centered_layout": {
+    "left_padding": 0.2,
+    "right_padding": 0.2
+  },
+  "close_on_file_delete": true,
+  "use_autoclose": true,
+  "autosave": "off",
+  "always_treat_brackets_as_autoclosed": true,
+  "unnecessary_code_fade": 0.7,
+  "gutter": {
+    "line_numbers": true,
+    "runnables": true,
+    "folds": false
+  },
+  "scrollbar": {
+    "show": "always"
+  },
+  "indent_guides": {
+    "enabled": true,
+    "line_width": 2,
+    "active_line_width": 4,
+    "coloring": "indent_aware"
+  },
+  "project_panel": {
+    "entry_spacing": "standard",
+    "button": true,
+    "default_width": 240.0,
+    "dock": "left",
+    "file_icons": false,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 10,
+    "auto_reveal_entries": true,
+    "auto_fold_dirs": true,
+    "scrollbar": {
+      "show": "always"
+    }
+  },
+  "outline_panel": {
+    "button": true,
+    "default_width": 240,
+    "dock": "right",
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 20,
+    "auto_reveal_entries": true,
+    "auto_fold_dirs": true
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
+  "tabs": {
+    "git_status": false,
+    "file_icons": false,
+    "close_position": "right"
+  },
+  "toolbar": {},
+  "git": {
+    "git_gutter": "hide",
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_file_finder": false,
+    "enable_keep_preview_on_code_navigation": true
+  },
+  "inlay_hints": {
+    "enabled": true,
+    "show_background": true,
+    "show_type_hints": false,
+    "show_parameter_hints": false,
+    "show_other_hints": true
+  },
+  "file_types": {
+    // "tailwindcss": ["css"]
+  },
+  "languages": {
+    "HTML": {
+      "format_on_save": "off"
+    },
+    "CSS": {},
+    "JavaScript": {
+      "format_on_save": "off"
+    },
+    "JSON": {
+      "enable_language_server": false,
+      "prettier": { "allowed": false }
+    },
+    "Make": {
+      "hard_tabs": true,
+      "tab_size": 8
+    }
+  },
+  "lsp": {
+    "gopls": {
+      "binary": {
+        "path": "/Users/andreyvit/go/bin/gopls"
+      },
+      "initialization_options": {
+        "codelenses": {
+          "generate": false,
+          "gc_details": false,
+          "tidy": false,
+          "upgrade_dependency": false,
+          "vendor": false,
+          "regenerate_cgo": false,
+          "run_govulncheck": false
+        },
+        "semanticTokens": false,
+        "analyses": {},
+        "hints": {}
+      }
+    },
+    "html": {}
+  },
+  "experimental.theme_overrides": {
+    // "editor.background": "#333",
+    "syntax": {
+      "comment": {},
+      "comment.doc": {},
+      "operator": {
+        "font_weight": 200
+      },
+      "punctuation": {
+        "font_weight": 200
+      },
+      "punctuation.bracket": {
+        "font_weight": 200
+      },
+      "punctuation.delimiter": {
+        "font_weight": 200
+      },
+      "punctuation.list_marker": {
+        "font_weight": 200
+      },
+      "punctuation.special": {
+        "font_weight": 200
+      },
+      "keyword": {
+        "color": "#ff7733ff",
+        "font_weight": 200,
+        "font_style": "italic"
+      }
+    }
+  },
+  "context_servers": {
+    // "linear": {
+    //   "source": "custom",
+    //   "command": "npx",
+    //   "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"],
+    //   "env": {}
+    // }
+  }
+}
