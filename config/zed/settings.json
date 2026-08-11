@@ -15,7 +15,8 @@
     "provider": "zed"
   },
   "agent_servers": {
-    "claude": {
+    "claude-acp": {
+      "type": "registry",
       "default_mode": "acceptEdits"
     }
   },
@@ -31,6 +32,9 @@
   },
   "vim_mode": false,
   "agent": {
+    "tool_permissions": {
+      "default": "allow"
+    },
     "dock": "right",
     "message_editor_min_lines": 5,
     "inline_assistant_model": {
@@ -41,6 +45,7 @@
       "ask": {
         "name": "Ask",
         "tools": {
+          "search_web": true,
           "contents": true,
           "diagnostics": true,
           "fetch": true,
@@ -51,7 +56,6 @@
           "open": true,
           "grep": true,
           "thinking": true,
-          "web_search": true,
           "terminal": true
         },
         "enable_all_context_servers": false,
@@ -59,7 +63,6 @@
       }
     },
     "default_profile": "write",
-    "always_allow_tool_actions": true,
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-opus-4-1"
@@ -73,7 +76,7 @@
     "include_ignored": false
   },
   "title_bar": {
-    "show_branch_icon": true,
+    "show_branch_status_icon": true,
     "show_branch_name": true,
     "show_project_items": true,
     "show_user_picture": true,
